@@ -1,24 +1,23 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
 import Layout from '../../../layouts/Layout.astro';
-import type { Locale } from '../../../utils/i18n';
+import PlayDates from '../../../components/PlayDates';
+import { castOf, imageAttrs, plays, type Play } from '../../../utils/content';
+import { useTranslations, type Locale } from '../../../utils/i18n';
 
-export async function getStaticPaths() {
-  const plays = JSON.parse(fs.readFileSync(path.resolve('./src/content/plays.json'), 'utf-8'));
-  const locales = ['et', 'ru'];
-
-  return locales.flatMap((lang) =>
-    plays.map((play: any) => ({
+export function getStaticPaths() {
+  // Archived plays keep their pages so old links keep working.
+  return (['et', 'ru'] as const).flatMap((lang) =>
+    plays.map((play) => ({
       params: { lang, slug: play.slug },
-      props: { play, lang: lang as Locale }
+      props: { play, lang },
     }))
   );
 }
 
-const { play, lang } = Astro.props;
-const events = JSON.parse(fs.readFileSync(path.resolve('./src/content/events/schedule.json'), 'utf-8'));
-const upcomingDates = events.filter((e: any) => e.playSlug === play.slug);
+const { play, lang } = Astro.props as { play: Play; lang: Locale };
+const t = useTranslations(lang);
+const cast = castOf(play, lang);
+const facts = [play.duration && `${play.duration} MIN`, play.age_limit, lang === 'ru' ? 'Сцена: Lootsi 8' : 'Lava: Lootsi 8'].filter(Boolean);
 ---
 
 <Layout
@@ -39,11 +38,16 @@ const upcomingDates = events.filter((e: any) => e.playSlug === play.slug);
     <!-- Hero / Stage Photo with gradient mask -->
     <div class="relative overflow-hidden mb-12 border border-zinc-200 bg-zinc-950">
       <img
-        src={play.poster_url || "/images/placeholder-stage.jpg"}
+        {...imageAttrs(play.poster, 'plays', '(min-width: 1024px) 1024px, 100vw')}
         alt={play[`title_${lang}`]}
         class="w-full h-80 sm:h-96 md:h-[480px] object-cover [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)] filter contrast-125"
       />
       <div class="absolute bottom-6 left-6 right-6">
+        {play.archived && (
+          <span class="inline-block bg-zinc-700 text-white font-mono text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 mb-2 mr-1">
+            {t.plays.archived}
+          </span>
+        )}
         <span class="inline-block bg-red-600 text-white font-mono text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 mb-2">
           {play[`genre_${lang}`]}
         </span>
@@ -51,7 +55,7 @@ const upcomingDates = events.filter((e: any) => e.playSlug === play.slug);
           {play[`title_${lang}`]}
         </h1>
         <p class="font-mono text-zinc-300 text-xs sm:text-sm mt-2">
-          {play.duration} MIN · {play.age_limit} · {lang === 'ru' ? 'Сцена: Lootsi 8' : 'Lava: Lootsi 8'}
+          {facts.join(' · ')}
         </p>
       </div>
     </div>
@@ -68,36 +72,10 @@ const upcomingDates = events.filter((e: any) => e.playSlug === play.slug);
       </div>
 
       <div class="divide-y divide-zinc-200 border-t border-b border-zinc-200">
-        {upcomingDates.length === 0 ? (
-          <p class="py-6 font-mono text-sm text-zinc-500">
-            {lang === 'ru' ? 'В текущем месяце показов нет.' : 'Hetkel järgmisi etendusi pole märgitud.'}
-          </p>
+        {play.archived ? (
+          <p class="py-6 font-mono text-sm text-zinc-500 px-2">{t.plays.archivedNote}</p>
         ) : (
-          upcomingDates.map((item: any) => (
-            <div class="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-zinc-50 transition-colors px-2">
-              <div class="flex items-center gap-4">
-                <span class="font-mono font-bold text-lg text-black">{item.datetime.slice(0, 10)}</span>
-                <span class="text-xs font-mono text-zinc-500">{item.datetime.slice(11, 16)}</span>
-              </div>
-              <span class="text-xs font-mono text-zinc-600">{item.venue[lang]}</span>
-              <div>
-                {item.isSoldOut ? (
-                  <span class="inline-block border border-red-600 text-red-600 px-4 py-1.5 text-xs font-mono uppercase tracking-widest">
-                    {lang === 'ru' ? 'Продано' : 'Välja müüdud'}
-                  </span>
-                ) : (
-                  <a
-                    href={item.ticketUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    class="inline-block bg-red-600 hover:bg-red-700 text-white font-mono text-xs font-bold uppercase tracking-wider px-5 py-2 transition-colors"
-                  >
-                    {lang === 'ru' ? 'Купить' : 'Pilet'}
-                  </a>
-                )}
-              </div>
-            </div>
-          ))
+          <PlayDates client:load lang={lang} playSlug={play.slug} variant="list" />
         )}
       </div>
     </section>
@@ -118,7 +96,7 @@ const upcomingDates = events.filter((e: any) => e.playSlug === play.slug);
         // {lang === 'ru' ? 'Действующие лица и исполнители' : 'Tegelased ja osatäitjad'}
       </h2>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-        {play.cast.map((actor: any) => (
+        {cast.map(({ actor, role }) => (
           <a
             href={`/${lang}/actors/${actor.slug}`}
             class="group border border-zinc-200 p-4 bg-zinc-50/50 hover:bg-white hover:border-black transition-all"
@@ -127,7 +105,7 @@ const upcomingDates = events.filter((e: any) => e.playSlug === play.slug);
               {actor[`name_${lang}`]}
             </p>
             <p class="text-xs font-mono text-zinc-500 mt-1">
-              {actor[`role_name_${lang}`]}
+              {role}
             </p>
             <span class="inline-block text-[11px] font-mono text-red-600 mt-3 group-hover:translate-x-1 transition-transform">
               →

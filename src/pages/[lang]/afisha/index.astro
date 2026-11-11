@@ -1,6 +1,4 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
 import Layout from '../../../layouts/Layout.astro';
 import MonthlyAfisha from '../../../components/MonthlyAfisha';
 import { useTranslations, type Locale } from '../../../utils/i18n';
@@ -14,8 +12,6 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params as { lang: Locale };
 const t = useTranslations(lang);
-
-const events = JSON.parse(fs.readFileSync(path.resolve('./src/content/events/schedule.json'), 'utf-8'));
 ---
 
 <Layout
@@ -38,7 +34,7 @@ const events = JSON.parse(fs.readFileSync(path.resolve('./src/content/events/sch
     </div>
 
     <!-- Monthly Afisha React Island -->
-    <MonthlyAfisha client:load events={events} lang={lang} />
+    <MonthlyAfisha client:load lang={lang} />
 
     <!-- Info Box at Bottom (Only Online, Single Hall, No Group Booking) -->
     <div class="mt-16 bg-zinc-50 border border-zinc-200 p-6 md:p-8">

@@ -1,0 +1,73 @@
+# Builds the static site and stores it as the "site" artifact.
+# Nothing is pushed to the server: the admin (admin/builds.php) downloads the artifact on "Deploy".
+name: Build site
+
+on:
+  workflow_dispatch: # "Publish" / "Start new build" in the admin
+  push:
+    branches: [main]
+
+concurrency:
+  group: build
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Fetch published content from the server
+        env:
+          SITE_URL: ${{ secrets.SITE_URL }}
+          EXPORT_TOKEN: ${{ secrets.EXPORT_TOKEN }}
+          # Optional "user:password" while the whole site is behind HTTP basic auth.
+          SITE_AUTH: ${{ secrets.SITE_AUTH }}
+        run: |
+          if [ -z "$SITE_URL" ] || [ -z "$EXPORT_TOKEN" ]; then
+            echo "::error::Repository secrets SITE_URL and EXPORT_TOKEN must be set (Settings → Secrets and variables → Actions)."
+            exit 1
+          fi
+          AUTH=()
+          if [ -n "$SITE_AUTH" ]; then AUTH=(--user "$SITE_AUTH"); fi
+          curl -fsS --retry 3 --retry-delay 5 "${AUTH[@]}" \
+            "${SITE_URL%/}/admin/export.php?token=${EXPORT_TOKEN}" \
+            -o src/content/content.json
+          node -e '
+            const c = require("./src/content/content.json");
+            if (!Array.isArray(c.actors) || !Array.isArray(c.plays)) throw new Error("content.json has no actors/plays");
+            console.log(`Content from ${c.updatedAt}: ${c.actors.length} actors, ${c.plays.length} plays`);
+          '
+
+      - run: npm run build
+
+      - name: Write build-info.json
+        run: |
+          node -e '
+            const c = require("./src/content/content.json");
+            require("fs").writeFileSync("dist/build-info.json", JSON.stringify({
+              run_id: Number(process.env.GITHUB_RUN_ID),
+              run_number: Number(process.env.GITHUB_RUN_NUMBER),
+              sha: process.env.GITHUB_SHA,
+              built_at: new Date().toISOString(),
+              content_updatedAt: c.updatedAt,
+            }, null, 2));
+          '
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: dist/
+          retention-days: 7
+          if-no-files-found: error

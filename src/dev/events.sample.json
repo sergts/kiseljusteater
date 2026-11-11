@@ -1,0 +1,149 @@
+{
+  "generatedAt": "2026-11-11T18:33:37.863Z",
+  "events": [
+    {
+      "id": "pk-sample-1",
+      "piletikeskusEventId": "sample-1",
+      "playSlug": "enesetapja",
+      "title": {
+        "et": "Enesetapja",
+        "ru": "Самоубийца"
+      },
+      "datetime": "2026-11-14T19:00:00+02:00",
+      "venue": {
+        "et": "Kiseljus Teater, Lootsi 8, Tallinn",
+        "ru": "Театр Киселюс, Лоотси 8, Таллинн"
+      },
+      "ticketUrl": "https://piletikeskus.ee/et/series/enesetapja",
+      "status": "on_sale"
+    },
+    {
+      "id": "pk-sample-2",
+      "piletikeskusEventId": "sample-2",
+      "playSlug": "doktor-zivago",
+      "title": {
+        "et": "Doktor Živago: Lara, Jura, Tonja, Paša",
+        "ru": "Доктор Живаго: Лара, Юра, Тоня, Паша"
+      },
+      "datetime": "2026-11-20T19:00:00+02:00",
+      "venue": {
+        "et": "Kiseljus Teater, Lootsi 8, Tallinn",
+        "ru": "Театр Киселюс, Лоотси 8, Таллинн"
+      },
+      "ticketUrl": "https://piletikeskus.ee/et/series/doktor-zivago",
+      "status": "on_sale"
+    },
+    {
+      "id": "pk-sample-3",
+      "piletikeskusEventId": "sample-3",
+      "playSlug": "tomba-di-giulietta",
+      "title": {
+        "et": "TOMBA DI GIULIETTA. Ekskursioon",
+        "ru": "TOMBA DI GIULIETTA. Экскурсия"
+      },
+      "datetime": "2026-11-27T19:00:00+02:00",
+      "venue": {
+        "et": "Kiseljus Teater, Lootsi 8, Tallinn",
+        "ru": "Театр Киселюс, Лоотси 8, Таллинн"
+      },
+      "ticketUrl": "https://piletikeskus.ee/et/series/tomba-di-giulietta",
+      "status": "sold_out"
+    },
+    {
+      "id": "pk-sample-4",
+      "piletikeskusEventId": "sample-4",
+      "playSlug": "mann-ist-mann",
+      "title": {
+        "et": "Mann ist Mann",
+        "ru": "Mann ist Mann"
+      },
+      "datetime": "2026-12-05T19:00:00+02:00",
+      "venue": {
+        "et": "Kiseljus Teater, Lootsi 8, Tallinn",
+        "ru": "Театр Киселюс, Лоотси 8, Таллинн"
+      },
+      "ticketUrl": "https://piletikeskus.ee/et/series/mann-ist-mann",
+      "status": "on_sale"
+    },
+    {
+      "id": "pk-sample-5",
+      "piletikeskusEventId": "sample-5",
+      "playSlug": "doktor-zivago",
+      "title": {
+        "et": "Doktor Živago: Kui hoogu satub...",
+        "ru": "Доктор Живаго: Когда разгуляется..."
+      },
+      "datetime": "2026-12-12T19:00:00+02:00",
+      "venue": {
+        "et": "Kiseljus Teater, Lootsi 8, Tallinn",
+        "ru": "Театр Киселюс, Лоотси 8, Таллинн"
+      },
+      "ticketUrl": "https://piletikeskus.ee/et/series/doktor-zivago",
+      "status": "on_sale"
+    },
+    {
+      "id": "pk-sample-6",
+      "piletikeskusEventId": "sample-6",
+      "playSlug": "enesetapja",
+      "title": {
+        "et": "Enesetapja",
+        "ru": "Самоубийца"
+      },
+      "datetime": "2026-12-18T19:00:00+02:00",
+      "venue": {
+        "et": "Kiseljus Teater, Lootsi 8, Tallinn",
+        "ru": "Театр Киселюс, Лоотси 8, Таллинн"
+      },
+      "ticketUrl": "https://piletikeskus.ee/et/series/enesetapja",
+      "status": "sold_out"
+    },
+    {
+      "id": "pk-sample-7",
+      "piletikeskusEventId": "sample-7",
+      "playSlug": "tomba-di-giulietta",
+      "title": {
+        "et": "TOMBA DI GIULIETTA. Ekskursioon",
+        "ru": "TOMBA DI GIULIETTA. Экскурсия"
+      },
+      "datetime": "2027-01-16T19:00:00+02:00",
+      "venue": {
+        "et": "Kiseljus Teater, Lootsi 8, Tallinn",
+        "ru": "Театр Киселюс, Лоотси 8, Таллинн"
+      },
+      "ticketUrl": "https://piletikeskus.ee/et/series/tomba-di-giulietta",
+      "status": "on_sale"
+    },
+    {
+      "id": "pk-sample-8",
+      "piletikeskusEventId": "sample-8",
+      "playSlug": "doktor-zivago",
+      "title": {
+        "et": "Doktor Živago: Pihlakas suhkrus",
+        "ru": "Доктор Живаго: Рябина в сахаре"
+      },
+      "datetime": "2027-01-23T19:00:00+02:00",
+      "venue": {
+        "et": "Kiseljus Teater, Lootsi 8, Tallinn",
+        "ru": "Театр Киселюс, Лоотси 8, Таллинн"
+      },
+      "ticketUrl": "https://piletikeskus.ee/et/series/doktor-zivago",
+      "status": "on_sale"
+    },
+    {
+      "id": "pk-sample-x",
+      "piletikeskusEventId": "sample-x",
+      "playSlug": null,
+      "title": {
+        "et": "Külalisetendus",
+        "ru": "Гостевой спектакль"
+      },
+      "datetime": "2027-01-22T19:00:00+02:00",
+      "venue": {
+        "et": "Kiseljus Teater, Lootsi 8, Tallinn",
+        "ru": "Театр Киселюс, Лоотси 8, Таллинн"
+      },
+      "ticketUrl": "https://www.piletikeskus.ee/",
+      "status": "cancelled"
+    }
+  ]
+}

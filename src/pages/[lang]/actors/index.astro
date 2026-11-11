@@ -1,7 +1,6 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
 import Layout from '../../../layouts/Layout.astro';
+import { actors, imageAttrs, rolesOf } from '../../../utils/content';
 import { useTranslations, type Locale } from '../../../utils/i18n';
 
 export function getStaticPaths() {
@@ -14,8 +13,6 @@ export function getStaticPaths() {
 const { lang } = Astro.params as { lang: Locale };
 const t = useTranslations(lang);
 
-const actors = JSON.parse(fs.readFileSync(path.resolve('./src/content/actors.json'), 'utf-8'));
-const plays = JSON.parse(fs.readFileSync(path.resolve('./src/content/plays.json'), 'utf-8'));
 ---
 
 <Layout
@@ -39,10 +36,8 @@ const plays = JSON.parse(fs.readFileSync(path.resolve('./src/content/plays.json'
 
     <!-- Troupe Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-      {actors.map((actor: any) => {
-        const actorPlays = plays.filter((p: any) =>
-          p.cast?.some((c: any) => c.slug === actor.slug)
-        );
+      {actors.map((actor) => {
+        const roles = rolesOf(actor.slug, lang).current;
 
         return (
           <div class="group border border-zinc-200 bg-white flex flex-col justify-between hover:border-black transition-all">
@@ -50,7 +45,8 @@ const plays = JSON.parse(fs.readFileSync(path.resolve('./src/content/plays.json'
               <div class="p-3 bg-zinc-50 border-b border-zinc-200">
                 <div class="aspect-[3/4] overflow-hidden bg-zinc-200">
                   <img
-                    src={actor.photo_url || "/images/placeholder-actor.jpg"}
+                    {...imageAttrs(actor.photo, 'actors', '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw')}
+                    loading="lazy"
                     alt={actor[`name_${lang}`]}
                     class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                   />
@@ -71,21 +67,19 @@ const plays = JSON.parse(fs.readFileSync(path.resolve('./src/content/plays.json'
                 </p>
 
                 <!-- Active Roles -->
-                <div class="border-t border-zinc-100 pt-4">
+                {roles.length > 0 && <div class="border-t border-zinc-100 pt-4">
                   <p class="text-[10px] font-mono uppercase tracking-widest text-zinc-400 mb-2">
                     // {t.actors.repertoireRoles}:
                   </p>
                   <div class="space-y-1">
-                    {actorPlays.slice(0, 3).map((p: any) => (
-                      <div class="text-xs font-mono flex justify-between">
-                        <span class="font-bold text-zinc-800">{p[`title_${lang}`]}</span>
-                        <span class="text-zinc-400">
-                          {p.cast.find((c: any) => c.slug === actor.slug)?.[`role_name_${lang}`]}
-                        </span>
+                    {roles.slice(0, 3).map(({ play, role }) => (
+                      <div class="text-xs font-mono flex justify-between gap-3">
+                        <span class="font-bold text-zinc-800">{play[`title_${lang}`]}</span>
+                        <span class="text-zinc-400 text-right">{role}</span>
                       </div>
                     ))}
                   </div>
-                </div>
+                </div>}
               </div>
             </div>
 

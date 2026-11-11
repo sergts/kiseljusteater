@@ -1,7 +1,7 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
 import Layout from '../../layouts/Layout.astro';
+import UpcomingEvents from '../../components/UpcomingEvents';
+import { activePlays, actors, imageAttrs } from '../../utils/content';
 import { useTranslations, type Locale } from '../../utils/i18n';
 
 export function getStaticPaths() {
@@ -13,22 +13,6 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params as { lang: Locale };
 const t = useTranslations(lang);
-
-const plays = JSON.parse(fs.readFileSync(path.resolve('./src/content/plays.json'), 'utf-8'));
-const actors = JSON.parse(fs.readFileSync(path.resolve('./src/content/actors.json'), 'utf-8'));
-const events = JSON.parse(fs.readFileSync(path.resolve('./src/content/events/schedule.json'), 'utf-8'));
-
-// Next 3 upcoming events
-const upcomingEvents = events.slice(0, 4);
-
-const formatDate = (iso: string) => {
-  const d = new Date(iso);
-  return {
-    dayMonth: `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}`,
-    time: d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-    weekday: d.toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'et-EE', { weekday: 'short' }).toUpperCase()
-  };
-};
 ---
 
 <Layout
@@ -121,50 +105,7 @@ const formatDate = (iso: string) => {
       </a>
     </div>
 
-    <div class="divide-y divide-zinc-200 border-t border-b border-zinc-200">
-      {upcomingEvents.map((ev: any) => {
-        const { dayMonth, time, weekday } = formatDate(ev.datetime);
-        return (
-          <div class="py-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-zinc-50/75 transition-colors px-2">
-            <div class="flex items-center gap-6 min-w-[200px]">
-              <span class="text-2xl font-bold font-mono tracking-tight">{dayMonth}</span>
-              <div class="text-xs font-mono text-zinc-500">
-                <span class="text-red-600 font-semibold">{weekday}</span>
-                <br />
-                {time}
-              </div>
-            </div>
-
-            <div class="flex-1">
-              <a
-                href={`/${lang}/plays/${ev.playSlug}`}
-                class="text-xl font-bold uppercase tracking-tight hover:text-red-600 transition-colors"
-              >
-                {ev.playTitle[lang]}
-              </a>
-              <p class="text-zinc-500 text-xs font-mono mt-1">{ev.venue[lang]}</p>
-            </div>
-
-            <div class="min-w-[160px] text-left md:text-right">
-              {ev.isSoldOut ? (
-                <span class="inline-block border border-red-600 text-red-600 px-4 py-2 text-xs font-mono uppercase tracking-widest">
-                  {lang === 'ru' ? 'Продано' : 'Välja müüdud'}
-                </span>
-              ) : (
-                <a
-                  href={ev.ticketUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  class="inline-block bg-red-600 hover:bg-red-700 text-white font-mono text-xs font-bold uppercase tracking-wider px-6 py-2.5 transition-colors"
-                >
-                  {lang === 'ru' ? 'Купить билет' : 'Osta pilet'}
-                </a>
-              )}
-            </div>
-          </div>
-        );
-      })}
-    </div>
+    <UpcomingEvents client:load lang={lang} />
   </section>
 
   <!-- FEATURED REPERTOIRE SECTION -->
@@ -188,18 +129,19 @@ const formatDate = (iso: string) => {
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {plays.map((play: any) => (
+        {activePlays.map((play) => (
           <div class="group bg-white border border-zinc-200 overflow-hidden flex flex-col justify-between hover:border-black transition-colors">
             <div>
               <div class="relative h-64 overflow-hidden bg-zinc-900">
                 <img
-                  src={play.poster_url || "/images/placeholder-stage.jpg"}
+                  {...imageAttrs(play.poster, 'plays', '(min-width: 768px) 50vw, 100vw')}
+                  loading="lazy"
                   alt={play[`title_${lang}`]}
                   class="w-full h-full object-cover [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] group-hover:scale-105 transition-transform duration-500"
                 />
                 <div class="absolute top-4 left-4">
                   <span class="inline-block bg-black/80 backdrop-blur text-white text-[10px] font-mono uppercase tracking-widest px-2.5 py-1">
-                    {play.age_limit} · {play.duration} MIN
+                    {[play.age_limit, play.duration && `${play.duration} MIN`].filter(Boolean).join(' · ')}
                   </span>
                 </div>
               </div>
@@ -254,11 +196,12 @@ const formatDate = (iso: string) => {
     </div>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-      {actors.map((actor: any) => (
+      {actors.map((actor) => (
         <a href={`/${lang}/actors/${actor.slug}`} class="group">
           <div class="border border-zinc-200 p-2 bg-white group-hover:border-black transition-colors mb-3">
             <img
-              src={actor.photo_url || "/images/placeholder-actor.jpg"}
+              {...imageAttrs(actor.photo, 'actors', '(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw')}
+              loading="lazy"
               alt={actor[`name_${lang}`]}
               class="w-full aspect-[3/4] object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-300"
             />

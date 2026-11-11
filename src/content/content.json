@@ -1,0 +1,422 @@
+{
+    "version": 1,
+    "updatedAt": "2026-11-11T20:33:37+02:00",
+    "actors": [
+        {
+            "slug": "anton-kiseljus",
+            "name_et": "Anton Kiseljus",
+            "name_ru": "Антон Киселюс",
+            "role_title_et": "Asutaja / Kunstiline juht / Lavastaja",
+            "role_title_ru": "Основатель / Художественный руководитель / Режиссер",
+            "bio_et": "Kiseljus Teatri asutaja ja pealavastaja. Lõpetanud GITIS-e (Venemaa Teatrikunsti Instituut) draamalavastaja erialal professor Leonid Heifetsi juhendamisel. Varem töötanud Vene Teatri näitlejana ning juhtinud sõltumatut teatriprojekti TRUE-Teater. Teatris Kiseljus Lootsi 8 loob ta isikupärast autoriteatrit valgusküllases saal-transformeri ruumis.",
+            "bio_ru": "Основатель и главный режиссер Театра Киселюс. Выпускник режиссерского факультета ГИТИСа (мастерская профессора Леонида Хейфеца). В прошлом актер Русского театра Эстонии и создатель независимого проекта TRUE-Театр. В пространстве на Лоотси 8 развивает бескомпромиссный авторский театр в уникальном белом трансформируемом зале.",
+            "photo": {
+                "src": "/images/actors/anton-kiseljus.jpg",
+                "thumb": null,
+                "width": null,
+                "height": null
+            }
+        },
+        {
+            "slug": "nika-fedortsuk",
+            "name_et": "Nika Fedortšuk",
+            "name_ru": "Ника Федорчук",
+            "role_title_et": "Näitleja / Visuaalkunstnik",
+            "role_title_ru": "Актриса / Визуальный художник",
+            "bio_et": "Kiseljus Teatri trupi liige ja fotokunstnik. Vastutab lavastuste visuaalse dokumenteerimise, lavalise kohalolu ja kunstilise meedia esteetika eest.",
+            "bio_ru": "Актриса и визуальный художник Театра Киселюс. Участвует в сценических постановках театра, а также формирует визуальный язык и художественную фотодокументацию проектов.",
+            "photo": {
+                "src": "/images/actors/nika-fedortsuk.jpg",
+                "thumb": null,
+                "width": null,
+                "height": null
+            }
+        },
+        {
+            "slug": "ivan-mysyagin",
+            "name_et": "Ivan Mysyagin",
+            "name_ru": "Иван Мысягин",
+            "role_title_et": "Näitleja",
+            "role_title_ru": "Актер",
+            "bio_et": "Kiseljus Teatri näitleja, Vene Teatri õppestuudio kasvandik. Mängib peaosalisi teatriseriaalis „Doktor Živago“, lavastustes „Enesetapja“, „TOMBA DI GIULIETTA“ ja „Mann ist Mann“.",
+            "bio_ru": "Актер труппы Театра Киселюс, выпускник студии Русского театра. Занят в ведущих партиях театрального сериала «Доктор Живаго», спектаклях «Самоубийца», «TOMBA DI GIULIETTA» и «Mann ist Mann».",
+            "photo": {
+                "src": "/images/actors/ivan-mysyagin.jpg",
+                "thumb": null,
+                "width": null,
+                "height": null
+            }
+        },
+        {
+            "slug": "mikhail-pashchuk",
+            "name_et": "Mikhail Pashchuk",
+            "name_ru": "Михаил Пащук",
+            "role_title_et": "Näitleja",
+            "role_title_ru": "Актер",
+            "bio_et": "Kiseljus Teatri juhtivnäitleja. Osalenud teatri kõigis suurlavastustes, sealhulgas „Doktor Živago“ kõigis episoodides, „Enesetapjas“ ja lavastuses „TOMBA DI GIULIETTA“.",
+            "bio_ru": "Ведущий актер Театра Киселюс. Участник всех ключевых премьер театра, включая все эпизоды сериала «Доктор Живаго», спектакли «Самоубийца» и «TOMBA DI GIULIETTA».",
+            "photo": {
+                "src": "/images/actors/mikhail-pashchuk.jpg",
+                "thumb": null,
+                "width": null,
+                "height": null
+            }
+        },
+        {
+            "slug": "valeri-bazenov",
+            "name_et": "Valeri Baženov",
+            "name_ru": "Валерий Баженов",
+            "role_title_et": "Näitleja",
+            "role_title_ru": "Актер",
+            "bio_et": "Ekspressiivse ampluaaga teatrinäitleja. Mängib lavastustes „Doktor Živago“, „Enesetapja“, „TOMBA DI GIULIETTA“ ja „Mann ist Mann“.",
+            "bio_ru": "Острохарактерный и пластичный актер труппы. Занят в постановках «Доктор Живаго», «Самоубийца», «TOMBA DI GIULIETTA» и «Mann ist Mann».",
+            "photo": {
+                "src": "/images/actors/valeri-bazenov.jpg",
+                "thumb": null,
+                "width": null,
+                "height": null
+            }
+        },
+        {
+            "slug": "pavel-kornyshev",
+            "name_et": "Pavel Kornyshev",
+            "name_ru": "Павел Корнышев",
+            "role_title_et": "Näitleja",
+            "role_title_ru": "Актер",
+            "bio_et": "Kiseljus Teatri trupi alustala. Osalenud lavastustes „Doktor Živago“, „Enesetapja“, „TOMBA DI GIULIETTA“ ning „Mann ist Mann“.",
+            "bio_ru": "Постоянный артист труппы Театра Киселюс. Играет в спектаклях «Доктор Живаго», «Самоубийца», «TOMBA DI GIULIETTA» и «Mann ist Mann».",
+            "photo": {
+                "src": "/images/actors/pavel-kornyshev.jpg",
+                "thumb": null,
+                "width": null,
+                "height": null
+            }
+        },
+        {
+            "slug": "nina-zagvozdkina",
+            "name_et": "Nina Zagvozdkina",
+            "name_ru": "Нина Загвоздкина",
+            "role_title_et": "Näitleja",
+            "role_title_ru": "Актриса",
+            "bio_et": "Tugeva dramaatilise ja koomilise närviga näitlejanna. Tuntud rollidest lavastustes „Enesetapja“, „Doktor Živago“, „TOMBA DI GIULIETTA“ ja „Mann ist Mann“.",
+            "bio_ru": "Актриса широкого диапазона с яркой сценической харизмой. Исполнительница заметных ролей в спектаклях «Самоубийца», «Доктор Живаго», «TOMBA DI GIULIETTA» и «Mann ist Mann».",
+            "photo": {
+                "src": "/images/actors/nina-zagvozdkina.jpg",
+                "thumb": null,
+                "width": null,
+                "height": null
+            }
+        },
+        {
+            "slug": "sofia-stromberg",
+            "name_et": "Sofia Strömberg",
+            "name_ru": "София Стрёмберг",
+            "role_title_et": "Näitleja",
+            "role_title_ru": "Актриса",
+            "bio_et": "Kiseljus Teatri noorema põlvkonna näitlejanna. Mängib lavastuste sarjas „Doktor Živago“, lavastuses „TOMBA DI GIULIETTA“ ja Brechti näidendis „Mann ist Mann“.",
+            "bio_ru": "Актриса труппы Театра Киселюс. Исполняет центральные женские партии в театральном сериале «Доктор Живаго», постановках «TOMBA DI GIULIETTA» и «Mann ist Mann».",
+            "photo": {
+                "src": "/images/actors/sofia-stromberg.jpg",
+                "thumb": null,
+                "width": null,
+                "height": null
+            }
+        },
+        {
+            "slug": "sofia-mihhaljova",
+            "name_et": "Sofia Mihhaljova",
+            "name_ru": "София Михалёва",
+            "role_title_et": "Näitleja",
+            "role_title_ru": "Актриса",
+            "bio_et": "Näitlejanna, kes on osalenud lavastustes „Enesetapja“, „Doktor Živago: Episood II“ ja ekskursioon-lavastuses „TOMBA DI GIULIETTA“.",
+            "bio_ru": "Актриса Театра Киселюс. Занята в постановках «Самоубийца», «Доктор Живаго: Эпизод II» и спектакле-экскурсии «TOMBA DI GIULIETTA».",
+            "photo": {
+                "src": "/images/actors/sofia-mihhaljova.jpg",
+                "thumb": null,
+                "width": null,
+                "height": null
+            }
+        },
+        {
+            "slug": "katrin-seljugina",
+            "name_et": "Katrin Seljugina",
+            "name_ru": "Катрин Селюгина",
+            "role_title_et": "Näitleja",
+            "role_title_ru": "Актриса",
+            "bio_et": "Kiseljus Teatri näitleja. Osalenud lavastustes „Enesetapja“ ja „TOMBA DI GIULIETTA. Ekskursioon“.",
+            "bio_ru": "Актриса Театра Киселюс. Участница постановок «Самоубийца» и «TOMBA DI GIULIETTA. Экскурсия».",
+            "photo": {
+                "src": "/images/actors/katrin-seljugina.jpg",
+                "thumb": null,
+                "width": null,
+                "height": null
+            }
+        },
+        {
+            "slug": "sandra-haljaste",
+            "name_et": "Sandra Haljaste",
+            "name_ru": "Сандра Хальясте",
+            "role_title_et": "Näitleja",
+            "role_title_ru": "Актриса",
+            "bio_et": "Mänginud lavastustes „Doktor Živago“ (Episoodid I, II ja III), „Enesetapja“ ja „TOMBA DI GIULIETTA“.",
+            "bio_ru": "Актриса труппы. Участвует во всех трех эпизодах сериала «Доктор Живаго», постановках «Самоубийца» и «TOMBA DI GIULIETTA».",
+            "photo": {
+                "src": "/images/actors/sandra-haljaste.jpg",
+                "thumb": null,
+                "width": null,
+                "height": null
+            }
+        }
+    ],
+    "plays": [
+        {
+            "slug": "enesetapja",
+            "title_et": "Enesetapja",
+            "title_ru": "Самоубийца",
+            "genre_et": "Must komöödia ja tragifarss",
+            "genre_ru": "Черная комедия и трагифарс",
+            "synopsis_et": "Nikolai Erdmani absurditekstil ja teraval mustal huumoril põhinev lavastus, mille tegevus on toodud 1990. aastate Eesti paneelmaja sisehoovi ja karaoke-esteetikasse.\n\nVäike inimene Semjon Podsekalnikov otsustab tühise tüli ja öise vorstijupi pärast eluga hüvasti jätta. Silmapilkselt saab tema kavatsetavast surmast avalik kaup – naabrid, tuttavad ja eri huvigrupid asuvad tema enesetappu enda heaks ära kasutama.\n\nLavastaja Anton Kiseljuse käe all kujuneb loost vali, groteskne ja valusalt inimlik vaatemäng noorte eneseteostusest, kriisiaja absurdilisusest ja õigusest elada omaenda elu.",
+            "synopsis_ru": "Острая сатира Николая Эрдмана, перенесенная в реалии двора спального района 90-х и уличного караоке.\n\nИстория маленького человека Семёна Подсекальникова, решившего покончить с собой из-за куска ливерной колбасы. Новость моментально разлетается по округе, и чужая смерть становится предметом торга: каждый пытается заставить героя умереть во имя своих идеалов, корысти или амбиций.\n\nСпектакль говорит громким, гротескным и живым сценическим языком о праве на человеческое достоинство, кризисе идеалов и праве просто жить.",
+            "duration": 140,
+            "age_limit": "16+",
+            "archived": false,
+            "piletikeskus_ids": [],
+            "poster": {
+                "src": "/images/plays/enesetapja.jpg",
+                "thumb": null,
+                "width": null,
+                "height": null
+            },
+            "cast": [
+                {
+                    "actor": "ivan-mysyagin",
+                    "role_et": "Semjon Podsekalnikov",
+                    "role_ru": "Семён Подсекальников"
+                },
+                {
+                    "actor": "mikhail-pashchuk",
+                    "role_et": "Aleksandr Petrovitš Kalabuškin",
+                    "role_ru": "Александр Петрович Калабушкин"
+                },
+                {
+                    "actor": "pavel-kornyshev",
+                    "role_et": "Viktor Viktorovitš, kirjanik",
+                    "role_ru": "Виктор Викторович, писатель"
+                },
+                {
+                    "actor": "valeri-bazenov",
+                    "role_et": "Jegor Timofejevitš",
+                    "role_ru": "Егор Тимофеевич"
+                },
+                {
+                    "actor": "nina-zagvozdkina",
+                    "role_et": "Marija Lukjanovna, naine",
+                    "role_ru": "Мария Лукьяновна, жена"
+                },
+                {
+                    "actor": "katrin-seljugina",
+                    "role_et": "Serafima Iljitšna, ämm",
+                    "role_ru": "Серафима Ильинична, тёща"
+                },
+                {
+                    "actor": "sofia-mihhaljova",
+                    "role_et": "Margarita Ivanovna Peresvetova",
+                    "role_ru": "Маргарита Ивановна Пересветова"
+                },
+                {
+                    "actor": "sandra-haljaste",
+                    "role_et": "Kleo Maksimovna",
+                    "role_ru": "Клеопатра Максимовна"
+                },
+                {
+                    "actor": "nika-fedortsuk",
+                    "role_et": "Henrietta Stepanovna",
+                    "role_ru": "Генриетта Степановна"
+                }
+            ]
+        },
+        {
+            "slug": "doktor-zivago",
+            "title_et": "Doktor Živago",
+            "title_ru": "Доктор Живаго",
+            "genre_et": "Episoodiline teatriseriaal",
+            "genre_ru": "Театральный сериал",
+            "synopsis_et": "Boriss Pasternaki Nobeli preemiaga pärjatud romaanil põhinev mitmeosaline lavastuste sari Kiseljus Teatri valgusküllases saalis.\n\nSari linastub kolmes suures episoodis:\n• Episood I: „Lara, Jura, Tonja, Paša“\n• Episood II: „Kui hoogu satub...“\n• Episood III: „Pihlakas suhkrus“\n\nLäbi revolutsioonide, kodusõja ja murranguliste ajastute hargneb arsti ja luuletaja Juri Živago armastuse ja sisemise vastupanu lugu. Valge valgusküllase stuudio ja Dmitri Kursi elava klaverimuusika saatel põimuvad intiimsed tunded ja ajaloo halastamatu kulg.",
+            "synopsis_ru": "Многосерийный театральный проект по великому роману Бориса Пастернака на сцене Театра Киселюс.\n\nСериал разворачивается в трех частях:\n• Эпизод I: «Лара, Юра, Тоня, Паша»\n• Эпизод II: «Когда разгуляется...»\n• Эпизод III: «Рябина в сахаре»\n\nСудьбы Юрия Живаго, Лары, Тони и Паши Антипова сквозь вихри Первой мировой, революций и Гражданской войны. Пронзительная сценическая партитура в сочетании с живым фортепиано Дмитрия Курса о любви, верности и поэзии на сломе эпох.",
+            "duration": 150,
+            "age_limit": "14+",
+            "archived": false,
+            "piletikeskus_ids": [],
+            "poster": {
+                "src": "/images/plays/doktor-zivago.jpg",
+                "thumb": null,
+                "width": null,
+                "height": null
+            },
+            "cast": [
+                {
+                    "actor": "mikhail-pashchuk",
+                    "role_et": "Juri Živago",
+                    "role_ru": "Юрий Живаго"
+                },
+                {
+                    "actor": "sofia-stromberg",
+                    "role_et": "Lara Gišar",
+                    "role_ru": "Лара Гишар"
+                },
+                {
+                    "actor": "valeri-bazenov",
+                    "role_et": "Paša Antipov / Strelnikov",
+                    "role_ru": "Паша Антипов / Стрельников"
+                },
+                {
+                    "actor": "pavel-kornyshev",
+                    "role_et": "Viktor Komarovski",
+                    "role_ru": "Виктор Комаровский"
+                },
+                {
+                    "actor": "ivan-mysyagin",
+                    "role_et": "Mihhail Gordon",
+                    "role_ru": "Михаил Гордон"
+                },
+                {
+                    "actor": "nina-zagvozdkina",
+                    "role_et": "Anna Gromeko",
+                    "role_ru": "Анна Громеко"
+                },
+                {
+                    "actor": "sandra-haljaste",
+                    "role_et": "Tonja Gromeko",
+                    "role_ru": "Тоня Громеко"
+                },
+                {
+                    "actor": "nika-fedortsuk",
+                    "role_et": "Koor / Visuaalne ansambel",
+                    "role_ru": "Хор / Пластический ансамбль"
+                }
+            ]
+        },
+        {
+            "slug": "tomba-di-giulietta",
+            "title_et": "TOMBA DI GIULIETTA",
+            "title_ru": "TOMBA DI GIULIETTA",
+            "genre_et": "Teatrirännak ja ekskursioon",
+            "genre_ru": "Спектакль-экскурсия",
+            "synopsis_et": "Shakespeare'i „Romeo ja Julia“ teemadel loodud eriline ruumiline lavastus ja teatraalne ekskursioon Kiseljus Teatri paekivimajas.\n\nVaatajad ei istu tavapärases saalipubliku rollis, vaid liiguvad koos näitlejatega läbi teatrimaja salajaste nurgataguste, koridoride ja saali. See on kaasaegne dialoog ja rännak traagika, armastuse müüdi ning surma paratamatuse üle.\n\nLavastaja Anton Kiseljus ja dramaturg Eva Hitrova avavad klassikalise armastusloo uue, karge ja vahetu nurga alt. Etendus on vene keeles eestikeelsete subtiitritega.",
+            "synopsis_ru": "Необычный иммерсивный спектакль-экскурсия по мотивам «Ромео и Джульетты» Уильяма Шекспира в пространстве театрального дома на Лоотси 8.\n\nЗрители не остаются пассивными наблюдателями в креслах: вместе с артистами они исследуют пространство театра, проходя сквозь лабиринт памяти, страсти и трагедии. Это диалог с современным зрителем о мифе идеальной любви, юношеском бунте и неизбежности утраты.\n\nРежиссер Антон Киселюс и драматург Ева Хитрова предлагают острый, камерный и свежий взгляд на шекспировскую трагедию. Спектакль идет на русском языке с эстонскими субтитрами.",
+            "duration": 90,
+            "age_limit": "14+",
+            "archived": false,
+            "piletikeskus_ids": [],
+            "poster": {
+                "src": "/images/plays/tomba-di-giulietta.jpg",
+                "thumb": null,
+                "width": null,
+                "height": null
+            },
+            "cast": [
+                {
+                    "actor": "mikhail-pashchuk",
+                    "role_et": "Romeo",
+                    "role_ru": "Ромео"
+                },
+                {
+                    "actor": "katrin-seljugina",
+                    "role_et": "Julia",
+                    "role_ru": "Джульетта"
+                },
+                {
+                    "actor": "ivan-mysyagin",
+                    "role_et": "Mercutio",
+                    "role_ru": "Меркуцио"
+                },
+                {
+                    "actor": "pavel-kornyshev",
+                    "role_et": "Tybalt",
+                    "role_ru": "Тибальт"
+                },
+                {
+                    "actor": "valeri-bazenov",
+                    "role_et": "Vend Lorenzo",
+                    "role_ru": "Брат Лоренцо"
+                },
+                {
+                    "actor": "sofia-stromberg",
+                    "role_et": "Ekskursioonijuht",
+                    "role_ru": "Экскурсовод"
+                },
+                {
+                    "actor": "sofia-mihhaljova",
+                    "role_et": "Doož / Hääl",
+                    "role_ru": "Голос Вероны"
+                },
+                {
+                    "actor": "nina-zagvozdkina",
+                    "role_et": "Ema Capuletti",
+                    "role_ru": "Синьора Капулетти"
+                },
+                {
+                    "actor": "sandra-haljaste",
+                    "role_et": "Amm",
+                    "role_ru": "Кормилица"
+                },
+                {
+                    "actor": "nika-fedortsuk",
+                    "role_et": "Saatja / Koor",
+                    "role_ru": "Проводник / Хор"
+                }
+            ]
+        },
+        {
+            "slug": "mann-ist-mann",
+            "title_et": "Mann ist Mann",
+            "title_ru": "Mann ist Mann",
+            "genre_et": "Füüsiline satiir ja grotesk",
+            "genre_ru": "Физическая сатира и гротеск",
+            "synopsis_et": "Bertolt Brechti varajase satiirilise näidendi ainetel valminud lavastus mehest nimega Galy Gay, kes läheb hommikul kala ostma ja naaseb... täiesti teise inimesena.\n\nLavastus uurib halastamatult ja mänguliselt inimese psüühika manipuleeritavust, massipsühhoosi ja militaristliku masinavärgi võimet indiviid lahti võtta ja uuesti kokku panna nagu relv.\n\nEkspressiivne lavaline liikumine, kirev klounaadi ja groteski sümbioos ning noore trupi plahvatuslik energia. Lavastus etendub vene keeles eestikeelsete subtiitritega.",
+            "synopsis_ru": "Спектакль по ранней пьесе Бертольта Брехта об ирландском грузчике Гэли Гэе, который вышел из дома купить рыбу к обеду, а в итоге превратился в безжалостную боевую единицу колониальной армии.\n\nОстрая, физически выразительная сатира на военную машину, конформизм и пугающую податливость человеческой природы в жерновах пропаганды и системы.\n\nЯркая клоунада, гротеск и мощный пластический ансамбль выпускников студии Русского театра. Спектакль идет на русском языке с эстонскими субтитрами.",
+            "duration": 110,
+            "age_limit": "16+",
+            "archived": false,
+            "piletikeskus_ids": [],
+            "poster": {
+                "src": "/images/plays/mann-ist-mann.jpg",
+                "thumb": null,
+                "width": null,
+                "height": null
+            },
+            "cast": [
+                {
+                    "actor": "ivan-mysyagin",
+                    "role_et": "Uriah Shelley",
+                    "role_ru": "Урия Шелли"
+                },
+                {
+                    "actor": "mikhail-pashchuk",
+                    "role_et": "Galy Gay",
+                    "role_ru": "Гэли Гэй"
+                },
+                {
+                    "actor": "valeri-bazenov",
+                    "role_et": "Jesse Mahoney",
+                    "role_ru": "Джесси Махони"
+                },
+                {
+                    "actor": "pavel-kornyshev",
+                    "role_et": "Polly Baker",
+                    "role_ru": "Полли Бейкер"
+                },
+                {
+                    "actor": "nina-zagvozdkina",
+                    "role_et": "Härra Wang / Leokadja Begbick",
+                    "role_ru": "Господин Ванг / Вдова Бегбик"
+                },
+                {
+                    "actor": "sofia-stromberg",
+                    "role_et": "Galy Gay naine",
+                    "role_ru": "Жена Гэли Гэя"
+                }
+            ]
+        }
+    ]
+}
