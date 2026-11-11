@@ -1,0 +1,69 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import Layout from '../../../layouts/Layout.astro';
+import MonthlyAfisha from '../../../components/MonthlyAfisha';
+import { useTranslations, type Locale } from '../../../utils/i18n';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'et' } },
+    { params: { lang: 'ru' } },
+  ];
+}
+
+const { lang } = Astro.params as { lang: Locale };
+const t = useTranslations(lang);
+
+const events = JSON.parse(fs.readFileSync(path.resolve('./src/content/events/schedule.json'), 'utf-8'));
+---
+
+<Layout
+  lang={lang}
+  title={`${t.afisha.title} | Kiseljus Teater`}
+  description={t.afisha.subtitle}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <!-- Header Banner -->
+    <div class="border-b border-zinc-200 pb-8 mb-10">
+      <p class="text-xs font-mono uppercase tracking-widest text-red-600 font-bold mb-2">
+        // {lang === 'ru' ? 'Сезон 2026/2027' : 'Hooaeg 2026/2027'}
+      </p>
+      <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight mb-4">
+        {t.afisha.title}
+      </h1>
+      <p class="text-zinc-600 font-mono text-sm max-w-2xl">
+        {t.afisha.venueNote}
+      </p>
+    </div>
+
+    <!-- Monthly Afisha React Island -->
+    <MonthlyAfisha client:load events={events} lang={lang} />
+
+    <!-- Info Box at Bottom (Only Online, Single Hall, No Group Booking) -->
+    <div class="mt-16 bg-zinc-50 border border-zinc-200 p-6 md:p-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 font-mono text-xs text-zinc-600">
+        <div>
+          <h3 class="font-bold uppercase tracking-wider text-black mb-2">
+            // {lang === 'ru' ? 'Билеты только онлайн' : 'Piletid ainult veebis'}
+          </h3>
+          <p>
+            {lang === 'ru'
+              ? 'Продажа билетов осуществляется исключительно онлайн через платформу Piletikeskus (piletikeskus.ee). В самом театре касса отсутствует, билеты на месте не продаются.'
+              : 'Piletite müük toimub AINULT VEEBIS Piletikeskuse keskkonnas (piletikeskus.ee). Teatris kohapeal piletikassat ei ole ning pileteid enne etendust kohapeal ei müüda.'}
+          </p>
+        </div>
+        <div>
+          <h3 class="font-bold uppercase tracking-wider text-black mb-2">
+            // {lang === 'ru' ? 'Вход в зрительный зал' : 'Sissepääs teatrisaali'}
+          </h3>
+          <p>
+            {lang === 'ru'
+              ? 'Театр располагает одним залом по адресу Lootsi 8, Таллинн. Двери фойе открываются за 45 минут до начала спектакля. После третьего звонка вход в зал закрывается.'
+              : 'Kiseljus Teatris on üks saal aadressil Lootsi 8, Tallinn. Teatri uksed avatakse 45 minutit enne etenduse algust. Pärast kolmandat kella saali enam ei pääse.'}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

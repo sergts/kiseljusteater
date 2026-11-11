@@ -1,0 +1,314 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations, type Locale } from '../../utils/i18n';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'et' } },
+    { params: { lang: 'ru' } },
+  ];
+}
+
+const { lang } = Astro.params as { lang: Locale };
+const t = useTranslations(lang);
+
+const plays = JSON.parse(fs.readFileSync(path.resolve('./src/content/plays.json'), 'utf-8'));
+const actors = JSON.parse(fs.readFileSync(path.resolve('./src/content/actors.json'), 'utf-8'));
+const events = JSON.parse(fs.readFileSync(path.resolve('./src/content/events/schedule.json'), 'utf-8'));
+
+// Next 3 upcoming events
+const upcomingEvents = events.slice(0, 4);
+
+const formatDate = (iso: string) => {
+  const d = new Date(iso);
+  return {
+    dayMonth: `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}`,
+    time: d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    weekday: d.toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'et-EE', { weekday: 'short' }).toUpperCase()
+  };
+};
+---
+
+<Layout
+  lang={lang}
+  title={`Kiseljus Teater | ${t.home.tagline}`}
+  description={t.home.subtitle}
+>
+  <!-- HERO BANNER -->
+  <section class="relative bg-black text-white overflow-hidden border-b border-zinc-900">
+    <!-- Visual background with mask-image gradient fade -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src="/images/placeholder-stage.jpg"
+        alt="Kiseljus Teater Stage"
+        class="w-full h-full object-cover opacity-45 [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] filter contrast-125"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-28 md:pt-32 md:pb-40">
+      <div class="max-w-3xl">
+        <div class="inline-block border border-red-600/80 bg-red-600/10 px-3 py-1 mb-6">
+          <span class="text-xs font-mono uppercase tracking-widest text-red-500 font-bold">
+            // TALLINN · LOOTSI 8
+          </span>
+        </div>
+
+        <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none mb-6">
+          Kiseljus<br />
+          <span class="text-stroke text-white hover:text-red-600 transition-colors">Teater</span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-zinc-300 font-light leading-relaxed mb-10 max-w-2xl">
+          {t.home.subtitle}
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4">
+          <a
+            href={`/${lang}/afisha`}
+            class="bg-red-600 hover:bg-red-700 text-white font-mono text-xs font-bold uppercase tracking-widest px-8 py-4 transition-all hover:translate-x-0.5"
+          >
+            {t.nav.buyTickets} →
+          </a>
+          <a
+            href={`/${lang}/plays`}
+            class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-mono text-xs uppercase tracking-widest px-8 py-4 transition-colors"
+          >
+            {t.home.exploreRepertoire}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ticker / Monospace Strip -->
+    <div class="relative z-10 border-t border-zinc-800 bg-zinc-950/80 backdrop-blur py-3 px-4 overflow-hidden">
+      <div class="max-w-7xl mx-auto flex items-center justify-between text-xs font-mono text-zinc-400">
+        <div class="flex items-center gap-4">
+          <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+          <span class="uppercase tracking-widest text-zinc-200">
+            {lang === 'ru' ? 'СЕЗОН 2026/2027' : 'HOOAEG 2026/2027'}
+          </span>
+          <span class="hidden sm:inline text-zinc-600">|</span>
+          <span class="hidden sm:inline">LOOTSI 8, TALLINN</span>
+        </div>
+        <div class="text-right">
+          <a href={`/${lang}/afisha`} class="text-red-500 hover:text-red-400 uppercase tracking-wider">
+            {t.home.viewAllAfisha}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UPCOMING PERFORMANCES PREVIEW -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-zinc-200 gap-4">
+      <div>
+        <p class="text-xs font-mono uppercase tracking-widest text-red-600 font-bold mb-1">
+          // {t.home.upcomingPerformances}
+        </p>
+        <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight">
+          {t.afisha.title}
+        </h2>
+      </div>
+      <a
+        href={`/${lang}/afisha`}
+        class="font-mono text-xs uppercase tracking-widest text-zinc-600 hover:text-red-600 transition-colors"
+      >
+        {t.home.viewAllAfisha}
+      </a>
+    </div>
+
+    <div class="divide-y divide-zinc-200 border-t border-b border-zinc-200">
+      {upcomingEvents.map((ev: any) => {
+        const { dayMonth, time, weekday } = formatDate(ev.datetime);
+        return (
+          <div class="py-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-zinc-50/75 transition-colors px-2">
+            <div class="flex items-center gap-6 min-w-[200px]">
+              <span class="text-2xl font-bold font-mono tracking-tight">{dayMonth}</span>
+              <div class="text-xs font-mono text-zinc-500">
+                <span class="text-red-600 font-semibold">{weekday}</span>
+                <br />
+                {time}
+              </div>
+            </div>
+
+            <div class="flex-1">
+              <a
+                href={`/${lang}/plays/${ev.playSlug}`}
+                class="text-xl font-bold uppercase tracking-tight hover:text-red-600 transition-colors"
+              >
+                {ev.playTitle[lang]}
+              </a>
+              <p class="text-zinc-500 text-xs font-mono mt-1">{ev.venue[lang]}</p>
+            </div>
+
+            <div class="min-w-[160px] text-left md:text-right">
+              {ev.isSoldOut ? (
+                <span class="inline-block border border-red-600 text-red-600 px-4 py-2 text-xs font-mono uppercase tracking-widest">
+                  {lang === 'ru' ? 'Продано' : 'Välja müüdud'}
+                </span>
+              ) : (
+                <a
+                  href={ev.ticketUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="inline-block bg-red-600 hover:bg-red-700 text-white font-mono text-xs font-bold uppercase tracking-wider px-6 py-2.5 transition-colors"
+                >
+                  {lang === 'ru' ? 'Купить билет' : 'Osta pilet'}
+                </a>
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- FEATURED REPERTOIRE SECTION -->
+  <section class="bg-zinc-50 border-t border-b border-zinc-200 py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-zinc-200 gap-4">
+        <div>
+          <p class="text-xs font-mono uppercase tracking-widest text-red-600 font-bold mb-1">
+            // {t.home.featuredPlay}
+          </p>
+          <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight">
+            {t.plays.title}
+          </h2>
+        </div>
+        <a
+          href={`/${lang}/plays`}
+          class="font-mono text-xs uppercase tracking-widest text-zinc-600 hover:text-red-600 transition-colors"
+        >
+          {lang === 'ru' ? 'Все спектакли →' : 'Kõik lavastused →'}
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {plays.map((play: any) => (
+          <div class="group bg-white border border-zinc-200 overflow-hidden flex flex-col justify-between hover:border-black transition-colors">
+            <div>
+              <div class="relative h-64 overflow-hidden bg-zinc-900">
+                <img
+                  src={play.poster_url || "/images/placeholder-stage.jpg"}
+                  alt={play[`title_${lang}`]}
+                  class="w-full h-full object-cover [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] group-hover:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute top-4 left-4">
+                  <span class="inline-block bg-black/80 backdrop-blur text-white text-[10px] font-mono uppercase tracking-widest px-2.5 py-1">
+                    {play.age_limit} · {play.duration} MIN
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-6">
+                <p class="text-xs font-mono text-red-600 uppercase tracking-wider mb-2">
+                  {play[`genre_${lang}`]}
+                </p>
+                <h3 class="text-2xl font-black uppercase tracking-tight mb-3 group-hover:text-red-600 transition-colors">
+                  {play[`title_${lang}`]}
+                </h3>
+                <p class="text-zinc-600 text-sm line-clamp-3 leading-relaxed">
+                  {play[`synopsis_${lang}`]}
+                </p>
+              </div>
+            </div>
+
+            <div class="p-6 pt-0 border-t border-zinc-100 flex items-center justify-between mt-4">
+              <span class="text-xs font-mono text-zinc-400">
+                {play.cast.length} {lang === 'ru' ? 'актеров' : 'näitlejat'}
+              </span>
+              <a
+                href={`/${lang}/plays/${play.slug}`}
+                class="font-mono text-xs font-bold uppercase tracking-wider text-black hover:text-red-600 transition-colors"
+              >
+                {t.plays.details}
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TROUPE TEASER SECTION -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-zinc-200 gap-4">
+      <div>
+        <p class="text-xs font-mono uppercase tracking-widest text-red-600 font-bold mb-1">
+          // {t.home.troupeHeading}
+        </p>
+        <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight">
+          {t.actors.title}
+        </h2>
+      </div>
+      <a
+        href={`/${lang}/actors`}
+        class="font-mono text-xs uppercase tracking-widest text-zinc-600 hover:text-red-600 transition-colors"
+      >
+        {t.home.viewAllTroupe}
+      </a>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+      {actors.map((actor: any) => (
+        <a href={`/${lang}/actors/${actor.slug}`} class="group">
+          <div class="border border-zinc-200 p-2 bg-white group-hover:border-black transition-colors mb-3">
+            <img
+              src={actor.photo_url || "/images/placeholder-actor.jpg"}
+              alt={actor[`name_${lang}`]}
+              class="w-full aspect-[3/4] object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-300"
+            />
+          </div>
+          <h4 class="font-bold uppercase text-sm group-hover:text-red-600 transition-colors">
+            {actor[`name_${lang}`]}
+          </h4>
+          <p class="text-[11px] font-mono text-zinc-500 line-clamp-1 mt-0.5">
+            {actor[`role_title_${lang}`]}
+          </p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- ABOUT & VENUE TEASER -->
+  <section class="border-t border-zinc-200 bg-zinc-900 text-white py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="inline-block text-red-500 font-mono text-xs uppercase tracking-widest mb-3">
+            // {t.about.spaceTitle}
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-6">
+            {t.home.aboutHeading}
+          </h2>
+          <p class="text-zinc-300 leading-relaxed text-sm sm:text-base mb-8">
+            {t.home.aboutTeaser}
+          </p>
+          <a
+            href={`/${lang}/about`}
+            class="inline-block bg-white hover:bg-zinc-200 text-black font-mono text-xs font-bold uppercase tracking-widest px-8 py-3.5 transition-colors"
+          >
+            {t.home.learnMore}
+          </a>
+        </div>
+
+        <div class="border border-zinc-800 p-3 bg-zinc-950">
+          <div class="aspect-video bg-zinc-800 overflow-hidden relative">
+            <img
+              src="/images/placeholder-stage.jpg"
+              alt="Lootsi 8 Hall"
+              class="w-full h-full object-cover filter contrast-125"
+            />
+            <div class="absolute bottom-3 left-3 bg-black/80 px-3 py-1 font-mono text-[10px] text-zinc-300 uppercase tracking-widest">
+              Kiseljus Teater · Lootsi 8 · Tallinn
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,293 @@
+[
+  {
+    "id": 1,
+    "slug": "enesetapja",
+    "title_et": "Enesetapja",
+    "title_ru": "Самоубийца",
+    "genre_et": "Must komöödia ja tragifarss",
+    "genre_ru": "Черная комедия и трагифарс",
+    "synopsis_et": "Nikolai Erdmani absurditekstil ja teraval mustal huumoril põhinev lavastus, mille tegevus on toodud 1990. aastate Eesti paneelmaja sisehoovi ja karaoke-esteetikasse.\n\nVäike inimene Semjon Podsekalnikov otsustab tühise tüli ja öise vorstijupi pärast eluga hüvasti jätta. Silmapilkselt saab tema kavatsetavast surmast avalik kaup – naabrid, tuttavad ja eri huvigrupid asuvad tema enesetappu enda heaks ära kasutama.\n\nLavastaja Anton Kiseljuse käe all kujuneb loost vali, groteskne ja valusalt inimlik vaatemäng noorte eneseteostusest, kriisiaja absurdilisusest ja õigusest elada omaenda elu.",
+    "synopsis_ru": "Острая сатира Николая Эрдмана, перенесенная в реалии двора спального района 90-х и уличного караоке.\n\nИстория маленького человека Семёна Подсекальникова, решившего покончить с собой из-за куска ливерной колбасы. Новость моментально разлетается по округе, и чужая смерть становится предметом торга: каждый пытается заставить героя умереть во имя своих идеалов, корысти или амбиций.\n\nСпектакль говорит громким, гротескным и живым сценическим языком о праве на человеческое достоинство, кризисе идеалов и праве просто жить.",
+    "duration": 140,
+    "age_limit": "16+",
+    "poster_url": "/images/plays/enesetapja.jpg",
+    "cast": [
+      {
+        "slug": "ivan-mysyagin",
+        "name_et": "Ivan Mysyagin",
+        "name_ru": "Иван Мысягин",
+        "role_name_et": "Semjon Podsekalnikov",
+        "role_name_ru": "Семён Подсекальников"
+      },
+      {
+        "slug": "mikhail-pashchuk",
+        "name_et": "Mikhail Pashchuk",
+        "name_ru": "Михаил Пащук",
+        "role_name_et": "Aleksandr Petrovitš Kalabuškin",
+        "role_name_ru": "Александр Петрович Калабушкин"
+      },
+      {
+        "slug": "pavel-kornyshev",
+        "name_et": "Pavel Kornyshev",
+        "name_ru": "Павел Корнышев",
+        "role_name_et": "Viktor Viktorovitš, kirjanik",
+        "role_name_ru": "Виктор Викторович, писатель"
+      },
+      {
+        "slug": "valeri-bazenov",
+        "name_et": "Valeri Baženov",
+        "name_ru": "Валерий Баженов",
+        "role_name_et": "Jegor Timofejevitš",
+        "role_name_ru": "Егор Тимофеевич"
+      },
+      {
+        "slug": "nina-zagvozdkina",
+        "name_et": "Nina Zagvozdkina",
+        "name_ru": "Нина Загвоздкина",
+        "role_name_et": "Marija Lukjanovna, naine",
+        "role_name_ru": "Мария Лукьяновна, жена"
+      },
+      {
+        "slug": "katrin-seljugina",
+        "name_et": "Katrin Seljugina",
+        "name_ru": "Катрин Селюгина",
+        "role_name_et": "Serafima Iljitšna, ämm",
+        "role_name_ru": "Серафима Ильинична, тёща"
+      },
+      {
+        "slug": "sofia-mihhaljova",
+        "name_et": "Sofia Mihhaljova",
+        "name_ru": "София Михалёва",
+        "role_name_et": "Margarita Ivanovna Peresvetova",
+        "role_name_ru": "Маргарита Ивановна Пересветова"
+      },
+      {
+        "slug": "sandra-haljaste",
+        "name_et": "Sandra Haljaste",
+        "name_ru": "Сандра Хальясте",
+        "role_name_et": "Kleo Maksimovna",
+        "role_name_ru": "Клеопатра Максимовна"
+      },
+      {
+        "slug": "nika-fedortsuk",
+        "name_et": "Nika Fedortšuk",
+        "name_ru": "Ника Федорчук",
+        "role_name_et": "Henrietta Stepanovna",
+        "role_name_ru": "Генриетта Степановна"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "doktor-zivago",
+    "title_et": "Doktor Živago",
+    "title_ru": "Доктор Живаго",
+    "genre_et": "Episoodiline teatriseriaal",
+    "genre_ru": "Театральный сериал",
+    "synopsis_et": "Boriss Pasternaki Nobeli preemiaga pärjatud romaanil põhinev mitmeosaline lavastuste sari Kiseljus Teatri valgusküllases saalis.\n\nSari linastub kolmes suures episoodis:\n• Episood I: „Lara, Jura, Tonja, Paša“\n• Episood II: „Kui hoogu satub...“\n• Episood III: „Pihlakas suhkrus“\n\nLäbi revolutsioonide, kodusõja ja murranguliste ajastute hargneb arsti ja luuletaja Juri Živago armastuse ja sisemise vastupanu lugu. Valge valgusküllase stuudio ja Dmitri Kursi elava klaverimuusika saatel põimuvad intiimsed tunded ja ajaloo halastamatu kulg.",
+    "synopsis_ru": "Многосерийный театральный проект по великому роману Бориса Пастернака на сцене Театра Киселюс.\n\nСериал разворачивается в трех частях:\n• Эпизод I: «Лара, Юра, Тоня, Паша»\n• Эпизод II: «Когда разгуляется...»\n• Эпизод III: «Рябина в сахаре»\n\nСудьбы Юрия Живаго, Лары, Тони и Паши Антипова сквозь вихри Первой мировой, революций и Гражданской войны. Пронзительная сценическая партитура в сочетании с живым фортепиано Дмитрия Курса о любви, верности и поэзии на сломе эпох.",
+    "duration": 150,
+    "age_limit": "14+",
+    "poster_url": "/images/plays/doktor-zivago.jpg",
+    "cast": [
+      {
+        "slug": "mikhail-pashchuk",
+        "name_et": "Mikhail Pashchuk",
+        "name_ru": "Михаил Пащук",
+        "role_name_et": "Juri Živago",
+        "role_name_ru": "Юрий Живаго"
+      },
+      {
+        "slug": "sofia-stromberg",
+        "name_et": "Sofia Strömberg",
+        "name_ru": "София Стрёмберг",
+        "role_name_et": "Lara Gišar",
+        "role_name_ru": "Лара Гишар"
+      },
+      {
+        "slug": "valeri-bazenov",
+        "name_et": "Valeri Baženov",
+        "name_ru": "Валерий Баженов",
+        "role_name_et": "Paša Antipov / Strelnikov",
+        "role_name_ru": "Паша Антипов / Стрельников"
+      },
+      {
+        "slug": "pavel-kornyshev",
+        "name_et": "Pavel Kornyshev",
+        "name_ru": "Павел Корнышев",
+        "role_name_et": "Viktor Komarovski",
+        "role_name_ru": "Виктор Комаровский"
+      },
+      {
+        "slug": "ivan-mysyagin",
+        "name_et": "Ivan Mysyagin",
+        "name_ru": "Иван Мысягин",
+        "role_name_et": "Mihhail Gordon",
+        "role_name_ru": "Михаил Гордон"
+      },
+      {
+        "slug": "nina-zagvozdkina",
+        "name_et": "Nina Zagvozdkina",
+        "name_ru": "Нина Загвоздкина",
+        "role_name_et": "Anna Gromeko",
+        "role_name_ru": "Анна Громеко"
+      },
+      {
+        "slug": "sandra-haljaste",
+        "name_et": "Sandra Haljaste",
+        "name_ru": "Сандра Хальясте",
+        "role_name_et": "Tonja Gromeko",
+        "role_name_ru": "Тоня Громеко"
+      },
+      {
+        "slug": "nika-fedortsuk",
+        "name_et": "Nika Fedortšuk",
+        "name_ru": "Ника Федорчук",
+        "role_name_et": "Koor / Visuaalne ansambel",
+        "role_name_ru": "Хор / Пластический ансамбль"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "tomba-di-giulietta",
+    "title_et": "TOMBA DI GIULIETTA",
+    "title_ru": "TOMBA DI GIULIETTA",
+    "genre_et": "Teatrirännak ja ekskursioon",
+    "genre_ru": "Спектакль-экскурсия",
+    "synopsis_et": "Shakespeare'i „Romeo ja Julia“ teemadel loodud eriline ruumiline lavastus ja teatraalne ekskursioon Kiseljus Teatri paekivimajas.\n\nVaatajad ei istu tavapärases saalipubliku rollis, vaid liiguvad koos näitlejatega läbi teatrimaja salajaste nurgataguste, koridoride ja saali. See on kaasaegne dialoog ja rännak traagika, armastuse müüdi ning surma paratamatuse üle.\n\nLavastaja Anton Kiseljus ja dramaturg Eva Hitrova avavad klassikalise armastusloo uue, karge ja vahetu nurga alt. Etendus on vene keeles eestikeelsete subtiitritega.",
+    "synopsis_ru": "Необычный иммерсивный спектакль-экскурсия по мотивам «Ромео и Джульетты» Уильяма Шекспира в пространстве театрального дома на Лоотси 8.\n\nЗрители не остаются пассивными наблюдателями в креслах: вместе с артистами они исследуют пространство театра, проходя сквозь лабиринт памяти, страсти и трагедии. Это диалог с современным зрителем о мифе идеальной любви, юношеском бунте и неизбежности утраты.\n\nРежиссер Антон Киселюс и драматург Ева Хитрова предлагают острый, камерный и свежий взгляд на шекспировскую трагедию. Спектакль идет на русском языке с эстонскими субтитрами.",
+    "duration": 90,
+    "age_limit": "14+",
+    "poster_url": "/images/plays/tomba-di-giulietta.jpg",
+    "cast": [
+      {
+        "slug": "mikhail-pashchuk",
+        "name_et": "Mikhail Pashchuk",
+        "name_ru": "Михаил Пащук",
+        "role_name_et": "Romeo",
+        "role_name_ru": "Ромео"
+      },
+      {
+        "slug": "katrin-seljugina",
+        "name_et": "Katrin Seljugina",
+        "name_ru": "Катрин Селюгина",
+        "role_name_et": "Julia",
+        "role_name_ru": "Джульетта"
+      },
+      {
+        "slug": "ivan-mysyagin",
+        "name_et": "Ivan Mysyagin",
+        "name_ru": "Иван Мысягин",
+        "role_name_et": "Mercutio",
+        "role_name_ru": "Меркуцио"
+      },
+      {
+        "slug": "pavel-kornyshev",
+        "name_et": "Pavel Kornyshev",
+        "name_ru": "Павел Корнышев",
+        "role_name_et": "Tybalt",
+        "role_name_ru": "Тибальт"
+      },
+      {
+        "slug": "valeri-bazenov",
+        "name_et": "Valeri Baženov",
+        "name_ru": "Валерий Баженов",
+        "role_name_et": "Vend Lorenzo",
+        "role_name_ru": "Брат Лоренцо"
+      },
+      {
+        "slug": "sofia-stromberg",
+        "name_et": "Sofia Strömberg",
+        "name_ru": "София Стрёмберг",
+        "role_name_et": "Ekskursioonijuht",
+        "role_name_ru": "Экскурсовод"
+      },
+      {
+        "slug": "sofia-mihhaljova",
+        "name_et": "Sofia Mihhaljova",
+        "name_ru": "София Михалёва",
+        "role_name_et": "Doož / Hääl",
+        "role_name_ru": "Голос Вероны"
+      },
+      {
+        "slug": "nina-zagvozdkina",
+        "name_et": "Nina Zagvozdkina",
+        "name_ru": "Нина Загвоздкина",
+        "role_name_et": "Ema Capuletti",
+        "role_name_ru": "Синьора Капулетти"
+      },
+      {
+        "slug": "sandra-haljaste",
+        "name_et": "Sandra Haljaste",
+        "name_ru": "Сандра Хальясте",
+        "role_name_et": "Amm",
+        "role_name_ru": "Кормилица"
+      },
+      {
+        "slug": "nika-fedortsuk",
+        "name_et": "Nika Fedortšuk",
+        "name_ru": "Ника Федорчук",
+        "role_name_et": "Saatja / Koor",
+        "role_name_ru": "Проводник / Хор"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "mann-ist-mann",
+    "title_et": "Mann ist Mann",
+    "title_ru": "Mann ist Mann",
+    "genre_et": "Füüsiline satiir ja grotesk",
+    "genre_ru": "Физическая сатира и гротеск",
+    "synopsis_et": "Bertolt Brechti varajase satiirilise näidendi ainetel valminud lavastus mehest nimega Galy Gay, kes läheb hommikul kala ostma ja naaseb... täiesti teise inimesena.\n\nLavastus uurib halastamatult ja mänguliselt inimese psüühika manipuleeritavust, massipsühhoosi ja militaristliku masinavärgi võimet indiviid lahti võtta ja uuesti kokku panna nagu relv.\n\nEkspressiivne lavaline liikumine, kirev klounaadi ja groteski sümbioos ning noore trupi plahvatuslik energia. Lavastus etendub vene keeles eestikeelsete subtiitritega.",
+    "synopsis_ru": "Спектакль по ранней пьесе Бертольта Брехта об ирландском грузчике Гэли Гэе, который вышел из дома купить рыбу к обеду, а в итоге превратился в безжалостную боевую единицу колониальной армии.\n\nОстрая, физически выразительная сатира на военную машину, конформизм и пугающую податливость человеческой природы в жерновах пропаганды и системы.\n\nЯркая клоунада, гротеск и мощный пластический ансамбль выпускников студии Русского театра. Спектакль идет на русском языке с эстонскими субтитрами.",
+    "duration": 110,
+    "age_limit": "16+",
+    "poster_url": "/images/plays/mann-ist-mann.jpg",
+    "cast": [
+      {
+        "slug": "ivan-mysyagin",
+        "name_et": "Ivan Mysyagin",
+        "name_ru": "Иван Мысягин",
+        "role_name_et": "Uriah Shelley",
+        "role_name_ru": "Урия Шелли"
+      },
+      {
+        "slug": "mikhail-pashchuk",
+        "name_et": "Mikhail Pashchuk",
+        "name_ru": "Михаил Пащук",
+        "role_name_et": "Galy Gay",
+        "role_name_ru": "Гэли Гэй"
+      },
+      {
+        "slug": "valeri-bazenov",
+        "name_et": "Valeri Baženov",
+        "name_ru": "Валерий Баженов",
+        "role_name_et": "Jesse Mahoney",
+        "role_name_ru": "Джесси Махони"
+      },
+      {
+        "slug": "pavel-kornyshev",
+        "name_et": "Pavel Kornyshev",
+        "name_ru": "Павел Корнышев",
+        "role_name_et": "Polly Baker",
+        "role_name_ru": "Полли Бейкер"
+      },
+      {
+        "slug": "nina-zagvozdkina",
+        "name_et": "Nina Zagvozdkina",
+        "name_ru": "Нина Загвоздкина",
+        "role_name_et": "Härra Wang / Leokadja Begbick",
+        "role_name_ru": "Господин Ванг / Вдова Бегбик"
+      },
+      {
+        "slug": "sofia-stromberg",
+        "name_et": "Sofia Strömberg",
+        "name_ru": "София Стрёмберг",
+        "role_name_et": "Galy Gay naine",
+        "role_name_ru": "Жена Гэли Гэя"
+      }
+    ]
+  }
+]

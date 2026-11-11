@@ -1,0 +1,119 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import Layout from '../../../layouts/Layout.astro';
+import { useTranslations, type Locale } from '../../../utils/i18n';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'et' } },
+    { params: { lang: 'ru' } },
+  ];
+}
+
+const { lang } = Astro.params as { lang: Locale };
+const t = useTranslations(lang);
+
+const plays = JSON.parse(fs.readFileSync(path.resolve('./src/content/plays.json'), 'utf-8'));
+const events = JSON.parse(fs.readFileSync(path.resolve('./src/content/events/schedule.json'), 'utf-8'));
+---
+
+<Layout
+  lang={lang}
+  title={`${t.plays.title} | Kiseljus Teater`}
+  description={t.plays.subtitle}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <!-- Header Banner -->
+    <div class="border-b border-zinc-200 pb-8 mb-12">
+      <p class="text-xs font-mono uppercase tracking-widest text-red-600 font-bold mb-2">
+        // {lang === 'ru' ? 'Текущий репертуар' : 'Mängukavas olevad lavastused'}
+      </p>
+      <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight mb-4">
+        {t.plays.title}
+      </h1>
+      <p class="text-zinc-600 font-mono text-sm max-w-2xl">
+        {t.plays.subtitle}
+      </p>
+    </div>
+
+    <!-- Plays Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+      {plays.map((play: any) => {
+        const playEvents = events.filter((e: any) => e.playSlug === play.slug);
+        return (
+          <div class="group bg-white border border-zinc-200 flex flex-col justify-between hover:border-black transition-all">
+            <div>
+              <div class="relative h-72 sm:h-80 overflow-hidden bg-zinc-950">
+                <img
+                  src={play.poster_url || "/images/placeholder-stage.jpg"}
+                  alt={play[`title_${lang}`]}
+                  class="w-full h-full object-cover [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] group-hover:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute top-4 left-4 flex gap-2">
+                  <span class="inline-block bg-black/80 backdrop-blur text-white text-xs font-mono uppercase tracking-widest px-3 py-1">
+                    {play.age_limit}
+                  </span>
+                  <span class="inline-block bg-black/80 backdrop-blur text-white text-xs font-mono uppercase tracking-widest px-3 py-1">
+                    {play.duration} MIN
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-6 sm:p-8">
+                <p class="text-xs font-mono text-red-600 uppercase tracking-widest mb-2 font-semibold">
+                  {play[`genre_${lang}`]}
+                </p>
+                <h2 class="text-3xl font-black uppercase tracking-tight mb-4 group-hover:text-red-600 transition-colors">
+                  <a href={`/${lang}/plays/${play.slug}`}>
+                    {play[`title_${lang}`]}
+                  </a>
+                </h2>
+                <p class="text-zinc-600 text-sm leading-relaxed mb-6 line-clamp-3">
+                  {play[`synopsis_${lang}`]}
+                </p>
+
+                <!-- Next performances preview -->
+                <div class="border-t border-zinc-100 pt-4">
+                  <p class="text-[11px] font-mono uppercase tracking-widest text-zinc-400 mb-2">
+                    // {t.plays.upcoming}:
+                  </p>
+                  {playEvents.length > 0 ? (
+                    <div class="flex flex-wrap gap-2">
+                      {playEvents.slice(0, 3).map((e: any) => (
+                        <span class="inline-block bg-zinc-100 text-zinc-800 text-xs font-mono px-2.5 py-1">
+                          {e.datetime.slice(0, 10)}
+                        </span>
+                      ))}
+                      {playEvents.length > 3 && (
+                        <span class="text-xs font-mono text-zinc-400 self-center">
+                          +{playEvents.length - 3} {lang === 'ru' ? 'еще' : 'veel'}
+                        </span>
+                      )}
+                    </div>
+                  ) : (
+                    <p class="text-xs font-mono text-zinc-400">
+                      {t.plays.noUpcoming}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 sm:p-8 pt-0 border-t border-zinc-100 flex items-center justify-between mt-4">
+              <span class="text-xs font-mono text-zinc-500">
+                {play.cast.length} {lang === 'ru' ? 'актеров' : 'näitlejat'}
+              </span>
+              <a
+                href={`/${lang}/plays/${play.slug}`}
+                class="inline-block bg-black hover:bg-red-600 text-white font-mono text-xs font-bold uppercase tracking-wider px-6 py-2.5 transition-colors"
+              >
+                {t.plays.details}
+              </a>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</Layout>

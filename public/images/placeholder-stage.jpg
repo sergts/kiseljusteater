@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <radialGradient id="spotlight1" cx="50%" cy="10%" r="80%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3"/>
+      <stop offset="60%" stop-color="#e50914" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#0a0a0a" stop-opacity="0.95"/>
+    </radialGradient>
+    <linearGradient id="floor" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#18181b"/>
+      <stop offset="100%" stop-color="#09090b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="#050505"/>
+  <rect width="1200" height="800" fill="url(#spotlight1)"/>
+  
+  <!-- Architectural grid lines -->
+  <line x1="100" y1="0" x2="100" y2="800" stroke="#27272a" stroke-width="1" stroke-dasharray="4 8"/>
+  <line x1="600" y1="0" x2="600" y2="800" stroke="#27272a" stroke-width="1" stroke-dasharray="4 8"/>
+  <line x1="1100" y1="0" x2="1100" y2="800" stroke="#27272a" stroke-width="1" stroke-dasharray="4 8"/>
+  
+  <!-- Stage Floor Horizon -->
+  <polygon points="0,580 1200,580 1200,800 0,800" fill="url(#floor)"/>
+  <line x1="0" y1="580" x2="1200" y2="580" stroke="#e50914" stroke-width="2"/>
+  
+  <!-- Overhead Stage Light Beams -->
+  <polygon points="600,0 350,580 850,580" fill="#ffffff" fill-opacity="0.06"/>
+  <circle cx="600" cy="580" r="140" fill="#ffffff" fill-opacity="0.08"/>
+  
+  <!-- Text -->
+  <text x="600" y="440" font-family="'Space Grotesk', system-ui, sans-serif" font-weight="900" font-size="56" fill="#ffffff" text-anchor="middle" letter-spacing="4">KISELJUS TEATER</text>
+  <text x="600" y="490" font-family="monospace" font-size="20" fill="#e50914" text-anchor="middle" letter-spacing="6">LOOTSI 8 · TALLINN</text>
+</svg>

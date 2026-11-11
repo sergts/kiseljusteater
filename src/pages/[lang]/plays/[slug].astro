@@ -1,0 +1,150 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import Layout from '../../../layouts/Layout.astro';
+import type { Locale } from '../../../utils/i18n';
+
+export async function getStaticPaths() {
+  const plays = JSON.parse(fs.readFileSync(path.resolve('./src/content/plays.json'), 'utf-8'));
+  const locales = ['et', 'ru'];
+
+  return locales.flatMap((lang) =>
+    plays.map((play: any) => ({
+      params: { lang, slug: play.slug },
+      props: { play, lang: lang as Locale }
+    }))
+  );
+}
+
+const { play, lang } = Astro.props;
+const events = JSON.parse(fs.readFileSync(path.resolve('./src/content/events/schedule.json'), 'utf-8'));
+const upcomingDates = events.filter((e: any) => e.playSlug === play.slug);
+---
+
+<Layout
+  lang={lang}
+  title={`${play[`title_${lang}`]} | Kiseljus Teater`}
+  description={play[`synopsis_${lang}`]?.slice(0, 160)}
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+    <!-- Breadcrumb -->
+    <div class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 flex items-center space-x-2">
+      <a href={`/${lang}`} class="hover:text-black">Kiseljus</a>
+      <span>/</span>
+      <a href={`/${lang}/plays`} class="hover:text-black">{lang === 'ru' ? 'Репертуар' : 'Repertuaar'}</a>
+      <span>/</span>
+      <span class="text-red-600 font-bold">{play[`title_${lang}`]}</span>
+    </div>
+
+    <!-- Hero / Stage Photo with gradient mask -->
+    <div class="relative overflow-hidden mb-12 border border-zinc-200 bg-zinc-950">
+      <img
+        src={play.poster_url || "/images/placeholder-stage.jpg"}
+        alt={play[`title_${lang}`]}
+        class="w-full h-80 sm:h-96 md:h-[480px] object-cover [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)] filter contrast-125"
+      />
+      <div class="absolute bottom-6 left-6 right-6">
+        <span class="inline-block bg-red-600 text-white font-mono text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 mb-2">
+          {play[`genre_${lang}`]}
+        </span>
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tighter text-white drop-shadow-md">
+          {play[`title_${lang}`]}
+        </h1>
+        <p class="font-mono text-zinc-300 text-xs sm:text-sm mt-2">
+          {play.duration} MIN · {play.age_limit} · {lang === 'ru' ? 'Сцена: Lootsi 8' : 'Lava: Lootsi 8'}
+        </p>
+      </div>
+    </div>
+
+    <!-- Upcoming Dates Module -->
+    <section class="mt-12 border-t border-zinc-200 pt-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 font-bold">
+          // {lang === 'ru' ? 'Следующие показы' : 'Järgmised etendused'}
+        </h2>
+        <a href={`/${lang}/afisha`} class="text-xs font-mono uppercase text-red-600 hover:underline">
+          {lang === 'ru' ? 'Вся афиша →' : 'Kogu mängukava →'}
+        </a>
+      </div>
+
+      <div class="divide-y divide-zinc-200 border-t border-b border-zinc-200">
+        {upcomingDates.length === 0 ? (
+          <p class="py-6 font-mono text-sm text-zinc-500">
+            {lang === 'ru' ? 'В текущем месяце показов нет.' : 'Hetkel järgmisi etendusi pole märgitud.'}
+          </p>
+        ) : (
+          upcomingDates.map((item: any) => (
+            <div class="py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-zinc-50 transition-colors px-2">
+              <div class="flex items-center gap-4">
+                <span class="font-mono font-bold text-lg text-black">{item.datetime.slice(0, 10)}</span>
+                <span class="text-xs font-mono text-zinc-500">{item.datetime.slice(11, 16)}</span>
+              </div>
+              <span class="text-xs font-mono text-zinc-600">{item.venue[lang]}</span>
+              <div>
+                {item.isSoldOut ? (
+                  <span class="inline-block border border-red-600 text-red-600 px-4 py-1.5 text-xs font-mono uppercase tracking-widest">
+                    {lang === 'ru' ? 'Продано' : 'Välja müüdud'}
+                  </span>
+                ) : (
+                  <a
+                    href={item.ticketUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="inline-block bg-red-600 hover:bg-red-700 text-white font-mono text-xs font-bold uppercase tracking-wider px-5 py-2 transition-colors"
+                  >
+                    {lang === 'ru' ? 'Купить' : 'Pilet'}
+                  </a>
+                )}
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+    </section>
+
+    <!-- Synopsis -->
+    <section class="mt-14 max-w-3xl">
+      <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 font-bold mb-4">
+        // {lang === 'ru' ? 'О спектакле' : 'Lavastusest'}
+      </h2>
+      <div class="text-zinc-800 text-base sm:text-lg leading-relaxed whitespace-pre-line space-y-4">
+        {play[`synopsis_${lang}`]}
+      </div>
+    </section>
+
+    <!-- Cast / Troupe -->
+    <section class="mt-16 border-t border-zinc-200 pt-8">
+      <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 font-bold mb-8">
+        // {lang === 'ru' ? 'Действующие лица и исполнители' : 'Tegelased ja osatäitjad'}
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        {play.cast.map((actor: any) => (
+          <a
+            href={`/${lang}/actors/${actor.slug}`}
+            class="group border border-zinc-200 p-4 bg-zinc-50/50 hover:bg-white hover:border-black transition-all"
+          >
+            <p class="font-bold uppercase text-sm group-hover:text-red-600 transition-colors">
+              {actor[`name_${lang}`]}
+            </p>
+            <p class="text-xs font-mono text-zinc-500 mt-1">
+              {actor[`role_name_${lang}`]}
+            </p>
+            <span class="inline-block text-[11px] font-mono text-red-600 mt-3 group-hover:translate-x-1 transition-transform">
+              →
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div class="mt-16 pt-8 border-t border-zinc-200 flex justify-between items-center font-mono text-xs uppercase">
+      <a href={`/${lang}/plays`} class="text-zinc-600 hover:text-black">
+        ← {lang === 'ru' ? 'Назад в репертуар' : 'Tagasi repertuaari'}
+      </a>
+      <a href={`/${lang}/afisha`} class="text-red-600 font-bold hover:underline">
+        {lang === 'ru' ? 'Смотреть афишу' : 'Vaata mängukava'} →
+      </a>
+    </div>
+  </div>
+</Layout>

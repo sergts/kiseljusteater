@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Cinzel:wght@700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --theater-red: #e50914;
+    --theater-black: #0a0a0a;
+    --theater-white: #ffffff;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #ffffff;
+    color: #0a0a0a;
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  }
+
+  ::selection {
+    background-color: #e50914;
+    color: #ffffff;
+  }
+}
+
+/* Custom architectural hairline borders & aesthetic theatrical cues */
+.border-hairline {
+  border-width: 1px;
+  border-color: #e4e4e7; /* zinc-200 */
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px currentColor;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Theatrical gradient masks */
+.mask-hero-fade {
+  mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+}
+
+.mask-bottom-fade {
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+}

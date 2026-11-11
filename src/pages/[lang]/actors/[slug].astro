@@ -1,0 +1,115 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import Layout from '../../../layouts/Layout.astro';
+import type { Locale } from '../../../utils/i18n';
+
+export async function getStaticPaths() {
+  const actors = JSON.parse(fs.readFileSync(path.resolve('./src/content/actors.json'), 'utf-8'));
+  const locales = ['et', 'ru'];
+
+  return locales.flatMap((lang) =>
+    actors.map((actor: any) => ({
+      params: { lang, slug: actor.slug },
+      props: { actor, lang: lang as Locale }
+    }))
+  );
+}
+
+const { actor, lang } = Astro.props;
+const plays = JSON.parse(fs.readFileSync(path.resolve('./src/content/plays.json'), 'utf-8'));
+
+// Filter plays this actor is part of
+const actorPlays = plays.filter((p: any) =>
+  p.cast?.some((c: any) => c.slug === actor.slug)
+);
+---
+
+<Layout
+  lang={lang}
+  title={`${actor[`name_${lang}`]} | Kiseljus Teater`}
+  description={actor[`bio_${lang}`]?.slice(0, 160)}
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+    <!-- Breadcrumb -->
+    <div class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-8 flex items-center space-x-2">
+      <a href={`/${lang}`} class="hover:text-black">Kiseljus</a>
+      <span>/</span>
+      <a href={`/${lang}/actors`} class="hover:text-black">{lang === 'ru' ? 'Труппа' : 'Trupp'}</a>
+      <span>/</span>
+      <span class="text-red-600 font-bold">{actor[`name_${lang}`]}</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+      <!-- Portrait Column with Hairline Frame -->
+      <div class="border border-zinc-200 p-3 bg-white shadow-sm">
+        <img
+          src={actor.photo_url || "/images/placeholder-actor.jpg"}
+          alt={actor[`name_${lang}`]}
+          class="w-full aspect-[3/4] grayscale contrast-125 object-cover"
+        />
+        <div class="mt-4 pt-3 border-t border-zinc-100 text-center font-mono text-[11px] text-zinc-400 uppercase tracking-widest">
+          // Kiseljus Teater
+        </div>
+      </div>
+
+      <!-- Bio Column -->
+      <div class="md:col-span-2">
+        <h1 class="text-4xl sm:text-5xl font-black uppercase tracking-tight mb-2">
+          {actor[`name_${lang}`]}
+        </h1>
+        <p class="text-xs font-mono text-red-600 uppercase tracking-widest mb-8 font-semibold">
+          {actor[`role_title_${lang}`]}
+        </p>
+
+        <div class="prose max-w-none text-zinc-700 leading-relaxed whitespace-pre-line text-base mb-12 border-b border-zinc-200 pb-8">
+          {actor[`bio_${lang}`]}
+        </div>
+
+        <!-- Repertoire Roles -->
+        <div>
+          <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-400 font-bold mb-4">
+            // {lang === 'ru' ? 'Роли в текущем репертуаре' : 'Rollid repertuaaris'}
+          </h2>
+
+          {actorPlays.length === 0 ? (
+            <p class="font-mono text-sm text-zinc-400">
+              {lang === 'ru' ? 'На данный момент нет активных ролей.' : 'Hetkel aktiivseid rolle ei ole.'}
+            </p>
+          ) : (
+            <div class="divide-y divide-zinc-200 border-t border-b border-zinc-200">
+              {actorPlays.map((p: any) => (
+                <div class="py-4 flex justify-between items-center hover:bg-zinc-50/75 transition-colors px-2">
+                  <div>
+                    <a
+                      href={`/${lang}/plays/${p.slug}`}
+                      class="font-bold uppercase text-base hover:text-red-600 transition-colors"
+                    >
+                      {p[`title_${lang}`]}
+                    </a>
+                    <span class="block text-xs font-mono text-zinc-400 mt-0.5">
+                      {p[`genre_${lang}`]}
+                    </span>
+                  </div>
+                  <span class="text-xs font-mono text-zinc-700 bg-zinc-100 px-3 py-1.5">
+                    {p.cast.find((c: any) => c.slug === actor.slug)?.[`role_name_${lang}`] || ''}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <!-- Bottom Link -->
+        <div class="mt-12 pt-6 border-t border-zinc-200">
+          <a
+            href={`/${lang}/actors`}
+            class="font-mono text-xs uppercase tracking-widest text-zinc-500 hover:text-black transition-colors"
+          >
+            ← {lang === 'ru' ? 'Назад ко всей труппе' : 'Tagasi trupi nimekirja'}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

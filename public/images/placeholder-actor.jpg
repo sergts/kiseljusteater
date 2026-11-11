@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <rect width="600" height="800" fill="#121214"/>
+  <circle cx="300" cy="300" r="130" fill="#26262a"/>
+  <path d="M120 720 C 140 480, 460 480, 480 720" fill="#26262a"/>
+  <text x="300" y="760" font-family="monospace" font-size="18" fill="#71717a" text-anchor="middle" letter-spacing="4">NÄITLEJA / АКТРИСА</text>
+</svg>

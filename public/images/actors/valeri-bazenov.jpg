@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="portGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1f1f23"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#portGrad)"/>
+
+  <!-- Minimalist frame -->
+  <rect x="24" y="24" width="552" height="752" fill="none" stroke="#27272a" stroke-width="1"/>
+
+  <!-- Stylized Silhouette -->
+  <circle cx="300" cy="290" r="120" fill="#2e2e33"/>
+  <path d="M 140 680 C 160 460, 440 460, 460 680 Z" fill="#2e2e33"/>
+
+  <!-- Initials Badge -->
+  <circle cx="300" cy="290" r="70" fill="#18181b" stroke="#e50914" stroke-width="2"/>
+  <text x="300" y="306" font-family="'Space Grotesk', system-ui, sans-serif" font-weight="900" font-size="34" fill="#ffffff" text-anchor="middle">VB</text>
+
+  <!-- Typography -->
+  <text x="300" y="600" font-family="'Space Grotesk', system-ui, sans-serif" font-weight="800" font-size="26" fill="#ffffff" text-anchor="middle" letter-spacing="1">VALERI BAŽENOV</text>
+  <text x="300" y="635" font-family="monospace" font-size="12" fill="#e50914" text-anchor="middle" letter-spacing="2">NÄITLEJA</text>
+
+  <text x="300" y="740" font-family="monospace" font-size="10" fill="#52525b" text-anchor="middle" letter-spacing="4">KISELJUS TEATER · LOOTSI 8</text>
+</svg>

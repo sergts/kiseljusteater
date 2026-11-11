@@ -1,0 +1,152 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { useTranslations, type Locale } from '../../../utils/i18n';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'et' } },
+    { params: { lang: 'ru' } },
+  ];
+}
+
+const { lang } = Astro.params as { lang: Locale };
+const t = useTranslations(lang);
+---
+
+<Layout
+  lang={lang}
+  title={`${t.about.title} | Kiseljus Teater`}
+  description={t.about.subtitle}
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+    <!-- Header Banner -->
+    <div class="border-b border-zinc-200 pb-8 mb-12">
+      <p class="text-xs font-mono uppercase tracking-widest text-red-600 font-bold mb-2">
+        // {lang === 'ru' ? 'О театре и пространстве' : 'Teatrist ja ruumist'}
+      </p>
+      <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight mb-4">
+        {t.about.title}
+      </h1>
+      <p class="text-zinc-600 font-mono text-sm max-w-2xl">
+        {t.about.subtitle}
+      </p>
+    </div>
+
+    <!-- Manifesto Section -->
+    <section class="mb-16">
+      <div class="border border-zinc-200 bg-zinc-50 p-6 sm:p-10">
+        <span class="text-xs font-mono uppercase tracking-widest text-red-600 font-bold block mb-4">
+          // {t.about.missionTitle}
+        </span>
+        <blockquote class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-zinc-900 leading-snug mb-6">
+          "{lang === 'ru' 
+            ? 'Театр не место для комфортного сна. Это место честного удара и искренней встречи.' 
+            : 'Teater ei ole koht mugavaks uinakuks. See on ausa dialoogi ja vahetu kohtumise ruum.'}"
+        </blockquote>
+        <p class="text-zinc-700 leading-relaxed text-base sm:text-lg">
+          {t.about.missionText}
+        </p>
+      </div>
+    </section>
+
+    <!-- The Space & Architecture (SINGLE HALL) -->
+    <section class="mb-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      <div>
+        <span class="text-xs font-mono uppercase tracking-widest text-zinc-400 font-bold block mb-3">
+          // {lang === 'ru' ? 'Архитектура и пространство' : 'Arhitektuur ja saal'}
+        </span>
+        <h2 class="text-3xl font-black uppercase tracking-tight mb-4">
+          {t.about.spaceTitle}
+        </h2>
+        <p class="text-zinc-700 leading-relaxed text-sm sm:text-base mb-6">
+          {t.about.spaceText}
+        </p>
+        <div class="space-y-3 font-mono text-xs text-zinc-600 border-t border-zinc-200 pt-4">
+          <div class="flex justify-between py-1 border-b border-zinc-100">
+            <span class="font-bold text-black">{lang === 'ru' ? 'Зрительный зал' : 'Teatrisaal'}</span>
+            <span>{lang === 'ru' ? 'Один трансформируемый зал' : 'Üks saal-transformer'}</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-zinc-100">
+            <span class="font-bold text-black">{lang === 'ru' ? 'Пространство' : 'Ruumikontseptsioon'}</span>
+            <span>{lang === 'ru' ? 'Светлый зал с верхним светом' : 'Valge stuudioruum'}</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-zinc-100">
+            <span class="font-bold text-black">{lang === 'ru' ? 'Продажа билетов' : 'Piletite müük'}</span>
+            <span class="text-red-600 font-bold">{lang === 'ru' ? 'ТОЛЬКО ОНЛАЙН' : 'AINULT VEEBIS'}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="border border-zinc-200 p-3 bg-white">
+        <img
+          src="/images/placeholder-stage.jpg"
+          alt="Lootsi 8 Teatrimaja"
+          class="w-full aspect-video object-cover filter contrast-125 grayscale"
+        />
+        <p class="text-[11px] font-mono text-zinc-400 text-center mt-3 uppercase tracking-wider">
+          Lootsi 8, Tallinn · Kiseljus Teatri saal
+        </p>
+      </div>
+    </section>
+
+    <!-- Contacts & Location Grid -->
+    <section class="border-t border-zinc-200 pt-12">
+      <h2 class="text-2xl font-black uppercase tracking-tight mb-8">
+        {t.about.contactsTitle}
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Address & Transit -->
+        <div class="border border-zinc-200 p-6 bg-zinc-50">
+          <h3 class="font-bold uppercase tracking-wider text-xs font-mono text-red-600 mb-3">
+            // {lang === 'ru' ? 'Адрес и транспорт' : 'Aadress ja ligipääs'}
+          </h3>
+          <p class="font-bold text-zinc-900 text-base mb-1">{t.footer.address}</p>
+          <p class="text-xs text-zinc-600 leading-relaxed font-mono mt-3">
+            {lang === 'ru'
+              ? 'Трамваи №1 и №2 (остановка «Tallinna Sadam»). Портовый квартал Lootsi, рядом с D-терминалом.'
+              : 'Trammid nr 1 ja nr 2 (peatus "Tallinna Sadam"). Sadamakvartal Lootsi, D-terminali lähedal.'}
+          </p>
+        </div>
+
+        <!-- Online Tickets Policy (NO ONSITE CASH DESK) -->
+        <div class="border border-zinc-200 p-6 bg-zinc-50">
+          <h3 class="font-bold uppercase tracking-wider text-xs font-mono text-red-600 mb-3">
+            // {t.about.boxOffice}
+          </h3>
+          <p class="text-xs text-zinc-600 leading-relaxed font-mono mb-2">
+            {t.about.boxOfficeInfo}
+          </p>
+          <p class="text-[11px] text-red-600 font-mono font-semibold">
+            {lang === 'ru' ? 'В театре кассы нет!' : 'Kohapeal piletikassat ei ole!'}
+          </p>
+          <div class="mt-4 pt-3 border-t border-zinc-200">
+            <a
+              href={`/${lang}/afisha`}
+              class="inline-block bg-black text-white px-4 py-2 text-xs font-mono uppercase tracking-wider hover:bg-red-600 transition-colors"
+            >
+              {lang === 'ru' ? 'Перейти в афишу' : 'Vaata mängukava'} →
+            </a>
+          </div>
+        </div>
+
+        <!-- Inquiries -->
+        <div class="border border-zinc-200 p-6 bg-zinc-50 font-mono text-xs">
+          <h3 class="font-bold uppercase tracking-wider text-xs font-mono text-red-600 mb-3">
+            // {lang === 'ru' ? 'Связь и администрация' : 'Side ja administratsioon'}
+          </h3>
+          <p class="text-zinc-500 mb-1">{lang === 'ru' ? 'Электронная почта:' : 'E-post:'}</p>
+          <a href={`mailto:${t.footer.email}`} class="text-black font-bold block mb-3 hover:text-red-600">
+            {t.footer.email}
+          </a>
+          <p class="text-zinc-500 mb-1">{lang === 'ru' ? 'Телефон:' : 'Telefon:'}</p>
+          <a href={`tel:${t.footer.phone}`} class="text-black font-bold block mb-3 hover:text-red-600">
+            {t.footer.phone}
+          </a>
+          <p class="text-zinc-500 mb-1">{lang === 'ru' ? 'Художественный руководитель:' : 'Kunstiline juht:'}</p>
+          <span class="text-zinc-800">Anton Kiseljus</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

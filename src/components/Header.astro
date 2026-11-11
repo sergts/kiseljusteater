@@ -1,0 +1,159 @@
+---
+import { useTranslations, type Locale } from '../utils/i18n';
+
+interface Props {
+  lang: Locale;
+  currentPath?: string;
+}
+
+const { lang, currentPath = '' } = Astro.props;
+const t = useTranslations(lang);
+
+// Compute alternate language path
+const alternateLang: Locale = lang === 'et' ? 'ru' : 'et';
+const alternatePath = currentPath
+  ? currentPath.replace(new RegExp(`^/${lang}`), `/${alternateLang}`)
+  : `/${alternateLang}`;
+
+const navLinks = [
+  { href: `/${lang}/afisha`, label: t.nav.afisha },
+  { href: `/${lang}/plays`, label: t.nav.plays },
+  { href: `/${lang}/actors`, label: t.nav.actors },
+  { href: `/${lang}/about`, label: t.nav.about },
+];
+
+const isLinkActive = (href: string) => {
+  if (currentPath === href || (href !== `/${lang}` && currentPath.startsWith(href))) {
+    return true;
+  }
+  return false;
+};
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-zinc-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Logo / Title -->
+      <a href={`/${lang}`} class="group flex flex-col justify-center">
+        <span class="text-xl sm:text-2xl font-black uppercase tracking-tighter text-black group-hover:text-red-600 transition-colors">
+          Kiseljus Teater
+        </span>
+        <span class="text-[10px] font-mono uppercase tracking-widest text-zinc-400 group-hover:text-black transition-colors">
+          Tallinn · Lootsi 8
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-8">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class={`text-xs font-mono uppercase tracking-widest transition-colors ${
+              isLinkActive(link.href)
+                ? 'text-red-600 font-bold border-b-2 border-red-600 pb-1'
+                : 'text-zinc-600 hover:text-black'
+            }`}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Right CTAs & Language Switcher -->
+      <div class="flex items-center space-x-4 sm:space-x-6">
+        <!-- Language Switcher -->
+        <div class="flex items-center border border-zinc-200 p-0.5 text-xs font-mono uppercase">
+          <a
+            href={lang === 'et' ? '#' : alternatePath}
+            class={`px-2.5 py-1 transition-colors ${
+              lang === 'et'
+                ? 'bg-black text-white font-bold'
+                : 'text-zinc-500 hover:text-black'
+            }`}
+            aria-current={lang === 'et' ? 'page' : undefined}
+          >
+            ET
+          </a>
+          <a
+            href={lang === 'ru' ? '#' : alternatePath}
+            class={`px-2.5 py-1 transition-colors ${
+              lang === 'ru'
+                ? 'bg-black text-white font-bold'
+                : 'text-zinc-500 hover:text-black'
+            }`}
+            aria-current={lang === 'ru' ? 'page' : undefined}
+          >
+            RU
+          </a>
+        </div>
+
+        <!-- Quick Ticket CTA -->
+        <a
+          href={`/${lang}/afisha`}
+          class="hidden sm:inline-block bg-red-600 hover:bg-red-700 text-white text-xs font-mono font-bold uppercase tracking-wider px-5 py-2.5 transition-colors"
+        >
+          {t.nav.buyTickets}
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button
+          id="mobile-menu-button"
+          type="button"
+          aria-label="Toggle Navigation Menu"
+          class="md:hidden p-2 text-black hover:text-red-600 focus:outline-none"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path id="menu-icon-bars" stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            <path id="menu-icon-close" class="hidden" stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-zinc-200 bg-white px-4 pt-4 pb-6 space-y-4">
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class={`block text-sm font-mono uppercase tracking-widest py-2 border-b border-zinc-100 ${
+          isLinkActive(link.href) ? 'text-red-600 font-bold' : 'text-zinc-700'
+        }`}
+      >
+        {link.label}
+      </a>
+    ))}
+    <div class="pt-2">
+      <a
+        href={`/${lang}/afisha`}
+        class="block text-center w-full bg-red-600 text-white text-xs font-mono font-bold uppercase tracking-wider py-3"
+      >
+        {t.nav.buyTickets}
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+  const iconBars = document.getElementById('menu-icon-bars');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  if (btn && menu && iconBars && iconClose) {
+    btn.addEventListener('click', () => {
+      const isExpanded = !menu.classList.contains('hidden');
+      if (isExpanded) {
+        menu.classList.add('hidden');
+        iconBars.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+      } else {
+        menu.classList.remove('hidden');
+        iconBars.classList.add('hidden');
+        iconClose.classList.remove('hidden');
+      }
+    });
+  }
+</script>
