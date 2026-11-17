@@ -15,16 +15,6 @@ const t = useTranslations(lang);
 >
   <!-- HERO BANNER -->
   <section class="relative bg-black text-white overflow-hidden border-b border-zinc-900">
-    <!-- Visual background with mask-image gradient fade -->
-    <div class="absolute inset-0 z-0">
-      <img
-        src="/images/placeholder-stage.jpg"
-        alt="Kiseljus Teater Stage"
-        class="w-full h-full object-cover opacity-45 [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] filter contrast-125"
-      />
-      <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60"></div>
-    </div>
-
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-28 md:pt-32 md:pb-40">
       <div class="max-w-3xl">
         <div class="inline-block border border-red-600/80 bg-red-600/10 px-3 py-1 mb-6">
@@ -35,10 +25,10 @@ const t = useTranslations(lang);
 
         <h1 class="mb-8">
           <img
-            src="/images/logo/logo-white-arrow.png"
+            src="/images/logo/logo-white-arrow.svg"
             alt="Kiseljus Teater"
-            width="1532"
-            height="413"
+            width="309"
+          height="83"
             class="w-full max-w-xl h-auto"
           />
         </h1>
@@ -218,7 +208,7 @@ const t = useTranslations(lang);
   <!-- ABOUT & VENUE TEASER -->
   <section class="border-t border-zinc-200 bg-zinc-900 text-white py-16 sm:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="max-w-3xl">
         <div>
           <span class="inline-block text-red-500 font-mono text-xs uppercase tracking-widest mb-3">
             {t.about.spaceTitle}
@@ -235,19 +225,6 @@ const t = useTranslations(lang);
           >
             {t.home.learnMore}
           </a>
-        </div>
-
-        <div class="border border-zinc-800 p-3 bg-zinc-950">
-          <div class="aspect-video bg-zinc-800 overflow-hidden relative">
-            <img
-              src="/images/placeholder-stage.jpg"
-              alt="Lootsi 8 Hall"
-              class="w-full h-full object-cover filter contrast-125"
-            />
-            <div class="absolute bottom-3 left-3 bg-black/80 px-3 py-1 font-mono text-[10px] text-zinc-300 uppercase tracking-widest">
-              Kiseljus Teater · Lootsi 8 · Tallinn
-            </div>
-          </div>
         </div>
       </div>
     </div>

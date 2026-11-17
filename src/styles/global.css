@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --theater-red: #e50914;
+    --theater-red: #da0c16;
     --theater-black: #0a0a0a;
     --theater-white: #ffffff;
   }
@@ -19,7 +19,7 @@
   }
 
   ::selection {
-    background-color: #e50914;
+    background-color: #da0c16;
     color: #ffffff;
   }
 }

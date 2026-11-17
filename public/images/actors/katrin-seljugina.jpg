@@ -15,12 +15,12 @@
   <path d="M 140 680 C 160 460, 440 460, 460 680 Z" fill="#2e2e33"/>
 
   <!-- Initials Badge -->
-  <circle cx="300" cy="290" r="70" fill="#18181b" stroke="#e50914" stroke-width="2"/>
+  <circle cx="300" cy="290" r="70" fill="#18181b" stroke="#da0c16" stroke-width="2"/>
   <text x="300" y="306" font-family="'Space Grotesk', system-ui, sans-serif" font-weight="900" font-size="34" fill="#ffffff" text-anchor="middle">KS</text>
 
   <!-- Typography -->
   <text x="300" y="600" font-family="'Space Grotesk', system-ui, sans-serif" font-weight="800" font-size="26" fill="#ffffff" text-anchor="middle" letter-spacing="1">KATRIN SELJUGINA</text>
-  <text x="300" y="635" font-family="monospace" font-size="12" fill="#e50914" text-anchor="middle" letter-spacing="2">NÄITLEJA</text>
+  <text x="300" y="635" font-family="monospace" font-size="12" fill="#da0c16" text-anchor="middle" letter-spacing="2">NÄITLEJA</text>
 
   <text x="300" y="740" font-family="monospace" font-size="10" fill="#52525b" text-anchor="middle" letter-spacing="4">KISELJUS TEATER · LOOTSI 8</text>
 </svg>

@@ -4,9 +4,17 @@ export default {
   theme: {
     extend: {
       colors: {
+        // The logo red (#da0c16) is the site's red: every red-* class derives from it.
+        red: {
+          300: '#f09ea2',
+          400: '#e8484f',
+          500: '#da0c16',
+          600: '#da0c16',
+          700: '#b00a12',
+        },
         theater: {
           black: '#0a0a0a',
-          red: '#e50914',
+          red: '#da0c16',
           white: '#ffffff',
           dark: '#141414',
           card: '#18181b',
