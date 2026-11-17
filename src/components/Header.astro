@@ -14,14 +14,14 @@ const rest = currentPath.replace(/^\/(et|ru|en)(?=\/|$)/, '') || '/';
 const pathFor = (target: Locale) => `/${target}${rest}`;
 
 const navLinks = [
-  { href: `/${lang}/afisha`, label: t.nav.afisha },
-  { href: `/${lang}/plays`, label: t.nav.plays },
-  { href: `/${lang}/actors`, label: t.nav.actors },
-  { href: `/${lang}/about`, label: t.nav.about },
+  { href: `/${lang}/afisha/`, label: t.nav.afisha },
+  { href: `/${lang}/plays/`, label: t.nav.plays },
+  { href: `/${lang}/actors/`, label: t.nav.actors },
+  { href: `/${lang}/about/`, label: t.nav.about },
 ];
 
 const isLinkActive = (href: string) => {
-  if (currentPath === href || (href !== `/${lang}` && currentPath.startsWith(href))) {
+  if (currentPath === href || (href !== `/${lang}/` && currentPath.startsWith(href))) {
     return true;
   }
   return false;
@@ -33,7 +33,7 @@ const isLinkActive = (href: string) => {
     <div class="header-inner flex items-center justify-between">
       
       <!-- Logo / Title -->
-      <a href={`/${lang}`} class="flex items-center py-2" aria-label="Kiseljus Teater">
+      <a href={`/${lang}/`} class="flex items-center py-2" aria-label="Kiseljus Teater">
         <img
           src="/images/logo/logo-black-arrow.svg"
           alt="Kiseljus Teater"
@@ -81,7 +81,7 @@ const isLinkActive = (href: string) => {
 
         <!-- Quick Ticket CTA -->
         <a
-          href={`/${lang}/afisha`}
+          href={`/${lang}/afisha/`}
           class="hidden sm:inline-block bg-red-600 hover:bg-red-700 text-white text-xs font-mono font-bold uppercase tracking-wider px-5 py-2.5 transition-colors"
         >
           {t.nav.buyTickets}
@@ -118,7 +118,7 @@ const isLinkActive = (href: string) => {
     ))}
     <div class="pt-2">
       <a
-        href={`/${lang}/afisha`}
+        href={`/${lang}/afisha/`}
         class="block text-center w-full bg-red-600 text-white text-xs font-mono font-bold uppercase tracking-wider py-3"
       >
         {t.nav.buyTickets}

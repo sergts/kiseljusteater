@@ -56,7 +56,7 @@ export const EventRow: React.FC<{ event: TheatreEvent; lang: Locale }> = ({ even
 
       <div className="flex-1">
         {event.playSlug ? (
-          <a href={`/${lang}/plays/${event.playSlug}`} className={`text-xl font-bold uppercase tracking-tight hover:text-red-600 transition-colors ${soldOut ? 'text-zinc-500' : ''}`}>
+          <a href={`/${lang}/plays/${event.playSlug}/`} className={`text-xl font-bold uppercase tracking-tight hover:text-red-600 transition-colors ${soldOut ? 'text-zinc-500' : ''}`}>
             {title}
           </a>
         ) : (

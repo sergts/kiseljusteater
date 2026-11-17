@@ -33,7 +33,7 @@ export const NextPerformance: React.FC<{ lang: Locale }> = ({ lang }) => {
       </div>
       <p className="mt-5 text-xl font-black uppercase tracking-tight leading-tight">
         {next.playSlug ? (
-          <a href={`/${lang}/plays/${next.playSlug}`} className="hover:text-red-400 transition-colors">
+          <a href={`/${lang}/plays/${next.playSlug}/`} className="hover:text-red-400 transition-colors">
             {title}
           </a>
         ) : (
@@ -43,7 +43,7 @@ export const NextPerformance: React.FC<{ lang: Locale }> = ({ lang }) => {
       <p className="mt-1 font-mono text-xs text-zinc-400">{eventText(next.venue, lang)}</p>
       <div className="mt-6 flex items-center justify-between gap-4">
         <TicketAction event={next} lang={lang} />
-        <a href={`/${lang}/afisha`} className="font-mono text-xs uppercase tracking-wider text-zinc-300 hover:text-white py-2">
+        <a href={`/${lang}/afisha/`} className="font-mono text-xs uppercase tracking-wider text-zinc-300 hover:text-white py-2">
           {t.home.viewAllAfisha}
         </a>
       </div>

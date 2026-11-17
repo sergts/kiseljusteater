@@ -5,6 +5,8 @@ import react from '@astrojs/react';
 export default defineConfig({
   site: 'https://kiseljusteater.ee',
   output: 'static',
+  // Pages are folders (/et/afisha/index.html), so every link ends in a slash: no redirect from /et/afisha to /et/afisha/.
+  trailingSlash: 'always',
   build: {
     format: 'directory'
   },

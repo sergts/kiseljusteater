@@ -30,9 +30,9 @@ const facts = [play.duration && `${play.duration} MIN`, play.age_limit, tr(lang,
   <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
     <!-- Breadcrumb -->
     <div class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 flex items-center space-x-2">
-      <a href={`/${lang}`} class="hover:text-black">Kiseljus</a>
+      <a href={`/${lang}/`} class="hover:text-black">Kiseljus</a>
       <span>/</span>
-      <a href={`/${lang}/plays`} class="hover:text-black">{tr(lang, 'Repertuaar', 'Репертуар', 'Repertoire')}</a>
+      <a href={`/${lang}/plays/`} class="hover:text-black">{tr(lang, 'Repertuaar', 'Репертуар', 'Repertoire')}</a>
       <span>/</span>
       <span class="text-red-600 font-bold">{field(play, 'title', lang)}</span>
     </div>
@@ -73,7 +73,7 @@ const facts = [play.duration && `${play.duration} MIN`, play.age_limit, tr(lang,
         <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 font-bold">
           {tr(lang, 'Järgmised etendused', 'Следующие показы', 'Upcoming performances')}
         </h2>
-        <a href={`/${lang}/afisha`} class="text-xs font-mono uppercase text-red-600 hover:underline">
+        <a href={`/${lang}/afisha/`} class="text-xs font-mono uppercase text-red-600 hover:underline">
           {tr(lang, 'Kogu mängukava →', 'Вся афиша →', 'Full schedule →')}
         </a>
       </div>
@@ -106,7 +106,7 @@ const facts = [play.duration && `${play.duration} MIN`, play.age_limit, tr(lang,
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
         {cast.map(({ actor, role }) => (
           <a
-            href={`/${lang}/actors/${actor.slug}`}
+            href={`/${lang}/actors/${actor.slug}/`}
             class="group border border-zinc-200 p-4 bg-zinc-50/50 hover:bg-white hover:border-black transition-all"
           >
             <p class="font-bold uppercase text-sm group-hover:text-red-600 transition-colors">
@@ -126,10 +126,10 @@ const facts = [play.duration && `${play.duration} MIN`, play.age_limit, tr(lang,
 
     <!-- Bottom Navigation -->
     <div class="mt-16 pt-8 border-t border-zinc-200 flex justify-between items-center font-mono text-xs uppercase">
-      <a href={`/${lang}/plays`} class="text-zinc-600 hover:text-black">
+      <a href={`/${lang}/plays/`} class="text-zinc-600 hover:text-black">
         ← {tr(lang, 'Tagasi repertuaari', 'Назад в репертуар', 'Back to the repertoire')}
       </a>
-      <a href={`/${lang}/afisha`} class="text-red-600 font-bold hover:underline">
+      <a href={`/${lang}/afisha/`} class="text-red-600 font-bold hover:underline">
         {tr(lang, 'Vaata mängukava', 'Смотреть афишу', 'View the schedule')} →
       </a>
     </div>

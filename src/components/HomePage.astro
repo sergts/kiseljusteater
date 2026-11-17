@@ -19,12 +19,6 @@ const t = useTranslations(lang);
   <section class="relative bg-black text-white overflow-hidden border-b border-zinc-900">
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 md:pt-28 md:pb-32 lg:grid lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-16 lg:items-center">
       <div class="max-w-3xl">
-        <div class="inline-block border border-red-600/80 bg-red-600/10 px-3 py-1 mb-6">
-          <span class="text-xs font-mono uppercase tracking-widest text-red-400 font-bold">
-            TALLINN · LOOTSI 8
-          </span>
-        </div>
-
         <h1 class="mb-8">
           <span class="sr-only">Kiseljus Teater</span>
           <LogoReveal class="w-full max-w-xl text-white" />
@@ -36,13 +30,13 @@ const t = useTranslations(lang);
 
         <div class="flex flex-wrap items-center gap-4">
           <a
-            href={`/${lang}/afisha`}
+            href={`/${lang}/afisha/`}
             class="bg-red-600 hover:bg-red-700 text-white font-mono text-xs font-bold uppercase tracking-widest px-8 py-4 transition-all hover:translate-x-0.5"
           >
             {t.nav.buyTickets} →
           </a>
           <a
-            href={`/${lang}/plays`}
+            href={`/${lang}/plays/`}
             class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-mono text-xs uppercase tracking-widest px-8 py-4 transition-colors"
           >
             {t.home.exploreRepertoire}
@@ -67,7 +61,7 @@ const t = useTranslations(lang);
           <span class="hidden sm:inline">LOOTSI 8, TALLINN</span>
         </div>
         <div class="text-right">
-          <a href={`/${lang}/afisha`} class="text-red-400 hover:text-white uppercase tracking-wider">
+          <a href={`/${lang}/afisha/`} class="text-red-400 hover:text-white uppercase tracking-wider">
             {t.home.viewAllAfisha}
           </a>
         </div>
@@ -87,7 +81,7 @@ const t = useTranslations(lang);
         </h2>
       </div>
       <a
-        href={`/${lang}/afisha`}
+        href={`/${lang}/afisha/`}
         class="font-mono text-xs uppercase tracking-widest text-zinc-600 hover:text-red-600 transition-colors"
       >
         {t.home.viewAllAfisha}
@@ -110,7 +104,7 @@ const t = useTranslations(lang);
           </h2>
         </div>
         <a
-          href={`/${lang}/plays`}
+          href={`/${lang}/plays/`}
           class="font-mono text-xs uppercase tracking-widest text-zinc-600 hover:text-red-600 transition-colors"
         >
           {tr(lang, 'Kõik lavastused →', 'Все спектакли →', 'All productions →')}
@@ -154,7 +148,7 @@ const t = useTranslations(lang);
                 {play.cast.length} {tr(lang, 'näitlejat', 'актеров', 'actors')}
               </span>
               <a
-                href={`/${lang}/plays/${play.slug}`}
+                href={`/${lang}/plays/${play.slug}/`}
                 class="font-mono text-xs font-bold uppercase tracking-wider text-black hover:text-red-600 transition-colors"
               >
                 {t.plays.details}
@@ -178,7 +172,7 @@ const t = useTranslations(lang);
         </h2>
       </div>
       <a
-        href={`/${lang}/actors`}
+        href={`/${lang}/actors/`}
         class="font-mono text-xs uppercase tracking-widest text-zinc-600 hover:text-red-600 transition-colors"
       >
         {t.home.viewAllTroupe}
@@ -187,7 +181,7 @@ const t = useTranslations(lang);
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
       {actors.map((actor) => (
-        <a href={`/${lang}/actors/${actor.slug}`} class="reveal group">
+        <a href={`/${lang}/actors/${actor.slug}/`} class="reveal group">
           <div class="border border-zinc-200 p-2 bg-white group-hover:border-black transition-colors mb-3">
             <img
               {...imageAttrs(actor.photo, 'actors', '(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw')}
@@ -222,7 +216,7 @@ const t = useTranslations(lang);
             {t.home.aboutTeaser}
           </p>
           <a
-            href={`/${lang}/about`}
+            href={`/${lang}/about/`}
             class="inline-block bg-white hover:bg-zinc-200 text-black font-mono text-xs font-bold uppercase tracking-widest px-8 py-3.5 transition-colors"
           >
             {t.home.learnMore}

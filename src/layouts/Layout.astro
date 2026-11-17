@@ -63,6 +63,6 @@ const ogLocale = { et: 'et_EE', ru: 'ru_RU', en: 'en_GB' }[lang];
       <slot />
     </main>
     <Footer lang={lang} />
-    {buyHref !== false && <MobileBuyBar lang={lang} href={buyHref ?? `/${lang}/afisha`} />}
+    {buyHref !== false && <MobileBuyBar lang={lang} href={buyHref ?? `/${lang}/afisha/`} />}
   </body>
 </html>

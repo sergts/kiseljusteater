@@ -29,9 +29,9 @@ const roleGroups: { heading: string; roles: Role[] }[] = [
   <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
     <!-- Breadcrumb -->
     <div class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-8 flex items-center space-x-2">
-      <a href={`/${lang}`} class="hover:text-black">Kiseljus</a>
+      <a href={`/${lang}/`} class="hover:text-black">Kiseljus</a>
       <span>/</span>
-      <a href={`/${lang}/actors`} class="hover:text-black">{tr(lang, 'Trupp', 'Труппа', 'Company')}</a>
+      <a href={`/${lang}/actors/`} class="hover:text-black">{tr(lang, 'Trupp', 'Труппа', 'Company')}</a>
       <span>/</span>
       <span class="text-red-600 font-bold">{field(actor, 'name', lang)}</span>
     </div>
@@ -79,7 +79,7 @@ const roleGroups: { heading: string; roles: Role[] }[] = [
                   <div class="py-4 flex justify-between items-center gap-4 hover:bg-zinc-50/75 transition-colors px-2">
                     <div>
                       <a
-                        href={`/${lang}/plays/${play.slug}`}
+                        href={`/${lang}/plays/${play.slug}/`}
                         class="font-bold uppercase text-base hover:text-red-600 transition-colors"
                       >
                         {field(play, 'title', lang)}
@@ -103,7 +103,7 @@ const roleGroups: { heading: string; roles: Role[] }[] = [
         <!-- Bottom Link -->
         <div class="mt-12 pt-6 border-t border-zinc-200">
           <a
-            href={`/${lang}/actors`}
+            href={`/${lang}/actors/`}
             class="font-mono text-xs uppercase tracking-widest text-zinc-500 hover:text-black transition-colors"
           >
             ← {tr(lang, 'Tagasi trupi nimekirja', 'Назад ко всей труппе', 'Back to the whole company')}

@@ -65,7 +65,7 @@ const t = useTranslations(lang);
                   {field(play, 'genre', lang)}
                 </p>
                 <h2 class="text-3xl font-black uppercase tracking-tight mb-4 group-hover:text-red-600 transition-colors">
-                  <a href={`/${lang}/plays/${play.slug}`}>
+                  <a href={`/${lang}/plays/${play.slug}/`}>
                     {field(play, 'title', lang)}
                   </a>
                 </h2>
@@ -88,7 +88,7 @@ const t = useTranslations(lang);
                 {play.cast.length} {tr(lang, 'näitlejat', 'актеров', 'actors')}
               </span>
               <a
-                href={`/${lang}/plays/${play.slug}`}
+                href={`/${lang}/plays/${play.slug}/`}
                 class="inline-block bg-black hover:bg-red-600 text-white font-mono text-xs font-bold uppercase tracking-wider px-6 py-2.5 transition-colors"
               >
                 {t.plays.details}
