@@ -28,18 +28,18 @@ const isLinkActive = (href: string) => {
 };
 ---
 
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-zinc-200">
+<header data-header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-zinc-200">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20">
+    <div class="header-inner flex items-center justify-between">
       
       <!-- Logo / Title -->
-      <a href={`/${lang}`} class="flex items-center" aria-label="Kiseljus Teater">
+      <a href={`/${lang}`} class="flex items-center py-2" aria-label="Kiseljus Teater">
         <img
           src="/images/logo/logo-black-arrow.svg"
           alt="Kiseljus Teater"
           width="309"
           height="83"
-          class="h-9 sm:h-11 w-auto"
+          class="header-logo h-9 sm:h-11 w-auto"
         />
       </a>
 
@@ -66,7 +66,7 @@ const isLinkActive = (href: string) => {
           {LOCALES.map((code) => (
             <a
               href={code === lang ? '#' : pathFor(code)}
-              class={`px-2.5 py-1 transition-colors ${
+              class={`inline-flex items-center justify-center min-w-[2.75rem] h-10 px-2 sm:min-w-0 sm:h-8 sm:px-2.5 transition-colors ${
                 code === lang
                   ? 'bg-black text-white font-bold'
                   : 'text-zinc-500 hover:text-black'
@@ -128,23 +128,49 @@ const isLinkActive = (href: string) => {
 </header>
 
 <script>
-  const btn = document.getElementById('mobile-menu-button');
-  const menu = document.getElementById('mobile-menu');
-  const iconBars = document.getElementById('menu-icon-bars');
-  const iconClose = document.getElementById('menu-icon-close');
+  // Runs after every page load, including navigations done by the page-transition router.
+  let onScroll: (() => void) | null = null;
 
-  if (btn && menu && iconBars && iconClose) {
-    btn.addEventListener('click', () => {
-      const isExpanded = !menu.classList.contains('hidden');
-      if (isExpanded) {
-        menu.classList.add('hidden');
-        iconBars.classList.remove('hidden');
-        iconClose.classList.add('hidden');
-      } else {
-        menu.classList.remove('hidden');
-        iconBars.classList.add('hidden');
-        iconClose.classList.remove('hidden');
-      }
-    });
+  function initHeader() {
+    const header = document.querySelector<HTMLElement>('[data-header]');
+    const btn = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    const iconBars = document.getElementById('menu-icon-bars');
+    const iconClose = document.getElementById('menu-icon-close');
+
+    if (btn && menu && iconBars && iconClose) {
+      btn.addEventListener('click', () => {
+        const open = menu.classList.toggle('hidden') === false;
+        iconBars.classList.toggle('hidden', open);
+        iconClose.classList.toggle('hidden', !open);
+        if (header && open) header.dataset.hidden = 'false';
+      });
+    }
+
+    if (onScroll) window.removeEventListener('scroll', onScroll);
+    if (!header) return;
+
+    // Tell sticky elements below the header (e.g. the afisha month bar) where its lower edge is.
+    const publishOffset = () => {
+      const offset = header.dataset.hidden === 'true' ? 0 : header.offsetHeight;
+      document.documentElement.style.setProperty('--header-offset', `${offset}px`);
+    };
+    new ResizeObserver(publishOffset).observe(header);
+
+    let last = window.scrollY;
+    onScroll = () => {
+      const y = window.scrollY;
+      const menuOpen = !!menu && !menu.classList.contains('hidden');
+      header.dataset.scrolled = String(y > 16);
+      if (menuOpen || y <= 160) header.dataset.hidden = 'false';
+      else if (y > last + 6) header.dataset.hidden = String(window.innerWidth < 768); // hides on phones only
+      else if (y < last - 6) header.dataset.hidden = 'false';
+      last = y;
+      publishOffset();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
+
+  document.addEventListener('astro:page-load', initHeader);
 </script>

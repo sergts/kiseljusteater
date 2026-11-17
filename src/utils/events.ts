@@ -22,13 +22,20 @@ const TIME_ZONE = 'Europe/Tallinn';
 const GRACE_MS = 2 * 60 * 60 * 1000;
 
 let pending: Promise<TheatreEvent[]> | null = null;
+let requestedAt = 0;
+// With page transitions the script stays alive between pages, so refetch once the data is a few minutes old.
+const MAX_AGE_MS = 5 * 60 * 1000;
 
-/** Upcoming events, sorted by date. Fetched once per page and shared by all islands. */
+/** Upcoming events, sorted by date. Fetched once and shared by all islands on a page. */
 export function loadEvents(): Promise<TheatreEvent[]> {
-  pending ??= fetchEvents().catch((err) => {
-    pending = null; // allow a retry on the next call
-    throw err;
-  });
+  if (pending && Date.now() - requestedAt > MAX_AGE_MS) pending = null;
+  if (!pending) {
+    requestedAt = Date.now();
+    pending = fetchEvents().catch((err) => {
+      pending = null; // allow a retry on the next call
+      throw err;
+    });
+  }
   return pending;
 }
 

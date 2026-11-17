@@ -44,7 +44,7 @@ const roleGroups: { heading: string; roles: Role[] }[] = [
           alt={field(actor, 'name', lang)}
           class="w-full aspect-[3/4] object-cover"
         />
-        <div class="mt-4 pt-3 border-t border-zinc-100 text-center font-mono text-[11px] text-zinc-400 uppercase tracking-widest">
+        <div class="mt-4 pt-3 border-t border-zinc-100 text-center font-mono text-xs text-zinc-500 uppercase tracking-widest">
           Kiseljus Teater
         </div>
       </div>
@@ -65,12 +65,12 @@ const roleGroups: { heading: string; roles: Role[] }[] = [
         <!-- Repertoire Roles (current, then archived productions) -->
         {roleGroups.map(({ heading, roles }, i) => (i === 0 || roles.length > 0) && (
           <div class={i > 0 ? 'mt-10' : ''}>
-            <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-400 font-bold mb-4">
+            <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 font-bold mb-4">
               {heading}
             </h2>
 
             {roles.length === 0 ? (
-              <p class="font-mono text-sm text-zinc-400">
+              <p class="font-mono text-sm text-zinc-500">
                 {tr(lang, 'Hetkel aktiivseid rolle ei ole.', 'На данный момент нет активных ролей.', 'There are no active roles at the moment.')}
               </p>
             ) : (
@@ -84,7 +84,7 @@ const roleGroups: { heading: string; roles: Role[] }[] = [
                       >
                         {field(play, 'title', lang)}
                       </a>
-                      <span class="block text-xs font-mono text-zinc-400 mt-0.5">
+                      <span class="block text-xs font-mono text-zinc-500 mt-0.5">
                         {field(play, 'genre', lang)}
                       </span>
                     </div>

@@ -37,7 +37,7 @@ const t = useTranslations(lang);
         const roles = rolesOf(actor.slug, lang).current;
 
         return (
-          <div class="group border border-zinc-200 bg-white flex flex-col justify-between hover:border-black transition-all">
+          <div class="reveal group border border-zinc-200 bg-white flex flex-col justify-between hover:border-black transition-all">
             <div>
               <div class="p-3 bg-zinc-50 border-b border-zinc-200">
                 <div class="aspect-[3/4] overflow-hidden bg-zinc-200">
@@ -65,14 +65,14 @@ const t = useTranslations(lang);
 
                 <!-- Active Roles -->
                 {roles.length > 0 && <div class="border-t border-zinc-100 pt-4">
-                  <p class="text-[10px] font-mono uppercase tracking-widest text-zinc-400 mb-2">
+                  <p class="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-2">
                     {t.actors.repertoireRoles}:
                   </p>
                   <div class="space-y-1">
                     {roles.slice(0, 3).map(({ play, role }) => (
                       <div class="text-xs font-mono flex justify-between gap-3">
                         <span class="font-bold text-zinc-800">{field(play, 'title', lang)}</span>
-                        <span class="text-zinc-400 text-right">{role}</span>
+                        <span class="text-zinc-500 text-right">{role}</span>
                       </div>
                     ))}
                   </div>

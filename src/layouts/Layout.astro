@@ -1,19 +1,27 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import MobileBuyBar from '../components/MobileBuyBar.astro';
+import { ClientRouter } from 'astro:transitions';
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/jetbrains-mono';
+import '@fontsource-variable/inter';
 import '../styles/global.css';
-import { LOCALES, type Locale } from '../utils/i18n';
+import { LOCALES, tr, type Locale } from '../utils/i18n';
 
 interface Props {
   title?: string;
   description?: string;
   lang?: Locale;
+  /** Target of the phone buy bar; false hides the bar (e.g. on the afisha, which is the ticket list). */
+  buyHref?: string | false;
 }
 
 const {
   title = 'Kiseljus Teater | Tallinn, Lootsi 8',
   description = 'Kiseljus Teater - Sõltumatu ja kaasaegne teater Tallinnas. Mängukava, lavastused ja piletid.',
   lang = (Astro.currentLocale as Locale) || 'et',
+  buyHref,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -39,14 +47,22 @@ const ogLocale = { et: 'et_EE', ru: 'ru_RU', en: 'en_GB' }[lang];
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={ogLocale} />
+    <ClientRouter />
     <link rel="canonical" href={pathFor(lang)} />
     {LOCALES.map((code) => <link rel="alternate" hreflang={code} href={pathFor(code)} />)}
   </head>
   <body class="min-h-screen flex flex-col bg-white text-zinc-900 antialiased selection:bg-red-600 selection:text-white">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-white focus:text-black focus:px-4 focus:py-3 focus:font-mono focus:text-xs focus:uppercase focus:tracking-widest"
+    >
+      {tr(lang, 'Mine põhisisu juurde', 'Перейти к содержимому', 'Skip to content')}
+    </a>
     <Header lang={lang} currentPath={currentPath} />
-    <main class="flex-1">
+    <main id="main" tabindex="-1" class="flex-1 outline-none">
       <slot />
     </main>
     <Footer lang={lang} />
+    {buyHref !== false && <MobileBuyBar lang={lang} href={buyHref ?? `/${lang}/afisha`} />}
   </body>
 </html>

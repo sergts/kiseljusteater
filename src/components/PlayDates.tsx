@@ -25,7 +25,7 @@ export const PlayDates: React.FC<{ lang: Locale; playSlug: string; variant: 'lis
 
   if (variant === 'chips') {
     const shown = events.filter((e) => e.status !== 'cancelled');
-    if (shown.length === 0) return <p className="text-xs font-mono text-zinc-400">{t.plays.noUpcoming}</p>;
+    if (shown.length === 0) return <p className="text-xs font-mono text-zinc-500">{t.plays.noUpcoming}</p>;
     return (
       <div className="flex flex-wrap gap-2">
         {shown.slice(0, 3).map((e) => (
@@ -38,7 +38,7 @@ export const PlayDates: React.FC<{ lang: Locale; playSlug: string; variant: 'lis
           </span>
         ))}
         {shown.length > 3 && (
-          <span className="text-xs font-mono text-zinc-400 self-center">
+          <span className="text-xs font-mono text-zinc-500 self-center">
             +{shown.length - 3} {t.plays.more}
           </span>
         )}
@@ -54,7 +54,7 @@ export const PlayDates: React.FC<{ lang: Locale; playSlug: string; variant: 'lis
       {events.map((e) => {
         const d = eventDate(e.datetime, lang);
         return (
-          <div key={e.id} className={`py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-zinc-50 transition-colors px-2 ${e.status === 'cancelled' ? 'opacity-60' : ''}`}>
+          <div key={e.id} className={`group/row py-4 sm:py-5 grid gap-2 sm:gap-6 sm:grid-cols-[10.5rem_minmax(0,1fr)_auto] sm:items-center hover:bg-zinc-50 transition-colors px-2 ${e.status === 'cancelled' ? 'opacity-60' : ''}`}>
             <div className="flex items-center gap-4">
               <span className="font-mono font-bold text-lg text-black">{d.date}</span>
               <span className="text-xs font-mono text-zinc-500">{d.weekday} {d.time}</span>

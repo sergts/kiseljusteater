@@ -17,5 +17,7 @@ export default defineConfig({
       redirectToDefaultLocale: false
     }
   },
+  // Pages are fetched when a link is hovered or touched, so navigation feels instant.
+  prefetch: { prefetchAll: true },
   integrations: [react()]
 });

@@ -1,8 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Cinzel:wght@700;800;900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Keyboard focus: always visible, white on dark sections */
+:focus-visible {
+  outline: 2px solid #da0c16;
+  outline-offset: 3px;
+}
+footer :focus-visible,
+.bg-black :focus-visible,
+.bg-zinc-900 :focus-visible {
+  outline-color: #ffffff;
+}
 
 @layer base {
   :root {
@@ -22,6 +31,40 @@
     background-color: #da0c16;
     color: #ffffff;
   }
+}
+
+/* Header: shrinks once the page is scrolled and slips away while scrolling down on phones */
+[data-header] { transition: transform 0.3s ease; }
+[data-header][data-hidden='true'] { transform: translateY(-100%); }
+[data-header] .header-inner { height: 5rem; transition: height 0.25s ease; }
+[data-header] .header-logo { transition: height 0.25s ease; }
+[data-header][data-scrolled='true'] .header-inner { height: 3.5rem; }
+[data-header][data-scrolled='true'] .header-logo { height: 2rem; }
+
+/* Phone buy bar: out of sight (and out of the tab order) until the visitor has scrolled */
+[data-buybar] { transform: translateY(100%); visibility: hidden; transition: transform 0.3s ease, visibility 0s linear 0.3s; }
+[data-buybar][data-visible='true'] { transform: none; visibility: visible; transition: transform 0.3s ease; }
+
+/* Fade-and-rise as blocks scroll into view (browsers without scroll-driven animations just show them) */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* No cross-fades between pages for people who ask for less motion */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
 }
 
 /* Custom architectural hairline borders & aesthetic theatrical cues */

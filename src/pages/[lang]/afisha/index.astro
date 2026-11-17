@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import MonthlyAfisha from '../../../components/MonthlyAfisha';
-import { field, infoBlocks } from '../../../utils/content';
+import { activePlays, field, infoBlocks } from '../../../utils/content';
 import { LOCALES, tr, useTranslations, type Locale } from '../../../utils/i18n';
 
 export function getStaticPaths() {
@@ -14,6 +14,7 @@ const t = useTranslations(lang);
 
 <Layout
   lang={lang}
+  buyHref={false}
   title={`${t.afisha.title} | Kiseljus Teater`}
   description={t.afisha.subtitle}
 >
@@ -32,7 +33,7 @@ const t = useTranslations(lang);
     </div>
 
     <!-- Monthly Afisha React Island -->
-    <MonthlyAfisha client:load lang={lang} />
+    <MonthlyAfisha client:load lang={lang} plays={activePlays.map((p) => ({ slug: p.slug, title: field(p, 'title', lang) }))} />
 
     <!-- Visitor information, edited in the admin -->
     {infoBlocks.length > 0 && (
