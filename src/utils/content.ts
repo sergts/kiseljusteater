@@ -75,6 +75,10 @@ export interface Contacts {
   address_en?: string;
   phone: string;
   email: string;
+  /** Social profiles and the theatre's ticket page; a blank value hides the link. */
+  instagram?: string;
+  facebook?: string;
+  tickets_url?: string;
 }
 
 export interface Role {
@@ -99,7 +103,7 @@ export const contentUpdatedAt = content.updatedAt;
 export const infoBlocks: InfoBlock[] = (content.info ?? (defaults.info as InfoBlock[])).filter(
   (b) => b.visible !== false && b.body_et.trim() !== '',
 );
-export const contacts: Contacts = content.contacts ?? (defaults.contacts as Contacts);
+export const contacts: Contacts = { ...(defaults.contacts as Contacts), ...(content.contacts ?? {}) };
 
 const actorsBySlug = new Map(actors.map((a) => [a.slug, a]));
 

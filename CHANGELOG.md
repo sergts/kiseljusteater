@@ -38,7 +38,7 @@ Admin (kiseljusteater.ee/admin)        GitHub                               Serv
 actors[]   slug, name_et/ru/en, role_title_et/ru/en, bio_et/ru/en, photo
 plays[]    slug, title_*, genre_*, synopsis_*, duration, age_limit, archived, piletikeskus_ids[] (Sviby series names), poster, cast[] (actor, role_et/ru/en)
 info[]     title_*, short_*, body_*, visible, play_page, icon            ← new
-contacts   address_et/ru/en, phone, email                                ← new
+contacts   address_et/ru/en, phone, email, instagram, facebook, tickets_url   ← new
 ```
 
 English fields are optional everywhere; the site shows the Estonian text where English is empty.
@@ -86,6 +86,9 @@ If a published file has no `info`/`contacts` yet, the site uses `src/content/sit
 
 ### Visitor information
 - Info blocks (afisha page, under the schedule) and contacts (footer, About) come from the admin.
+- Footer and About link to the theatre's Instagram and Facebook; the footer's Piletikeskus link goes to the theatre's own page
+  (`https://piletikeskus.ee/et/c/kiseljusteater`). The three links are contact fields in the admin; a blank value hides the link, a missing one uses the
+  default from `src/content/site-defaults.json`. There are no embedded feeds (they would load Meta's scripts and cookies).
 - **"Before you buy" panel** (`BeforeYouBuy.astro`) above the dates on every play page: one line each with an icon (late entry, accessibility, refunds),
   linking to the full blocks (`/afisha/#info`). Which blocks appear, their one-line text and icon are set in the admin.
 
@@ -159,3 +162,5 @@ The admin lives in `server/public_html/admin/` and `server/private/` (**not in g
 | `bc595d4` | Design pass: default pictures, accessibility, logo reveal, hero card, buy bar, afisha filters, transitions, fonts |
 | `22d77a7` | "Before you buy" panel on play pages, edited in the admin |
 | `12ed57e` | Trailing slashes on all links; hero location tag removed |
+| `018738a` | Changelog; admin link removed from the footer |
+| next | Footer ticket link, Instagram and Facebook links, editable in the admin |
