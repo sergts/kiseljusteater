@@ -83,7 +83,6 @@ export const translations = {
       directAdminNote: 'Piletikeskuse piletilingid ja reaalajas kavasünkroonimine.',
     },
     footer: {
-      adminLink: 'Halduse sisselogimine',
     }
   },
   ru: {
@@ -162,7 +161,6 @@ export const translations = {
       directAdminNote: 'Синхронизация билетов через Piletikeskus и управление репертуаром.',
     },
     footer: {
-      adminLink: 'Панель управления',
     }
   },
   en: {
@@ -241,7 +239,6 @@ export const translations = {
       directAdminNote: 'Piletikeskus ticket links and live schedule sync.',
     },
     footer: {
-      adminLink: 'Admin login',
     }
   }
 } as const;
