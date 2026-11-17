@@ -77,10 +77,6 @@ export const translations = {
       directAdminNote: 'Piletikeskuse piletilingid ja reaalajas kavasünkroonimine.',
     },
     footer: {
-      address: 'Lootsi 8, 10151 Tallinn, Eesti',
-      email: 'info@kiseljusteater.ee',
-      phone: '+372 555 1234',
-      rights: 'Kõik õigused kaitstud.',
       adminLink: 'Halduse sisselogimine',
     }
   },
@@ -154,10 +150,6 @@ export const translations = {
       directAdminNote: 'Синхронизация билетов через Piletikeskus и управление репертуаром.',
     },
     footer: {
-      address: 'Лоотси 8, 10151 Таллинн, Эстония',
-      email: 'info@kiseljusteater.ee',
-      phone: '+372 555 1234',
-      rights: 'Все права защищены.',
       adminLink: 'Панель управления',
     }
   },
@@ -231,10 +223,6 @@ export const translations = {
       directAdminNote: 'Piletikeskus ticket links and live schedule sync.',
     },
     footer: {
-      address: 'Lootsi 8, 10151 Tallinn, Estonia',
-      email: 'info@kiseljusteater.ee',
-      phone: '+372 555 1234',
-      rights: 'All rights reserved.',
       adminLink: 'Admin login',
     }
   }

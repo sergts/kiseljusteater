@@ -33,13 +33,14 @@ const isLinkActive = (href: string) => {
     <div class="flex items-center justify-between h-20">
       
       <!-- Logo / Title -->
-      <a href={`/${lang}`} class="group flex flex-col justify-center">
-        <span class="text-xl sm:text-2xl font-black uppercase tracking-tighter text-black group-hover:text-red-600 transition-colors">
-          Kiseljus Teater
-        </span>
-        <span class="text-[10px] font-mono uppercase tracking-widest text-zinc-400 group-hover:text-black transition-colors">
-          Tallinn · Lootsi 8
-        </span>
+      <a href={`/${lang}`} class="flex items-center" aria-label="Kiseljus Teater">
+        <img
+          src="/images/logo/logo-black-arrow.png"
+          alt="Kiseljus Teater"
+          width="1532"
+          height="413"
+          class="h-9 sm:h-11 w-auto"
+        />
       </a>
 
       <!-- Desktop Navigation Links -->

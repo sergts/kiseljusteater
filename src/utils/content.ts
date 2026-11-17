@@ -1,6 +1,7 @@
 // Site content edited in the admin. In CI, src/content/content.json is replaced by the
 // published version from the server before the build; the committed file is seed data for local dev.
 import data from '../content/content.json';
+import defaults from '../content/site-defaults.json';
 import type { Locale } from './i18n';
 
 export interface Image {
@@ -50,17 +51,48 @@ export interface Play {
   cast: CastEntry[];
 }
 
+/** A visitor-information block (afisha page), edited in the admin under "Инфо". */
+export interface InfoBlock {
+  title_et: string;
+  title_ru: string;
+  title_en?: string;
+  body_et: string;
+  body_ru: string;
+  body_en?: string;
+  visible?: boolean;
+}
+
+export interface Contacts {
+  address_et: string;
+  address_ru: string;
+  address_en?: string;
+  phone: string;
+  email: string;
+}
+
 export interface Role {
   play: Play;
   role: string;
 }
 
-const content = data as unknown as { actors: Actor[]; plays: Play[]; updatedAt: string | null };
+const content = data as unknown as {
+  actors: Actor[];
+  plays: Play[];
+  info?: InfoBlock[];
+  contacts?: Contacts;
+  updatedAt: string | null;
+};
 
 export const actors: Actor[] = content.actors;
 export const plays: Play[] = content.plays;
 export const activePlays: Play[] = plays.filter((p) => !p.archived);
 export const contentUpdatedAt = content.updatedAt;
+
+// Until the first publish that includes them, the built-in defaults are used.
+export const infoBlocks: InfoBlock[] = (content.info ?? (defaults.info as InfoBlock[])).filter(
+  (b) => b.visible !== false && b.body_et.trim() !== '',
+);
+export const contacts: Contacts = content.contacts ?? (defaults.contacts as Contacts);
 
 const actorsBySlug = new Map(actors.map((a) => [a.slug, a]));
 

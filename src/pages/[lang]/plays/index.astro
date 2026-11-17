@@ -22,7 +22,7 @@ const t = useTranslations(lang);
     <!-- Header Banner -->
     <div class="border-b border-zinc-200 pb-8 mb-12">
       <p class="text-xs font-mono uppercase tracking-widest text-red-600 font-bold mb-2">
-        // {tr(lang, 'Mängukavas olevad lavastused', 'Текущий репертуар', 'Current repertoire')}
+        {tr(lang, 'Mängukavas olevad lavastused', 'Текущий репертуар', 'Current repertoire')}
       </p>
       <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight mb-4">
         {t.plays.title}
@@ -75,7 +75,7 @@ const t = useTranslations(lang);
                 <!-- Next performances preview -->
                 <div class="border-t border-zinc-100 pt-4">
                   <p class="text-[11px] font-mono uppercase tracking-widest text-zinc-400 mb-2">
-                    // {t.plays.upcoming}:
+                    {t.plays.upcoming}:
                   </p>
                   <PlayDates client:visible lang={lang} playSlug={play.slug} variant="chips" />
                 </div>

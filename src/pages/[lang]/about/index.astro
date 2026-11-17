@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import { contacts, field } from '../../../utils/content';
 import { LOCALES, tr, useTranslations, type Locale } from '../../../utils/i18n';
 
 export function getStaticPaths() {
@@ -19,7 +20,7 @@ const t = useTranslations(lang);
     <!-- Header Banner -->
     <div class="border-b border-zinc-200 pb-8 mb-12">
       <p class="text-xs font-mono uppercase tracking-widest text-red-600 font-bold mb-2">
-        // {tr(lang, 'Teatrist ja ruumist', 'О театре и пространстве', 'About the theatre and the space')}
+        {tr(lang, 'Teatrist ja ruumist', 'О театре и пространстве', 'About the theatre and the space')}
       </p>
       <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight mb-4">
         {t.about.title}
@@ -33,7 +34,7 @@ const t = useTranslations(lang);
     <section class="mb-16">
       <div class="border border-zinc-200 bg-zinc-50 p-6 sm:p-10">
         <span class="text-xs font-mono uppercase tracking-widest text-red-600 font-bold block mb-4">
-          // {t.about.missionTitle}
+          {t.about.missionTitle}
         </span>
         <blockquote class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-zinc-900 leading-snug mb-6">
           "{tr(lang, 'Teater ei ole koht mugavaks uinakuks. See on ausa dialoogi ja vahetu kohtumise ruum.', 'Театр не место для комфортного сна. Это место честного удара и искренней встречи.', 'Theatre is not a place for a comfortable nap. It is a space for honest dialogue and direct encounter.')}"
@@ -48,7 +49,7 @@ const t = useTranslations(lang);
     <section class="mb-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
       <div>
         <span class="text-xs font-mono uppercase tracking-widest text-zinc-400 font-bold block mb-3">
-          // {tr(lang, 'Arhitektuur ja saal', 'Архитектура и пространство', 'Architecture and space')}
+          {tr(lang, 'Arhitektuur ja saal', 'Архитектура и пространство', 'Architecture and space')}
         </span>
         <h2 class="text-3xl font-black uppercase tracking-tight mb-4">
           {t.about.spaceTitle}
@@ -94,9 +95,9 @@ const t = useTranslations(lang);
         <!-- Address & Transit -->
         <div class="border border-zinc-200 p-6 bg-zinc-50">
           <h3 class="font-bold uppercase tracking-wider text-xs font-mono text-red-600 mb-3">
-            // {tr(lang, 'Aadress ja ligipääs', 'Адрес и транспорт', 'Address and getting here')}
+            {tr(lang, 'Aadress ja ligipääs', 'Адрес и транспорт', 'Address and getting here')}
           </h3>
-          <p class="font-bold text-zinc-900 text-base mb-1">{t.footer.address}</p>
+          <p class="font-bold text-zinc-900 text-base mb-1">{field(contacts, 'address', lang)}</p>
           <p class="text-xs text-zinc-600 leading-relaxed font-mono mt-3">
             {tr(lang, 'Trammid nr 1 ja nr 2 (peatus "Tallinna Sadam"). Sadamakvartal Lootsi, D-terminali lähedal.', 'Трамваи №1 и №2 (остановка «Tallinna Sadam»). Портовый квартал Lootsi, рядом с D-терминалом.', 'Trams no. 1 and no. 2 (stop “Tallinna Sadam”). The Lootsi port quarter, near the D-Terminal.')}
           </p>
@@ -105,7 +106,7 @@ const t = useTranslations(lang);
         <!-- Online Tickets Policy (NO ONSITE CASH DESK) -->
         <div class="border border-zinc-200 p-6 bg-zinc-50">
           <h3 class="font-bold uppercase tracking-wider text-xs font-mono text-red-600 mb-3">
-            // {t.about.boxOffice}
+            {t.about.boxOffice}
           </h3>
           <p class="text-xs text-zinc-600 leading-relaxed font-mono mb-2">
             {t.about.boxOfficeInfo}
@@ -126,15 +127,15 @@ const t = useTranslations(lang);
         <!-- Inquiries -->
         <div class="border border-zinc-200 p-6 bg-zinc-50 font-mono text-xs">
           <h3 class="font-bold uppercase tracking-wider text-xs font-mono text-red-600 mb-3">
-            // {tr(lang, 'Side ja administratsioon', 'Связь и администрация', 'Contact and administration')}
+            {tr(lang, 'Side ja administratsioon', 'Связь и администрация', 'Contact and administration')}
           </h3>
           <p class="text-zinc-500 mb-1">{tr(lang, 'E-post:', 'Электронная почта:', 'Email:')}</p>
-          <a href={`mailto:${t.footer.email}`} class="text-black font-bold block mb-3 hover:text-red-600">
-            {t.footer.email}
+          <a href={`mailto:${contacts.email}`} class="text-black font-bold block mb-3 hover:text-red-600">
+            {contacts.email}
           </a>
           <p class="text-zinc-500 mb-1">{tr(lang, 'Telefon:', 'Телефон:', 'Phone:')}</p>
-          <a href={`tel:${t.footer.phone}`} class="text-black font-bold block mb-3 hover:text-red-600">
-            {t.footer.phone}
+          <a href={`tel:${contacts.phone.replace(/\s+/g, '')}`} class="text-black font-bold block mb-3 hover:text-red-600">
+            {contacts.phone}
           </a>
           <p class="text-zinc-500 mb-1">{tr(lang, 'Kunstiline juht:', 'Художественный руководитель:', 'Artistic director:')}</p>
           <span class="text-zinc-800">Anton Kiseljus</span>

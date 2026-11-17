@@ -1,0 +1,65 @@
+{
+  "info": [
+    {
+      "title_et": "Piletid ainult veebis",
+      "title_ru": "Билеты только онлайн",
+      "title_en": "Tickets online only",
+      "body_et": "Piletite müük toimub AINULT VEEBIS Piletikeskuse keskkonnas (piletikeskus.ee). Teatris kohapeal piletikassat ei ole ning pileteid enne etendust kohapeal ei müüda.",
+      "body_ru": "Продажа билетов осуществляется исключительно онлайн через платформу Piletikeskus (piletikeskus.ee). В самом театре касса отсутствует, билеты на месте не продаются.",
+      "body_en": "Tickets are sold exclusively online through the Piletikeskus platform (piletikeskus.ee). There is no box office at the theatre and no tickets are sold on site.",
+      "visible": true
+    },
+    {
+      "title_et": "Uksed, istekohad ja sissepääs",
+      "title_ru": "Начало, рассадка и вход",
+      "title_en": "Doors, seating and entry",
+      "body_et": "Teatri uksed avatakse 45 minutit enne etenduse algust. Istekohad on vabad – valige endale meelepärane koht. Pärast kolmandat kella saali enam ei lasta.",
+      "body_ru": "Двери театра открываются за 45 минут до начала спектакля. Рассадка свободная — выбирайте любое место. После третьего звонка в зал не пускают.",
+      "body_en": "The theatre doors open 45 minutes before the performance. Seating is unreserved, so choose any seat. After the third bell, latecomers are not admitted to the hall.",
+      "visible": true
+    },
+    {
+      "title_et": "Puhvet",
+      "title_ru": "Буфет",
+      "title_en": "Buffet",
+      "body_et": "",
+      "body_ru": "",
+      "body_en": "",
+      "visible": false
+    },
+    {
+      "title_et": "Lilled",
+      "title_ru": "Цветы",
+      "title_en": "Flowers",
+      "body_et": "Lilli võib jätta administraatorile esimeseks vaatuseks. Lilli antakse näitlejatele üle pärast kolmandat kummardust.",
+      "body_ru": "Цветы можно оставить администратору на первый акт. Вручать цветы артистам — после третьего поклона.",
+      "body_en": "Flowers can be left with the administrator for the first act. Flowers are presented to the performers after the third bow.",
+      "visible": true
+    },
+    {
+      "title_et": "Ligipääsetavus",
+      "title_ru": "Доступность",
+      "title_en": "Accessibility",
+      "body_et": "Lootsi 8 teatrimajas ei ole ligipääsu liikumispuudega inimestele ega ratastoolidele – saali pääseb trepist. Erand: etendused Sakala 3 teatrimajas.",
+      "body_ru": "В театре на Lootsi 8 нет доступа для людей с инвалидностью и для колясок — вход по лестнице. Исключение — спектакли в Sakala 3.",
+      "body_en": "The theatre at Lootsi 8 is not accessible to people with disabilities or wheelchair users; entry is by stairs. Exception: performances at Sakala 3.",
+      "visible": true
+    },
+    {
+      "title_et": "Piletite tagastamine",
+      "title_ru": "Возврат билетов",
+      "title_en": "Ticket refunds",
+      "body_et": "Piletite vahetamine ei ole võimalik. Piletit saab tagastada hiljemalt 48 tundi enne etenduse algust. Kui etenduseni on jäänud alla 48 tunni, kirjutage meile otsesõnumina (direct).",
+      "body_ru": "Обмен билетов невозможен. Возврат билета возможен не позднее чем за 48 часов до начала спектакля. Если до спектакля осталось меньше 48 часов, напишите нам в директ.",
+      "body_en": "Tickets cannot be exchanged. A ticket can be refunded no later than 48 hours before the performance. If less than 48 hours remain, please message us directly (direct message).",
+      "visible": true
+    }
+  ],
+  "contacts": {
+    "address_et": "Lootsi 8, 10151 Tallinn, Eesti",
+    "address_ru": "Лоотси 8, 10151 Таллинн, Эстония",
+    "address_en": "Lootsi 8, 10151 Tallinn, Estonia",
+    "phone": "+372 555 1234",
+    "email": "info@kiseljusteater.ee"
+  }
+}

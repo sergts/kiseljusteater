@@ -64,7 +64,7 @@ const facts = [play.duration && `${play.duration} MIN`, play.age_limit, tr(lang,
     <section class="mt-12 border-t border-zinc-200 pt-8">
       <div class="flex items-center justify-between mb-6">
         <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 font-bold">
-          // {tr(lang, 'Järgmised etendused', 'Следующие показы', 'Upcoming performances')}
+          {tr(lang, 'Järgmised etendused', 'Следующие показы', 'Upcoming performances')}
         </h2>
         <a href={`/${lang}/afisha`} class="text-xs font-mono uppercase text-red-600 hover:underline">
           {tr(lang, 'Kogu mängukava →', 'Вся афиша →', 'Full schedule →')}
@@ -83,7 +83,7 @@ const facts = [play.duration && `${play.duration} MIN`, play.age_limit, tr(lang,
     <!-- Synopsis -->
     <section class="mt-14 max-w-3xl">
       <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 font-bold mb-4">
-        // {tr(lang, 'Lavastusest', 'О спектакле', 'About the production')}
+        {tr(lang, 'Lavastusest', 'О спектакле', 'About the production')}
       </h2>
       <div class="text-zinc-800 text-base sm:text-lg leading-relaxed whitespace-pre-line space-y-4">
         {field(play, 'synopsis', lang)}
@@ -93,7 +93,7 @@ const facts = [play.duration && `${play.duration} MIN`, play.age_limit, tr(lang,
     <!-- Cast / Troupe -->
     <section class="mt-16 border-t border-zinc-200 pt-8">
       <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 font-bold mb-8">
-        // {tr(lang, 'Tegelased ja osatäitjad', 'Действующие лица и исполнители', 'Characters and cast')}
+        {tr(lang, 'Tegelased ja osatäitjad', 'Действующие лица и исполнители', 'Characters and cast')}
       </h2>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
         {cast.map(({ actor, role }) => (

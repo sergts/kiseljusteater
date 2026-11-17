@@ -1,4 +1,5 @@
 ---
+import { contacts, field } from '../utils/content';
 import { tr, useTranslations, type Locale } from '../utils/i18n';
 
 interface Props {
@@ -7,7 +8,6 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const currentYear = new Date().getFullYear();
 ---
 
 <footer class="bg-zinc-950 text-white border-t border-zinc-800 mt-20">
@@ -16,9 +16,13 @@ const currentYear = new Date().getFullYear();
       
       <!-- Brand & Mission summary -->
       <div class="md:col-span-1 space-y-4">
-        <span class="text-2xl font-black uppercase tracking-tighter text-white">
-          Kiseljus Teater
-        </span>
+        <img
+          src="/images/logo/logo-white-arrow.png"
+          alt="Kiseljus Teater"
+          width="1532"
+          height="413"
+          class="h-10 w-auto"
+        />
         <p class="font-mono text-xs text-zinc-400 leading-relaxed">
           {tr(lang, 'Kompromissitu draama ja kaasaegse lavakunsti autoriruum Tallinna sadamakvartalis.', 'Пространство бескомпромиссного драматического поиска и авторского театра у Таллиннского порта.', 'A space for uncompromising dramatic exploration and author-driven theatre by the Tallinn port.')}
         </p>
@@ -31,7 +35,7 @@ const currentYear = new Date().getFullYear();
 
       <!-- Quick Links -->
       <div class="space-y-3 font-mono text-xs">
-        <h3 class="text-white uppercase tracking-widest font-bold mb-4">// {tr(lang, 'Menüü', 'Разделы', 'Menu')}</h3>
+        <h3 class="text-white uppercase tracking-widest font-bold mb-4">{tr(lang, 'Menüü', 'Разделы', 'Menu')}</h3>
         <ul class="space-y-2">
           <li>
             <a href={`/${lang}/afisha`} class="text-zinc-400 hover:text-white transition-colors">
@@ -58,7 +62,7 @@ const currentYear = new Date().getFullYear();
 
       <!-- Tickets & Partners -->
       <div class="space-y-3 font-mono text-xs">
-        <h3 class="text-white uppercase tracking-widest font-bold mb-4">// {tr(lang, 'Piletid ainult veebis', 'Билеты только онлайн', 'Tickets online only')}</h3>
+        <h3 class="text-white uppercase tracking-widest font-bold mb-4">{tr(lang, 'Piletid ainult veebis', 'Билеты только онлайн', 'Tickets online only')}</h3>
         <p class="text-zinc-400 text-xs leading-relaxed">
           {tr(lang, 'Piletid kõigile etendustele on müügil AINULT VEEBIS Piletikeskuses (piletikeskus.ee). Teatris kohapeal piletimüüki ei toimu.', 'Билеты на все спектакли продаются исключительно онлайн в Piletikeskus (piletikeskus.ee). В самом театре билеты не продаются.', 'Tickets for all performances are sold exclusively online through Piletikeskus (piletikeskus.ee). No tickets are sold at the theatre itself.')}
         </p>
@@ -74,12 +78,12 @@ const currentYear = new Date().getFullYear();
 
       <!-- Location & Contact -->
       <div class="space-y-3 font-mono text-xs">
-        <h3 class="text-white uppercase tracking-widest font-bold mb-4">// {tr(lang, 'Kontakt', 'Контакты', 'Contact')}</h3>
-        <p class="text-zinc-300 font-bold">{t.footer.address}</p>
-        <p class="text-zinc-400">{t.footer.phone}</p>
+        <h3 class="text-white uppercase tracking-widest font-bold mb-4">{tr(lang, 'Kontakt', 'Контакты', 'Contact')}</h3>
+        <p class="text-zinc-300 font-bold">{field(contacts, 'address', lang)}</p>
+        <p class="text-zinc-400">{contacts.phone}</p>
         <p>
-          <a href={`mailto:${t.footer.email}`} class="text-zinc-400 hover:text-white transition-colors">
-            {t.footer.email}
+          <a href={`mailto:${contacts.email}`} class="text-zinc-400 hover:text-white transition-colors">
+            {contacts.email}
           </a>
         </p>
       </div>
@@ -87,10 +91,7 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <!-- Bottom Bar -->
-    <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs font-mono text-zinc-500 gap-4">
-      <div>
-        © {currentYear} Kiseljus Teater MTÜ. {t.footer.rights}
-      </div>
+    <div class="pt-8 flex flex-col sm:flex-row justify-end items-center text-xs font-mono text-zinc-500 gap-4">
       <div class="flex items-center space-x-6">
         <a href="/admin/" class="text-zinc-600 hover:text-zinc-400 transition-colors">
           {t.footer.adminLink}
