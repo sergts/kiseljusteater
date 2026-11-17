@@ -59,6 +59,13 @@ export interface InfoBlock {
   body_et: string;
   body_ru: string;
   body_en?: string;
+  /** One-line version for the "Before you buy" panel on play pages. */
+  short_et?: string;
+  short_ru?: string;
+  short_en?: string;
+  /** Shown in that panel (needs a short text). */
+  play_page?: boolean;
+  icon?: string;
   visible?: boolean;
 }
 

@@ -1,0 +1,40 @@
+---
+import { field, infoBlocks } from '../utils/content';
+import { tr, type Locale } from '../utils/i18n';
+import InfoIcon from './InfoIcon.astro';
+
+/**
+ * "Before you buy": the information blocks marked for play pages in the admin, one line each,
+ * shown above the dates so visitors see the rules (late entry, accessibility, refunds) before they choose a date.
+ */
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const items = infoBlocks
+  .filter((b) => b.play_page)
+  .map((b) => ({ icon: b.icon, text: field(b, 'short', lang) || field(b, 'title', lang) }))
+  .filter((item) => item.text.trim() !== '');
+---
+
+{items.length > 0 && (
+  <section aria-labelledby="before-you-buy" class="mt-12 border border-zinc-200 bg-zinc-50 p-5 sm:p-6">
+    <h2 id="before-you-buy" class="text-xs font-mono uppercase tracking-widest text-zinc-600 font-bold mb-4">
+      {tr(lang, 'Enne ostmist', 'Перед покупкой', 'Before you buy')}
+    </h2>
+    <ul class="space-y-3">
+      {items.map((item) => (
+        <li class="flex items-start gap-3 text-sm leading-relaxed text-zinc-800">
+          <InfoIcon name={item.icon} class="w-5 h-5 mt-0.5 shrink-0 text-red-600" />
+          <span>{item.text}</span>
+        </li>
+      ))}
+    </ul>
+    <a
+      href={`/${lang}/afisha#info`}
+      class="inline-block mt-4 py-1 font-mono text-xs uppercase tracking-wider text-zinc-700 hover:text-red-600 transition-colors"
+    >
+      {tr(lang, 'Kogu info →', 'Вся информация →', 'All information →')}
+    </a>
+  </section>
+)}

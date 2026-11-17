@@ -7,7 +7,12 @@
       "body_et": "Piletite müük toimub AINULT VEEBIS Piletikeskuse keskkonnas (piletikeskus.ee). Teatris kohapeal piletikassat ei ole ning pileteid enne etendust kohapeal ei müüda.",
       "body_ru": "Продажа билетов осуществляется исключительно онлайн через платформу Piletikeskus (piletikeskus.ee). В самом театре касса отсутствует, билеты на месте не продаются.",
       "body_en": "Tickets are sold exclusively online through the Piletikeskus platform (piletikeskus.ee). There is no box office at the theatre and no tickets are sold on site.",
-      "visible": true
+      "visible": true,
+      "icon": "ticket",
+      "play_page": false,
+      "short_et": "",
+      "short_ru": "",
+      "short_en": ""
     },
     {
       "title_et": "Uksed, istekohad ja sissepääs",
@@ -16,7 +21,12 @@
       "body_et": "Teatri uksed avatakse 45 minutit enne etenduse algust. Istekohad on vabad – valige endale meelepärane koht. Pärast kolmandat kella saali enam ei lasta.",
       "body_ru": "Двери театра открываются за 45 минут до начала спектакля. Рассадка свободная — выбирайте любое место. После третьего звонка в зал не пускают.",
       "body_en": "The theatre doors open 45 minutes before the performance. Seating is unreserved, so choose any seat. After the third bell, latecomers are not admitted to the hall.",
-      "visible": true
+      "visible": true,
+      "icon": "clock",
+      "play_page": true,
+      "short_et": "Pärast etenduse algust saali ei lasta. Istekohad on vabad.",
+      "short_ru": "После начала спектакля в зал не пускают. Рассадка свободная.",
+      "short_en": "No entry once the performance has begun. Seating is unreserved."
     },
     {
       "title_et": "Puhvet",
@@ -25,7 +35,12 @@
       "body_et": "",
       "body_ru": "",
       "body_en": "",
-      "visible": false
+      "visible": false,
+      "icon": "coffee",
+      "play_page": false,
+      "short_et": "",
+      "short_ru": "",
+      "short_en": ""
     },
     {
       "title_et": "Lilled",
@@ -34,7 +49,12 @@
       "body_et": "Lilli võib jätta administraatorile esimeseks vaatuseks. Lilli antakse näitlejatele üle pärast kolmandat kummardust.",
       "body_ru": "Цветы можно оставить администратору на первый акт. Вручать цветы артистам — после третьего поклона.",
       "body_en": "Flowers can be left with the administrator for the first act. Flowers are presented to the performers after the third bow.",
-      "visible": true
+      "visible": true,
+      "icon": "flower",
+      "play_page": false,
+      "short_et": "",
+      "short_ru": "",
+      "short_en": ""
     },
     {
       "title_et": "Ligipääsetavus",
@@ -43,7 +63,12 @@
       "body_et": "Lootsi 8 teatrimajas ei ole ligipääsu liikumispuudega inimestele ega ratastoolidele – saali pääseb trepist. Erand: etendused Sakala 3 teatrimajas.",
       "body_ru": "В театре на Lootsi 8 нет доступа для людей с инвалидностью и для колясок — вход по лестнице. Исключение — спектакли в Sakala 3.",
       "body_en": "The theatre at Lootsi 8 is not accessible to people with disabilities or wheelchair users; entry is by stairs. Exception: performances at Sakala 3.",
-      "visible": true
+      "visible": true,
+      "icon": "access",
+      "play_page": true,
+      "short_et": "Lootsi 8: trepp, ligipääs ratastoolidega puudub (erand: Sakala 3).",
+      "short_ru": "Lootsi 8: вход по лестнице, для колясок доступа нет (кроме Sakala 3).",
+      "short_en": "Lootsi 8: entry by stairs, no wheelchair access (except Sakala 3)."
     },
     {
       "title_et": "Piletite tagastamine",
@@ -52,7 +77,12 @@
       "body_et": "Piletite vahetamine ei ole võimalik. Piletit saab tagastada hiljemalt 48 tundi enne etenduse algust. Kui etenduseni on jäänud alla 48 tunni, kirjutage meile otsesõnumina (direct).",
       "body_ru": "Обмен билетов невозможен. Возврат билета возможен не позднее чем за 48 часов до начала спектакля. Если до спектакля осталось меньше 48 часов, напишите нам в директ.",
       "body_en": "Tickets cannot be exchanged. A ticket can be refunded no later than 48 hours before the performance. If less than 48 hours remain, please message us directly (direct message).",
-      "visible": true
+      "visible": true,
+      "icon": "ticket",
+      "play_page": true,
+      "short_et": "Tagastus hiljemalt 48 tundi enne etendust, piletite vahetamine ei ole võimalik.",
+      "short_ru": "Возврат не позднее чем за 48 часов до спектакля, обмен невозможен.",
+      "short_en": "Refunds up to 48 hours before the performance; no exchanges."
     }
   ],
   "contacts": {
