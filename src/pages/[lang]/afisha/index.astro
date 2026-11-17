@@ -1,13 +1,10 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import MonthlyAfisha from '../../../components/MonthlyAfisha';
-import { useTranslations, type Locale } from '../../../utils/i18n';
+import { LOCALES, tr, useTranslations, type Locale } from '../../../utils/i18n';
 
 export function getStaticPaths() {
-  return [
-    { params: { lang: 'et' } },
-    { params: { lang: 'ru' } },
-  ];
+  return LOCALES.map((lang) => ({ params: { lang } }));
 }
 
 const { lang } = Astro.params as { lang: Locale };
@@ -23,7 +20,7 @@ const t = useTranslations(lang);
     <!-- Header Banner -->
     <div class="border-b border-zinc-200 pb-8 mb-10">
       <p class="text-xs font-mono uppercase tracking-widest text-red-600 font-bold mb-2">
-        // {lang === 'ru' ? 'Сезон 2026/2027' : 'Hooaeg 2026/2027'}
+        // {tr(lang, 'Hooaeg 2026/2027', 'Сезон 2026/2027', 'Season 2026/2027')}
       </p>
       <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight mb-4">
         {t.afisha.title}
@@ -41,22 +38,18 @@ const t = useTranslations(lang);
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 font-mono text-xs text-zinc-600">
         <div>
           <h3 class="font-bold uppercase tracking-wider text-black mb-2">
-            // {lang === 'ru' ? 'Билеты только онлайн' : 'Piletid ainult veebis'}
+            // {tr(lang, 'Piletid ainult veebis', 'Билеты только онлайн', 'Tickets online only')}
           </h3>
           <p>
-            {lang === 'ru'
-              ? 'Продажа билетов осуществляется исключительно онлайн через платформу Piletikeskus (piletikeskus.ee). В самом театре касса отсутствует, билеты на месте не продаются.'
-              : 'Piletite müük toimub AINULT VEEBIS Piletikeskuse keskkonnas (piletikeskus.ee). Teatris kohapeal piletikassat ei ole ning pileteid enne etendust kohapeal ei müüda.'}
+            {tr(lang, 'Piletite müük toimub AINULT VEEBIS Piletikeskuse keskkonnas (piletikeskus.ee). Teatris kohapeal piletikassat ei ole ning pileteid enne etendust kohapeal ei müüda.', 'Продажа билетов осуществляется исключительно онлайн через платформу Piletikeskus (piletikeskus.ee). В самом театре касса отсутствует, билеты на месте не продаются.', 'Tickets are sold exclusively online through the Piletikeskus platform (piletikeskus.ee). There is no box office at the theatre and no tickets are sold on site.')}
           </p>
         </div>
         <div>
           <h3 class="font-bold uppercase tracking-wider text-black mb-2">
-            // {lang === 'ru' ? 'Вход в зрительный зал' : 'Sissepääs teatrisaali'}
+            // {tr(lang, 'Sissepääs teatrisaali', 'Вход в зрительный зал', 'Entering the auditorium')}
           </h3>
           <p>
-            {lang === 'ru'
-              ? 'Театр располагает одним залом по адресу Lootsi 8, Таллинн. Двери фойе открываются за 45 минут до начала спектакля. После третьего звонка вход в зал закрывается.'
-              : 'Kiseljus Teatris on üks saal aadressil Lootsi 8, Tallinn. Teatri uksed avatakse 45 minutit enne etenduse algust. Pärast kolmandat kella saali enam ei pääse.'}
+            {tr(lang, 'Kiseljus Teatris on üks saal aadressil Lootsi 8, Tallinn. Teatri uksed avatakse 45 minutit enne etenduse algust. Pärast kolmandat kella saali enam ei pääse.', 'Театр располагает одним залом по адресу Lootsi 8, Таллинн. Двери фойе открываются за 45 минут до начала спектакля. После третьего звонка вход в зал закрывается.', 'The theatre has a single hall at Lootsi 8, Tallinn. The foyer doors open 45 minutes before the performance. After the third bell, entry to the hall is closed.')}
           </p>
         </div>
       </div>

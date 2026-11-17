@@ -1,10 +1,10 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import { actors, imageAttrs, rolesOf, type Actor, type Role } from '../../../utils/content';
-import { useTranslations, type Locale } from '../../../utils/i18n';
+import { actors, field, imageAttrs, rolesOf, type Actor, type Role } from '../../../utils/content';
+import { LOCALES, tr, useTranslations, type Locale } from '../../../utils/i18n';
 
 export function getStaticPaths() {
-  return (['et', 'ru'] as const).flatMap((lang) =>
+  return LOCALES.flatMap((lang) =>
     actors.map((actor) => ({
       params: { lang, slug: actor.slug },
       props: { actor, lang },
@@ -16,24 +16,24 @@ const { actor, lang } = Astro.props as { actor: Actor; lang: Locale };
 const t = useTranslations(lang);
 const { current, past } = rolesOf(actor.slug, lang);
 const roleGroups: { heading: string; roles: Role[] }[] = [
-  { heading: lang === 'ru' ? 'Роли в текущем репертуаре' : 'Rollid repertuaaris', roles: current },
+  { heading: tr(lang, 'Rollid repertuaaris', 'Роли в текущем репертуаре', 'Roles in the current repertoire'), roles: current },
   { heading: t.actors.pastProductions, roles: past },
 ];
 ---
 
 <Layout
   lang={lang}
-  title={`${actor[`name_${lang}`]} | Kiseljus Teater`}
-  description={actor[`bio_${lang}`]?.slice(0, 160)}
+  title={`${field(actor, 'name', lang)} | Kiseljus Teater`}
+  description={field(actor, 'bio', lang)?.slice(0, 160)}
 >
   <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
     <!-- Breadcrumb -->
     <div class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-8 flex items-center space-x-2">
       <a href={`/${lang}`} class="hover:text-black">Kiseljus</a>
       <span>/</span>
-      <a href={`/${lang}/actors`} class="hover:text-black">{lang === 'ru' ? 'Труппа' : 'Trupp'}</a>
+      <a href={`/${lang}/actors`} class="hover:text-black">{tr(lang, 'Trupp', 'Труппа', 'Company')}</a>
       <span>/</span>
-      <span class="text-red-600 font-bold">{actor[`name_${lang}`]}</span>
+      <span class="text-red-600 font-bold">{field(actor, 'name', lang)}</span>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
@@ -41,7 +41,7 @@ const roleGroups: { heading: string; roles: Role[] }[] = [
       <div class="border border-zinc-200 p-3 bg-white shadow-sm">
         <img
           {...imageAttrs(actor.photo, 'actors', '(min-width: 768px) 320px, 100vw')}
-          alt={actor[`name_${lang}`]}
+          alt={field(actor, 'name', lang)}
           class="w-full aspect-[3/4] grayscale contrast-125 object-cover"
         />
         <div class="mt-4 pt-3 border-t border-zinc-100 text-center font-mono text-[11px] text-zinc-400 uppercase tracking-widest">
@@ -52,14 +52,14 @@ const roleGroups: { heading: string; roles: Role[] }[] = [
       <!-- Bio Column -->
       <div class="md:col-span-2">
         <h1 class="text-4xl sm:text-5xl font-black uppercase tracking-tight mb-2">
-          {actor[`name_${lang}`]}
+          {field(actor, 'name', lang)}
         </h1>
         <p class="text-xs font-mono text-red-600 uppercase tracking-widest mb-8 font-semibold">
-          {actor[`role_title_${lang}`]}
+          {field(actor, 'role_title', lang)}
         </p>
 
         <div class="prose max-w-none text-zinc-700 leading-relaxed whitespace-pre-line text-base mb-12 border-b border-zinc-200 pb-8">
-          {actor[`bio_${lang}`]}
+          {field(actor, 'bio', lang)}
         </div>
 
         <!-- Repertoire Roles (current, then archived productions) -->
@@ -71,7 +71,7 @@ const roleGroups: { heading: string; roles: Role[] }[] = [
 
             {roles.length === 0 ? (
               <p class="font-mono text-sm text-zinc-400">
-                {lang === 'ru' ? 'На данный момент нет активных ролей.' : 'Hetkel aktiivseid rolle ei ole.'}
+                {tr(lang, 'Hetkel aktiivseid rolle ei ole.', 'На данный момент нет активных ролей.', 'There are no active roles at the moment.')}
               </p>
             ) : (
               <div class={`divide-y divide-zinc-200 border-t border-b border-zinc-200 ${i > 0 ? 'opacity-75' : ''}`}>
@@ -82,10 +82,10 @@ const roleGroups: { heading: string; roles: Role[] }[] = [
                         href={`/${lang}/plays/${play.slug}`}
                         class="font-bold uppercase text-base hover:text-red-600 transition-colors"
                       >
-                        {play[`title_${lang}`]}
+                        {field(play, 'title', lang)}
                       </a>
                       <span class="block text-xs font-mono text-zinc-400 mt-0.5">
-                        {play[`genre_${lang}`]}
+                        {field(play, 'genre', lang)}
                       </span>
                     </div>
                     {role && (
@@ -106,7 +106,7 @@ const roleGroups: { heading: string; roles: Role[] }[] = [
             href={`/${lang}/actors`}
             class="font-mono text-xs uppercase tracking-widest text-zinc-500 hover:text-black transition-colors"
           >
-            ← {lang === 'ru' ? 'Назад ко всей труппе' : 'Tagasi trupi nimekirja'}
+            ← {tr(lang, 'Tagasi trupi nimekirja', 'Назад ко всей труппе', 'Back to the whole company')}
           </a>
         </div>
       </div>

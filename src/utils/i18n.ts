@@ -1,4 +1,10 @@
-export type Locale = 'et' | 'ru';
+export type Locale = 'et' | 'ru' | 'en';
+
+export const LOCALES: Locale[] = ['et', 'ru', 'en'];
+
+/** Pick the text for the current language. Argument order matches LOCALES. */
+export const tr = (lang: Locale, et: string, ru: string, en: string): string =>
+  lang === 'ru' ? ru : lang === 'en' ? en : et;
 
 export const translations = {
   et: {
@@ -153,6 +159,83 @@ export const translations = {
       phone: '+372 555 1234',
       rights: 'Все права защищены.',
       adminLink: 'Панель управления',
+    }
+  },
+  en: {
+    nav: {
+      afisha: 'Schedule',
+      plays: 'Repertoire',
+      actors: 'Company',
+      about: 'About',
+      contacts: 'Contact',
+      buyTickets: 'Buy tickets',
+    },
+    home: {
+      tagline: 'Independent theatre in Tallinn',
+      subtitle: 'Uncompromising drama, contemporary physical theatre and stagecraft in the Lootsi quarter.',
+      exploreRepertoire: 'View repertoire',
+      upcomingPerformances: 'Upcoming performances',
+      viewAllAfisha: 'Full schedule →',
+      featuredPlay: 'Productions in the repertoire',
+      troupeHeading: 'The company',
+      troupeSub: 'Our actors and creators',
+      viewAllTroupe: 'All actors →',
+      aboutHeading: 'Space and aesthetic',
+      aboutTeaser: 'Kiseljus Theatre is an independent author’s theatre founded by director Anton Kiseljus. Our home at Lootsi 8, close to Tallinn’s port, combines historic limestone architecture with a bright, minimalist studio hall.',
+      learnMore: 'Learn more about us →',
+    },
+    afisha: {
+      title: 'Schedule',
+      subtitle: 'Performances and tickets',
+      noEvents: 'No performances in the selected month.',
+      buy: 'Buy ticket',
+      soldOut: 'Sold out',
+      cancelled: 'Cancelled',
+      loading: 'Loading the schedule…',
+      unavailable: 'The schedule could not be loaded. Please try again later or visit piletikeskus.ee.',
+      empty: 'There are no performances scheduled at the moment.',
+      venueNote: 'All performances take place at Kiseljus Theatre (Lootsi 8, Tallinn). Tickets are sold ONLINE ONLY through Piletikeskus — no tickets are sold at the venue.',
+    },
+    plays: {
+      title: 'Repertoire',
+      subtitle: 'Productions of the 2026/2027 season',
+      duration: 'Duration',
+      minutes: 'min',
+      genre: 'Genre',
+      cast: 'Characters and cast',
+      upcoming: 'Upcoming performances',
+      noUpcoming: 'No upcoming performances are listed at the moment.',
+      details: 'Production page →',
+      buyTicket: 'Tickets',
+      more: 'more',
+      archived: 'Past production',
+      archivedNote: 'This production is no longer in the repertoire.',
+    },
+    actors: {
+      title: 'Company',
+      subtitle: 'The actors and artistic team of Kiseljus Theatre',
+      repertoireRoles: 'Roles in the repertoire',
+      viewProfile: 'Profile →',
+      pastProductions: 'Past productions',
+    },
+    about: {
+      title: 'About the theatre',
+      subtitle: 'History, vision and the creative team',
+      missionTitle: 'Our manifesto',
+      missionText: 'Kiseljus Theatre was born from a need for direct, living and psychologically honest theatre. We believe in a dialogue with the audience, shedding needless decorative noise and focusing on the actor’s presence, light and live sound.',
+      spaceTitle: 'The Lootsi 8 theatre house',
+      spaceText: 'A historic limestone building in the Lootsi quarter, right next to Tallinn’s D-Terminal passenger port. The theatre has one spacious, light-filled transformable hall that allows a unique stage and seating layout for every production.',
+      contactsTitle: 'Contact and location',
+      boxOffice: 'Buying tickets',
+      boxOfficeInfo: 'Tickets are sold ONLY online through Piletikeskus (piletikeskus.ee). There is no box office at the theatre and no tickets are sold on site.',
+      directAdminNote: 'Piletikeskus ticket links and live schedule sync.',
+    },
+    footer: {
+      address: 'Lootsi 8, 10151 Tallinn, Estonia',
+      email: 'info@kiseljusteater.ee',
+      phone: '+372 555 1234',
+      rights: 'All rights reserved.',
+      adminLink: 'Admin login',
     }
   }
 } as const;

@@ -1,7 +1,7 @@
 import React from 'react';
-import { eventDate } from '../utils/events';
+import { eventDate, eventText } from '../utils/events';
 import { useTranslations, type Locale } from '../utils/i18n';
-import { TicketAction } from './EventRow';
+import { SoldOutBadge, TicketAction } from './EventRow';
 import { useEvents } from './useEvents';
 
 /**
@@ -29,8 +29,12 @@ export const PlayDates: React.FC<{ lang: Locale; playSlug: string; variant: 'lis
     return (
       <div className="flex flex-wrap gap-2">
         {shown.slice(0, 3).map((e) => (
-          <span key={e.id} className="inline-block bg-zinc-100 text-zinc-800 text-xs font-mono px-2.5 py-1">
+          <span
+            key={e.id}
+            className={`inline-block bg-zinc-100 text-xs font-mono px-2.5 py-1 ${e.status === 'sold_out' ? 'text-zinc-500' : 'text-zinc-800'}`}
+          >
             {eventDate(e.datetime, lang).date}
+            {e.status === 'sold_out' && <SoldOutBadge lang={lang} small />}
           </span>
         ))}
         {shown.length > 3 && (
@@ -55,7 +59,7 @@ export const PlayDates: React.FC<{ lang: Locale; playSlug: string; variant: 'lis
               <span className="font-mono font-bold text-lg text-black">{d.date}</span>
               <span className="text-xs font-mono text-zinc-500">{d.weekday} {d.time}</span>
             </div>
-            <span className="text-xs font-mono text-zinc-600">{e.venue[lang]}</span>
+            <span className="text-xs font-mono text-zinc-600">{eventText(e.venue, lang)}</span>
             <div>
               <TicketAction event={e} lang={lang} compact />
             </div>

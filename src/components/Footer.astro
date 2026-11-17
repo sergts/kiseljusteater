@@ -1,5 +1,5 @@
 ---
-import { useTranslations, type Locale } from '../utils/i18n';
+import { tr, useTranslations, type Locale } from '../utils/i18n';
 
 interface Props {
   lang: Locale;
@@ -20,9 +20,7 @@ const currentYear = new Date().getFullYear();
           Kiseljus Teater
         </span>
         <p class="font-mono text-xs text-zinc-400 leading-relaxed">
-          {lang === 'ru' 
-            ? 'Пространство бескомпромиссного драматического поиска и авторского театра у Таллиннского порта.' 
-            : 'Kompromissitu draama ja kaasaegse lavakunsti autoriruum Tallinna sadamakvartalis.'}
+          {tr(lang, 'Kompromissitu draama ja kaasaegse lavakunsti autoriruum Tallinna sadamakvartalis.', 'Пространство бескомпромиссного драматического поиска и авторского театра у Таллиннского порта.', 'A space for uncompromising dramatic exploration and author-driven theatre by the Tallinn port.')}
         </p>
         <div class="pt-2">
           <span class="inline-block px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest bg-zinc-900 border border-zinc-700 text-zinc-300">
@@ -33,7 +31,7 @@ const currentYear = new Date().getFullYear();
 
       <!-- Quick Links -->
       <div class="space-y-3 font-mono text-xs">
-        <h3 class="text-white uppercase tracking-widest font-bold mb-4">// {lang === 'ru' ? 'Разделы' : 'Menüü'}</h3>
+        <h3 class="text-white uppercase tracking-widest font-bold mb-4">// {tr(lang, 'Menüü', 'Разделы', 'Menu')}</h3>
         <ul class="space-y-2">
           <li>
             <a href={`/${lang}/afisha`} class="text-zinc-400 hover:text-white transition-colors">
@@ -60,11 +58,9 @@ const currentYear = new Date().getFullYear();
 
       <!-- Tickets & Partners -->
       <div class="space-y-3 font-mono text-xs">
-        <h3 class="text-white uppercase tracking-widest font-bold mb-4">// {lang === 'ru' ? 'Билеты только онлайн' : 'Piletid ainult veebis'}</h3>
+        <h3 class="text-white uppercase tracking-widest font-bold mb-4">// {tr(lang, 'Piletid ainult veebis', 'Билеты только онлайн', 'Tickets online only')}</h3>
         <p class="text-zinc-400 text-xs leading-relaxed">
-          {lang === 'ru'
-            ? 'Билеты на все спектакли продаются исключительно онлайн в Piletikeskus (piletikeskus.ee). В самом театре билеты не продаются.'
-            : 'Piletid kõigile etendustele on müügil AINULT VEEBIS Piletikeskuses (piletikeskus.ee). Teatris kohapeal piletimüüki ei toimu.'}
+          {tr(lang, 'Piletid kõigile etendustele on müügil AINULT VEEBIS Piletikeskuses (piletikeskus.ee). Teatris kohapeal piletimüüki ei toimu.', 'Билеты на все спектакли продаются исключительно онлайн в Piletikeskus (piletikeskus.ee). В самом театре билеты не продаются.', 'Tickets for all performances are sold exclusively online through Piletikeskus (piletikeskus.ee). No tickets are sold at the theatre itself.')}
         </p>
         <a 
           href="https://piletikeskus.ee" 
@@ -78,7 +74,7 @@ const currentYear = new Date().getFullYear();
 
       <!-- Location & Contact -->
       <div class="space-y-3 font-mono text-xs">
-        <h3 class="text-white uppercase tracking-widest font-bold mb-4">// {lang === 'ru' ? 'Контакты' : 'Kontakt'}</h3>
+        <h3 class="text-white uppercase tracking-widest font-bold mb-4">// {tr(lang, 'Kontakt', 'Контакты', 'Contact')}</h3>
         <p class="text-zinc-300 font-bold">{t.footer.address}</p>
         <p class="text-zinc-400">{t.footer.phone}</p>
         <p>

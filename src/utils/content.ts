@@ -14,10 +14,13 @@ export interface Actor {
   slug: string;
   name_et: string;
   name_ru: string;
+  name_en?: string;
   role_title_et: string;
   role_title_ru: string;
+  role_title_en?: string;
   bio_et: string;
   bio_ru: string;
+  bio_en?: string;
   photo: Image | null;
 }
 
@@ -25,16 +28,20 @@ export interface CastEntry {
   actor: string;
   role_et: string;
   role_ru: string;
+  role_en?: string;
 }
 
 export interface Play {
   slug: string;
   title_et: string;
   title_ru: string;
+  title_en?: string;
   genre_et: string;
   genre_ru: string;
+  genre_en?: string;
   synopsis_et: string;
   synopsis_ru: string;
+  synopsis_en?: string;
   duration: number | null;
   age_limit: string;
   archived: boolean;
@@ -57,16 +64,19 @@ export const contentUpdatedAt = content.updatedAt;
 
 const actorsBySlug = new Map(actors.map((a) => [a.slug, a]));
 
-/** Localised field, e.g. field(play, 'title', 'ru') → play.title_ru */
+/** Localised field, e.g. field(play, 'title', 'ru') → play.title_ru (English falls back to Estonian). */
 export function field<T extends object>(item: T, name: string, lang: Locale): string {
-  return String((item as Record<string, unknown>)[`${name}_${lang}`] ?? '');
+  const record = item as Record<string, unknown>;
+  const value = record[`${name}_${lang}`];
+  // English is optional in the admin: show the Estonian text until it is filled in.
+  return String(value || (lang === 'en' ? record[`${name}_et`] : '') || '');
 }
 
 /** Cast with actor records resolved; entries whose actor no longer exists are skipped. */
 export function castOf(play: Play, lang: Locale): { actor: Actor; role: string }[] {
   return play.cast.flatMap((c) => {
     const actor = actorsBySlug.get(c.actor);
-    return actor ? [{ actor, role: lang === 'ru' ? c.role_ru : c.role_et }] : [];
+    return actor ? [{ actor, role: field(c, 'role', lang) }] : [];
   });
 }
 
@@ -77,7 +87,7 @@ export function rolesOf(actorSlug: string, lang: Locale): { current: Role[]; pas
   for (const play of plays) {
     for (const c of play.cast) {
       if (c.actor === actorSlug) {
-        (play.archived ? past : current).push({ play, role: lang === 'ru' ? c.role_ru : c.role_et });
+        (play.archived ? past : current).push({ play, role: field(c, 'role', lang) });
       }
     }
   }

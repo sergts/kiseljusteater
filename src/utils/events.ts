@@ -8,10 +8,11 @@ export interface TheatreEvent {
   id: string;
   piletikeskusEventId: string;
   playSlug: string | null;
-  title: { et: string; ru: string };
+  title: { et: string; ru: string; en?: string };
   datetime: string;
-  venue: { et: string; ru: string };
+  venue: { et: string; ru: string; en?: string };
   ticketUrl: string;
+  ticketUrlEn?: string;
   status: EventStatus;
 }
 
@@ -46,7 +47,10 @@ async function fetchEvents(): Promise<TheatreEvent[]> {
     .sort((a, b) => Date.parse(a.datetime) - Date.parse(b.datetime));
 }
 
-const intlLocale = (lang: Locale) => (lang === 'ru' ? 'ru-RU' : 'et-EE');
+const intlLocale = (lang: Locale) => ({ et: 'et-EE', ru: 'ru-RU', en: 'en-GB' })[lang];
+
+/** A localised event text; falls back to Estonian when the language is missing. */
+export const eventText = (value: { et: string; ru: string; en?: string }, lang: Locale): string => value[lang] || value.et;
 
 /** Date parts in the theatre's time zone, independent of the visitor's clock settings. */
 export function eventDate(iso: string, lang: Locale) {

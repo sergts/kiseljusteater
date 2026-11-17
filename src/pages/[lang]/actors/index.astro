@@ -1,13 +1,10 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import { actors, imageAttrs, rolesOf } from '../../../utils/content';
-import { useTranslations, type Locale } from '../../../utils/i18n';
+import { actors, field, imageAttrs, rolesOf } from '../../../utils/content';
+import { LOCALES, tr, useTranslations, type Locale } from '../../../utils/i18n';
 
 export function getStaticPaths() {
-  return [
-    { params: { lang: 'et' } },
-    { params: { lang: 'ru' } },
-  ];
+  return LOCALES.map((lang) => ({ params: { lang } }));
 }
 
 const { lang } = Astro.params as { lang: Locale };
@@ -24,7 +21,7 @@ const t = useTranslations(lang);
     <!-- Header Banner -->
     <div class="border-b border-zinc-200 pb-8 mb-12">
       <p class="text-xs font-mono uppercase tracking-widest text-red-600 font-bold mb-2">
-        // {lang === 'ru' ? 'Актерский состав и руководство' : 'Näitlejad ja loovmeeskond'}
+        // {tr(lang, 'Näitlejad ja loovmeeskond', 'Актерский состав и руководство', 'Cast and artistic team')}
       </p>
       <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight mb-4">
         {t.actors.title}
@@ -47,7 +44,7 @@ const t = useTranslations(lang);
                   <img
                     {...imageAttrs(actor.photo, 'actors', '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw')}
                     loading="lazy"
-                    alt={actor[`name_${lang}`]}
+                    alt={field(actor, 'name', lang)}
                     class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                   />
                 </div>
@@ -55,15 +52,15 @@ const t = useTranslations(lang);
 
               <div class="p-6">
                 <p class="text-xs font-mono text-red-600 uppercase tracking-widest mb-1 font-semibold">
-                  {actor[`role_title_${lang}`]}
+                  {field(actor, 'role_title', lang)}
                 </p>
                 <h2 class="text-2xl font-black uppercase tracking-tight mb-3 group-hover:text-red-600 transition-colors">
                   <a href={`/${lang}/actors/${actor.slug}`}>
-                    {actor[`name_${lang}`]}
+                    {field(actor, 'name', lang)}
                   </a>
                 </h2>
                 <p class="text-zinc-600 text-sm leading-relaxed mb-6 line-clamp-3">
-                  {actor[`bio_${lang}`]}
+                  {field(actor, 'bio', lang)}
                 </p>
 
                 <!-- Active Roles -->
@@ -74,7 +71,7 @@ const t = useTranslations(lang);
                   <div class="space-y-1">
                     {roles.slice(0, 3).map(({ play, role }) => (
                       <div class="text-xs font-mono flex justify-between gap-3">
-                        <span class="font-bold text-zinc-800">{play[`title_${lang}`]}</span>
+                        <span class="font-bold text-zinc-800">{field(play, 'title', lang)}</span>
                         <span class="text-zinc-400 text-right">{role}</span>
                       </div>
                     ))}

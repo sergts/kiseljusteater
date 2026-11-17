@@ -2,7 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-import type { Locale } from '../utils/i18n';
+import { LOCALES, type Locale } from '../utils/i18n';
 
 interface Props {
   title?: string;
@@ -17,6 +17,10 @@ const {
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
+// / serves the Estonian home page, so its canonical address is /et/.
+const rest = currentPath.replace(/^\/(et|ru|en)(?=\/|$)/, '') || '/';
+const pathFor = (code: Locale) => new URL(`/${code}${rest}`, Astro.site ?? Astro.url).href;
+const ogLocale = { et: 'et_EE', ru: 'ru_RU', en: 'en_GB' }[lang];
 ---
 
 <!doctype html>
@@ -32,7 +36,9 @@ const currentPath = Astro.url.pathname;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content={lang === 'ru' ? 'ru_RU' : 'et_EE'} />
+    <meta property="og:locale" content={ogLocale} />
+    <link rel="canonical" href={pathFor(lang)} />
+    {LOCALES.map((code) => <link rel="alternate" hreflang={code} href={pathFor(code)} />)}
   </head>
   <body class="min-h-screen flex flex-col bg-white text-zinc-900 antialiased selection:bg-red-600 selection:text-white">
     <Header lang={lang} currentPath={currentPath} />

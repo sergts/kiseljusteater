@@ -1,14 +1,11 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import PlayDates from '../../../components/PlayDates';
-import { activePlays, imageAttrs } from '../../../utils/content';
-import { useTranslations, type Locale } from '../../../utils/i18n';
+import { activePlays, field, imageAttrs } from '../../../utils/content';
+import { LOCALES, tr, useTranslations, type Locale } from '../../../utils/i18n';
 
 export function getStaticPaths() {
-  return [
-    { params: { lang: 'et' } },
-    { params: { lang: 'ru' } },
-  ];
+  return LOCALES.map((lang) => ({ params: { lang } }));
 }
 
 const { lang } = Astro.params as { lang: Locale };
@@ -25,7 +22,7 @@ const t = useTranslations(lang);
     <!-- Header Banner -->
     <div class="border-b border-zinc-200 pb-8 mb-12">
       <p class="text-xs font-mono uppercase tracking-widest text-red-600 font-bold mb-2">
-        // {lang === 'ru' ? 'Текущий репертуар' : 'Mängukavas olevad lavastused'}
+        // {tr(lang, 'Mängukavas olevad lavastused', 'Текущий репертуар', 'Current repertoire')}
       </p>
       <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight mb-4">
         {t.plays.title}
@@ -45,7 +42,7 @@ const t = useTranslations(lang);
                 <img
                   {...imageAttrs(play.poster, 'plays', '(min-width: 768px) 50vw, 100vw')}
                   loading="lazy"
-                  alt={play[`title_${lang}`]}
+                  alt={field(play, 'title', lang)}
                   class="w-full h-full object-cover [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] group-hover:scale-105 transition-transform duration-500"
                 />
                 <div class="absolute top-4 left-4 flex gap-2">
@@ -64,15 +61,15 @@ const t = useTranslations(lang);
 
               <div class="p-6 sm:p-8">
                 <p class="text-xs font-mono text-red-600 uppercase tracking-widest mb-2 font-semibold">
-                  {play[`genre_${lang}`]}
+                  {field(play, 'genre', lang)}
                 </p>
                 <h2 class="text-3xl font-black uppercase tracking-tight mb-4 group-hover:text-red-600 transition-colors">
                   <a href={`/${lang}/plays/${play.slug}`}>
-                    {play[`title_${lang}`]}
+                    {field(play, 'title', lang)}
                   </a>
                 </h2>
                 <p class="text-zinc-600 text-sm leading-relaxed mb-6 line-clamp-3">
-                  {play[`synopsis_${lang}`]}
+                  {field(play, 'synopsis', lang)}
                 </p>
 
                 <!-- Next performances preview -->
@@ -87,7 +84,7 @@ const t = useTranslations(lang);
 
             <div class="p-6 sm:p-8 pt-0 border-t border-zinc-100 flex items-center justify-between mt-4">
               <span class="text-xs font-mono text-zinc-500">
-                {play.cast.length} {lang === 'ru' ? 'актеров' : 'näitlejat'}
+                {play.cast.length} {tr(lang, 'näitlejat', 'актеров', 'actors')}
               </span>
               <a
                 href={`/${lang}/plays/${play.slug}`}

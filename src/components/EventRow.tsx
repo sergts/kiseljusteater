@@ -1,5 +1,5 @@
 import React from 'react';
-import { eventDate, type TheatreEvent } from '../utils/events';
+import { eventDate, type TheatreEvent, eventText } from '../utils/events';
 import { useTranslations, type Locale } from '../utils/i18n';
 
 export const TicketAction: React.FC<{ event: TheatreEvent; lang: Locale; compact?: boolean }> = ({ event, lang, compact }) => {
@@ -7,7 +7,7 @@ export const TicketAction: React.FC<{ event: TheatreEvent; lang: Locale; compact
   if (event.status === 'on_sale' && event.ticketUrl) {
     return (
       <a
-        href={event.ticketUrl}
+        href={lang === 'en' && event.ticketUrlEn ? event.ticketUrlEn : event.ticketUrl}
         target="_blank"
         rel="noreferrer"
         className={`inline-block bg-red-600 hover:bg-red-700 text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors ${compact ? 'px-5 py-2' : 'px-6 py-2.5'}`}
@@ -16,17 +16,31 @@ export const TicketAction: React.FC<{ event: TheatreEvent; lang: Locale; compact
       </a>
     );
   }
+  if (event.status === 'sold_out') {
+    return <SoldOutBadge lang={lang} />;
+  }
   return (
     <span className="inline-block border border-red-600 text-red-600 px-4 py-2 text-xs font-mono uppercase tracking-widest">
-      {event.status === 'cancelled' ? t.afisha.cancelled : t.afisha.soldOut}
+      {t.afisha.cancelled}
     </span>
   );
 };
 
+/** Sold-out performances stay in the list; this badge replaces the buy button. */
+export const SoldOutBadge: React.FC<{ lang: Locale; small?: boolean }> = ({ lang, small }) => (
+  <span
+    className={`inline-block bg-zinc-900 text-white font-mono font-bold uppercase tracking-widest ${
+      small ? 'px-1.5 py-0.5 text-[10px] ml-2' : 'px-4 py-2 text-xs'
+    }`}
+  >
+    {useTranslations(lang).afisha.soldOut}
+  </span>
+);
+
 /** One performance row as used on the afisha and the home page. */
 export const EventRow: React.FC<{ event: TheatreEvent; lang: Locale }> = ({ event, lang }) => {
   const { dayMonth, time, weekday } = eventDate(event.datetime, lang);
-  const title = event.title[lang];
+  const title = eventText(event.title, lang);
   return (
     <div className={`py-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-zinc-50/75 transition-colors px-2 ${event.status === 'cancelled' ? 'opacity-60' : ''}`}>
       <div className="flex items-center gap-6 min-w-[200px]">
@@ -46,7 +60,7 @@ export const EventRow: React.FC<{ event: TheatreEvent; lang: Locale }> = ({ even
         ) : (
           <span className="text-xl font-bold uppercase tracking-tight">{title}</span>
         )}
-        <p className="text-zinc-500 text-xs font-mono mt-1">{event.venue[lang]}</p>
+        <p className="text-zinc-500 text-xs font-mono mt-1">{eventText(event.venue, lang)}</p>
       </div>
 
       <div className="min-w-[160px] text-left md:text-right">

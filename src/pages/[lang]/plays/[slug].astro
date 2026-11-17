@@ -1,12 +1,12 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import PlayDates from '../../../components/PlayDates';
-import { castOf, imageAttrs, plays, type Play } from '../../../utils/content';
-import { useTranslations, type Locale } from '../../../utils/i18n';
+import { castOf, field, imageAttrs, plays, type Play } from '../../../utils/content';
+import { LOCALES, tr, useTranslations, type Locale } from '../../../utils/i18n';
 
 export function getStaticPaths() {
   // Archived plays keep their pages so old links keep working.
-  return (['et', 'ru'] as const).flatMap((lang) =>
+  return LOCALES.flatMap((lang) =>
     plays.map((play) => ({
       params: { lang, slug: play.slug },
       props: { play, lang },
@@ -17,29 +17,29 @@ export function getStaticPaths() {
 const { play, lang } = Astro.props as { play: Play; lang: Locale };
 const t = useTranslations(lang);
 const cast = castOf(play, lang);
-const facts = [play.duration && `${play.duration} MIN`, play.age_limit, lang === 'ru' ? 'Сцена: Lootsi 8' : 'Lava: Lootsi 8'].filter(Boolean);
+const facts = [play.duration && `${play.duration} MIN`, play.age_limit, tr(lang, 'Lava: Lootsi 8', 'Сцена: Lootsi 8', 'Stage: Lootsi 8')].filter(Boolean);
 ---
 
 <Layout
   lang={lang}
-  title={`${play[`title_${lang}`]} | Kiseljus Teater`}
-  description={play[`synopsis_${lang}`]?.slice(0, 160)}
+  title={`${field(play, 'title', lang)} | Kiseljus Teater`}
+  description={field(play, 'synopsis', lang)?.slice(0, 160)}
 >
   <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
     <!-- Breadcrumb -->
     <div class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 flex items-center space-x-2">
       <a href={`/${lang}`} class="hover:text-black">Kiseljus</a>
       <span>/</span>
-      <a href={`/${lang}/plays`} class="hover:text-black">{lang === 'ru' ? 'Репертуар' : 'Repertuaar'}</a>
+      <a href={`/${lang}/plays`} class="hover:text-black">{tr(lang, 'Repertuaar', 'Репертуар', 'Repertoire')}</a>
       <span>/</span>
-      <span class="text-red-600 font-bold">{play[`title_${lang}`]}</span>
+      <span class="text-red-600 font-bold">{field(play, 'title', lang)}</span>
     </div>
 
     <!-- Hero / Stage Photo with gradient mask -->
     <div class="relative overflow-hidden mb-12 border border-zinc-200 bg-zinc-950">
       <img
         {...imageAttrs(play.poster, 'plays', '(min-width: 1024px) 1024px, 100vw')}
-        alt={play[`title_${lang}`]}
+        alt={field(play, 'title', lang)}
         class="w-full h-80 sm:h-96 md:h-[480px] object-cover [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)] filter contrast-125"
       />
       <div class="absolute bottom-6 left-6 right-6">
@@ -49,10 +49,10 @@ const facts = [play.duration && `${play.duration} MIN`, play.age_limit, lang ===
           </span>
         )}
         <span class="inline-block bg-red-600 text-white font-mono text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 mb-2">
-          {play[`genre_${lang}`]}
+          {field(play, 'genre', lang)}
         </span>
         <h1 class="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tighter text-white drop-shadow-md">
-          {play[`title_${lang}`]}
+          {field(play, 'title', lang)}
         </h1>
         <p class="font-mono text-zinc-300 text-xs sm:text-sm mt-2">
           {facts.join(' · ')}
@@ -64,10 +64,10 @@ const facts = [play.duration && `${play.duration} MIN`, play.age_limit, lang ===
     <section class="mt-12 border-t border-zinc-200 pt-8">
       <div class="flex items-center justify-between mb-6">
         <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 font-bold">
-          // {lang === 'ru' ? 'Следующие показы' : 'Järgmised etendused'}
+          // {tr(lang, 'Järgmised etendused', 'Следующие показы', 'Upcoming performances')}
         </h2>
         <a href={`/${lang}/afisha`} class="text-xs font-mono uppercase text-red-600 hover:underline">
-          {lang === 'ru' ? 'Вся афиша →' : 'Kogu mängukava →'}
+          {tr(lang, 'Kogu mängukava →', 'Вся афиша →', 'Full schedule →')}
         </a>
       </div>
 
@@ -83,17 +83,17 @@ const facts = [play.duration && `${play.duration} MIN`, play.age_limit, lang ===
     <!-- Synopsis -->
     <section class="mt-14 max-w-3xl">
       <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 font-bold mb-4">
-        // {lang === 'ru' ? 'О спектакле' : 'Lavastusest'}
+        // {tr(lang, 'Lavastusest', 'О спектакле', 'About the production')}
       </h2>
       <div class="text-zinc-800 text-base sm:text-lg leading-relaxed whitespace-pre-line space-y-4">
-        {play[`synopsis_${lang}`]}
+        {field(play, 'synopsis', lang)}
       </div>
     </section>
 
     <!-- Cast / Troupe -->
     <section class="mt-16 border-t border-zinc-200 pt-8">
       <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 font-bold mb-8">
-        // {lang === 'ru' ? 'Действующие лица и исполнители' : 'Tegelased ja osatäitjad'}
+        // {tr(lang, 'Tegelased ja osatäitjad', 'Действующие лица и исполнители', 'Characters and cast')}
       </h2>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
         {cast.map(({ actor, role }) => (
@@ -102,7 +102,7 @@ const facts = [play.duration && `${play.duration} MIN`, play.age_limit, lang ===
             class="group border border-zinc-200 p-4 bg-zinc-50/50 hover:bg-white hover:border-black transition-all"
           >
             <p class="font-bold uppercase text-sm group-hover:text-red-600 transition-colors">
-              {actor[`name_${lang}`]}
+              {field(actor, 'name', lang)}
             </p>
             <p class="text-xs font-mono text-zinc-500 mt-1">
               {role}
@@ -118,10 +118,10 @@ const facts = [play.duration && `${play.duration} MIN`, play.age_limit, lang ===
     <!-- Bottom Navigation -->
     <div class="mt-16 pt-8 border-t border-zinc-200 flex justify-between items-center font-mono text-xs uppercase">
       <a href={`/${lang}/plays`} class="text-zinc-600 hover:text-black">
-        ← {lang === 'ru' ? 'Назад в репертуар' : 'Tagasi repertuaari'}
+        ← {tr(lang, 'Tagasi repertuaari', 'Назад в репертуар', 'Back to the repertoire')}
       </a>
       <a href={`/${lang}/afisha`} class="text-red-600 font-bold hover:underline">
-        {lang === 'ru' ? 'Смотреть афишу' : 'Vaata mängukava'} →
+        {tr(lang, 'Vaata mängukava', 'Смотреть афишу', 'View the schedule')} →
       </a>
     </div>
   </div>

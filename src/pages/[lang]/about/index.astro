@@ -1,12 +1,9 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import { useTranslations, type Locale } from '../../../utils/i18n';
+import { LOCALES, tr, useTranslations, type Locale } from '../../../utils/i18n';
 
 export function getStaticPaths() {
-  return [
-    { params: { lang: 'et' } },
-    { params: { lang: 'ru' } },
-  ];
+  return LOCALES.map((lang) => ({ params: { lang } }));
 }
 
 const { lang } = Astro.params as { lang: Locale };
@@ -22,7 +19,7 @@ const t = useTranslations(lang);
     <!-- Header Banner -->
     <div class="border-b border-zinc-200 pb-8 mb-12">
       <p class="text-xs font-mono uppercase tracking-widest text-red-600 font-bold mb-2">
-        // {lang === 'ru' ? 'О театре и пространстве' : 'Teatrist ja ruumist'}
+        // {tr(lang, 'Teatrist ja ruumist', 'О театре и пространстве', 'About the theatre and the space')}
       </p>
       <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tight mb-4">
         {t.about.title}
@@ -39,9 +36,7 @@ const t = useTranslations(lang);
           // {t.about.missionTitle}
         </span>
         <blockquote class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-zinc-900 leading-snug mb-6">
-          "{lang === 'ru' 
-            ? 'Театр не место для комфортного сна. Это место честного удара и искренней встречи.' 
-            : 'Teater ei ole koht mugavaks uinakuks. See on ausa dialoogi ja vahetu kohtumise ruum.'}"
+          "{tr(lang, 'Teater ei ole koht mugavaks uinakuks. See on ausa dialoogi ja vahetu kohtumise ruum.', 'Театр не место для комфортного сна. Это место честного удара и искренней встречи.', 'Theatre is not a place for a comfortable nap. It is a space for honest dialogue and direct encounter.')}"
         </blockquote>
         <p class="text-zinc-700 leading-relaxed text-base sm:text-lg">
           {t.about.missionText}
@@ -53,7 +48,7 @@ const t = useTranslations(lang);
     <section class="mb-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
       <div>
         <span class="text-xs font-mono uppercase tracking-widest text-zinc-400 font-bold block mb-3">
-          // {lang === 'ru' ? 'Архитектура и пространство' : 'Arhitektuur ja saal'}
+          // {tr(lang, 'Arhitektuur ja saal', 'Архитектура и пространство', 'Architecture and space')}
         </span>
         <h2 class="text-3xl font-black uppercase tracking-tight mb-4">
           {t.about.spaceTitle}
@@ -63,16 +58,16 @@ const t = useTranslations(lang);
         </p>
         <div class="space-y-3 font-mono text-xs text-zinc-600 border-t border-zinc-200 pt-4">
           <div class="flex justify-between py-1 border-b border-zinc-100">
-            <span class="font-bold text-black">{lang === 'ru' ? 'Зрительный зал' : 'Teatrisaal'}</span>
-            <span>{lang === 'ru' ? 'Один трансформируемый зал' : 'Üks saal-transformer'}</span>
+            <span class="font-bold text-black">{tr(lang, 'Teatrisaal', 'Зрительный зал', 'Auditorium')}</span>
+            <span>{tr(lang, 'Üks saal-transformer', 'Один трансформируемый зал', 'One transformable hall')}</span>
           </div>
           <div class="flex justify-between py-1 border-b border-zinc-100">
-            <span class="font-bold text-black">{lang === 'ru' ? 'Пространство' : 'Ruumikontseptsioon'}</span>
-            <span>{lang === 'ru' ? 'Светлый зал с верхним светом' : 'Valge stuudioruum'}</span>
+            <span class="font-bold text-black">{tr(lang, 'Ruumikontseptsioon', 'Пространство', 'Space concept')}</span>
+            <span>{tr(lang, 'Valge stuudioruum', 'Светлый зал с верхним светом', 'A bright hall with overhead light')}</span>
           </div>
           <div class="flex justify-between py-1 border-b border-zinc-100">
-            <span class="font-bold text-black">{lang === 'ru' ? 'Продажа билетов' : 'Piletite müük'}</span>
-            <span class="text-red-600 font-bold">{lang === 'ru' ? 'ТОЛЬКО ОНЛАЙН' : 'AINULT VEEBIS'}</span>
+            <span class="font-bold text-black">{tr(lang, 'Piletite müük', 'Продажа билетов', 'Ticket sales')}</span>
+            <span class="text-red-600 font-bold">{tr(lang, 'AINULT VEEBIS', 'ТОЛЬКО ОНЛАЙН', 'ONLINE ONLY')}</span>
           </div>
         </div>
       </div>
@@ -99,13 +94,11 @@ const t = useTranslations(lang);
         <!-- Address & Transit -->
         <div class="border border-zinc-200 p-6 bg-zinc-50">
           <h3 class="font-bold uppercase tracking-wider text-xs font-mono text-red-600 mb-3">
-            // {lang === 'ru' ? 'Адрес и транспорт' : 'Aadress ja ligipääs'}
+            // {tr(lang, 'Aadress ja ligipääs', 'Адрес и транспорт', 'Address and getting here')}
           </h3>
           <p class="font-bold text-zinc-900 text-base mb-1">{t.footer.address}</p>
           <p class="text-xs text-zinc-600 leading-relaxed font-mono mt-3">
-            {lang === 'ru'
-              ? 'Трамваи №1 и №2 (остановка «Tallinna Sadam»). Портовый квартал Lootsi, рядом с D-терминалом.'
-              : 'Trammid nr 1 ja nr 2 (peatus "Tallinna Sadam"). Sadamakvartal Lootsi, D-terminali lähedal.'}
+            {tr(lang, 'Trammid nr 1 ja nr 2 (peatus "Tallinna Sadam"). Sadamakvartal Lootsi, D-terminali lähedal.', 'Трамваи №1 и №2 (остановка «Tallinna Sadam»). Портовый квартал Lootsi, рядом с D-терминалом.', 'Trams no. 1 and no. 2 (stop “Tallinna Sadam”). The Lootsi port quarter, near the D-Terminal.')}
           </p>
         </div>
 
@@ -118,14 +111,14 @@ const t = useTranslations(lang);
             {t.about.boxOfficeInfo}
           </p>
           <p class="text-[11px] text-red-600 font-mono font-semibold">
-            {lang === 'ru' ? 'В театре кассы нет!' : 'Kohapeal piletikassat ei ole!'}
+            {tr(lang, 'Kohapeal piletikassat ei ole!', 'В театре кассы нет!', 'There is no box office at the theatre!')}
           </p>
           <div class="mt-4 pt-3 border-t border-zinc-200">
             <a
               href={`/${lang}/afisha`}
               class="inline-block bg-black text-white px-4 py-2 text-xs font-mono uppercase tracking-wider hover:bg-red-600 transition-colors"
             >
-              {lang === 'ru' ? 'Перейти в афишу' : 'Vaata mängukava'} →
+              {tr(lang, 'Vaata mängukava', 'Перейти в афишу', 'See the schedule')} →
             </a>
           </div>
         </div>
@@ -133,17 +126,17 @@ const t = useTranslations(lang);
         <!-- Inquiries -->
         <div class="border border-zinc-200 p-6 bg-zinc-50 font-mono text-xs">
           <h3 class="font-bold uppercase tracking-wider text-xs font-mono text-red-600 mb-3">
-            // {lang === 'ru' ? 'Связь и администрация' : 'Side ja administratsioon'}
+            // {tr(lang, 'Side ja administratsioon', 'Связь и администрация', 'Contact and administration')}
           </h3>
-          <p class="text-zinc-500 mb-1">{lang === 'ru' ? 'Электронная почта:' : 'E-post:'}</p>
+          <p class="text-zinc-500 mb-1">{tr(lang, 'E-post:', 'Электронная почта:', 'Email:')}</p>
           <a href={`mailto:${t.footer.email}`} class="text-black font-bold block mb-3 hover:text-red-600">
             {t.footer.email}
           </a>
-          <p class="text-zinc-500 mb-1">{lang === 'ru' ? 'Телефон:' : 'Telefon:'}</p>
+          <p class="text-zinc-500 mb-1">{tr(lang, 'Telefon:', 'Телефон:', 'Phone:')}</p>
           <a href={`tel:${t.footer.phone}`} class="text-black font-bold block mb-3 hover:text-red-600">
             {t.footer.phone}
           </a>
-          <p class="text-zinc-500 mb-1">{lang === 'ru' ? 'Художественный руководитель:' : 'Kunstiline juht:'}</p>
+          <p class="text-zinc-500 mb-1">{tr(lang, 'Kunstiline juht:', 'Художественный руководитель:', 'Artistic director:')}</p>
           <span class="text-zinc-800">Anton Kiseljus</span>
         </div>
       </div>
