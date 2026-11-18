@@ -86,6 +86,8 @@ If a published file has no `info`/`contacts` yet, the site uses `src/content/sit
 
 ### Visitor information
 - Info blocks (afisha page, under the schedule) and contacts (footer, About) come from the admin.
+- The **About page is switched off for now** (`SHOW_ABOUT = false` in `src/utils/site.ts`): no pages, no menu or footer entry, no button on the home page.
+  Set it to `true` to bring everything back. Old `/about/` addresses give a 404 until then. The admin's contacts hint still mentions the About page.
 - Footer and About link to the theatre's Instagram and Facebook; the footer's Piletikeskus link goes to the theatre's own page
   (`https://piletikeskus.ee/et/c/kiseljusteater`). The three links are contact fields in the admin; a blank value hides the link, a missing one uses the
   default from `src/content/site-defaults.json`. There are no embedded feeds (they would load Meta's scripts and cookies).
@@ -163,4 +165,5 @@ The admin lives in `server/public_html/admin/` and `server/private/` (**not in g
 | `22d77a7` | "Before you buy" panel on play pages, edited in the admin |
 | `12ed57e` | Trailing slashes on all links; hero location tag removed |
 | `018738a` | Changelog; admin link removed from the footer |
-| next | Footer ticket link, Instagram and Facebook links, editable in the admin |
+| `0312feb` | Footer ticket link, Instagram and Facebook links, editable in the admin |
+| next | Home "next performances" only with tickets, clickable play pictures, own venue hidden in the afisha, About page switched off, "Lootsi" is a street |

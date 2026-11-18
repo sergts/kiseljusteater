@@ -56,6 +56,13 @@ async function fetchEvents(): Promise<TheatreEvent[]> {
 
 const intlLocale = (lang: Locale) => ({ et: 'et-EE', ru: 'ru-RU', en: 'en-GB' })[lang];
 
+/**
+ * True when the performance is at the theatre's own hall. Sviby writes it "Kiseljus TEATER" (sometimes with ", Lootsi 8"),
+ * and the English feed sometimes returns the street instead, so the Estonian name is the reliable one.
+ * The afisha only names a venue when it is somewhere else.
+ */
+export const isHomeVenue = (venue: { et: string }): boolean => /^\s*kiseljus\b/i.test(venue.et);
+
 /** A localised event text; falls back to Estonian when the language is missing. */
 export const eventText = (value: { et: string; ru: string; en?: string }, lang: Locale): string => value[lang] || value.et;
 

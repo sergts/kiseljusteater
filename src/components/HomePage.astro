@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import LogoReveal from './LogoReveal.astro';
 import NextPerformance from './NextPerformance';
+import { SHOW_ABOUT } from '../utils/site';
 import UpcomingEvents from './UpcomingEvents';
 import { activePlays, actors, field, imageAttrs } from '../utils/content';
 import { tr, useTranslations, type Locale } from '../utils/i18n';
@@ -115,7 +116,8 @@ const t = useTranslations(lang);
         {activePlays.map((play) => (
           <div class="reveal group bg-white border border-zinc-200 overflow-hidden flex flex-col justify-between hover:border-black transition-colors">
             <div>
-              <div class="relative h-64 overflow-hidden bg-zinc-900">
+              <!-- The picture links to the play too; the title link below is the one for keyboards and screen readers. -->
+              <a href={`/${lang}/plays/${play.slug}/`} tabindex="-1" aria-hidden="true" class="relative block h-64 overflow-hidden bg-zinc-900">
                 <img
                   {...imageAttrs(play.poster, 'plays', '(min-width: 768px) 50vw, 100vw')}
                   transition:name={`poster-${play.slug}`}
@@ -128,7 +130,7 @@ const t = useTranslations(lang);
                     {[play.age_limit, play.duration && `${play.duration} MIN`].filter(Boolean).join(' · ')}
                   </span>
                 </div>
-              </div>
+              </a>
 
               <div class="p-6">
                 <p class="text-xs font-mono text-red-600 uppercase tracking-wider mb-2">
@@ -215,12 +217,14 @@ const t = useTranslations(lang);
           <p class="text-zinc-300 leading-relaxed text-sm sm:text-base mb-8">
             {t.home.aboutTeaser}
           </p>
-          <a
-            href={`/${lang}/about/`}
-            class="inline-block bg-white hover:bg-zinc-200 text-black font-mono text-xs font-bold uppercase tracking-widest px-8 py-3.5 transition-colors"
-          >
-            {t.home.learnMore}
-          </a>
+          {SHOW_ABOUT && (
+            <a
+              href={`/${lang}/about/`}
+              class="inline-block bg-white hover:bg-zinc-200 text-black font-mono text-xs font-bold uppercase tracking-widest px-8 py-3.5 transition-colors"
+            >
+              {t.home.learnMore}
+            </a>
+          )}
         </div>
       </div>
     </div>

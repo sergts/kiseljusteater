@@ -1,5 +1,6 @@
 ---
 import { LOCALES, useTranslations, type Locale } from '../utils/i18n';
+import { SHOW_ABOUT } from '../utils/site';
 
 interface Props {
   lang: Locale;
@@ -17,7 +18,7 @@ const navLinks = [
   { href: `/${lang}/afisha/`, label: t.nav.afisha },
   { href: `/${lang}/plays/`, label: t.nav.plays },
   { href: `/${lang}/actors/`, label: t.nav.actors },
-  { href: `/${lang}/about/`, label: t.nav.about },
+  ...(SHOW_ABOUT ? [{ href: `/${lang}/about/`, label: t.nav.about }] : []),
 ];
 
 const isLinkActive = (href: string) => {

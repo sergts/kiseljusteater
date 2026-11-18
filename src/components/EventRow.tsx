@@ -1,5 +1,5 @@
 import React from 'react';
-import { eventDate, type TheatreEvent, eventText } from '../utils/events';
+import { eventDate, type TheatreEvent, eventText, isHomeVenue } from '../utils/events';
 import { useTranslations, type Locale } from '../utils/i18n';
 
 export const TicketAction: React.FC<{ event: TheatreEvent; lang: Locale; compact?: boolean }> = ({ event, lang, compact }) => {
@@ -62,7 +62,7 @@ export const EventRow: React.FC<{ event: TheatreEvent; lang: Locale }> = ({ even
         ) : (
           <span className={`text-xl font-bold uppercase tracking-tight ${soldOut ? 'text-zinc-500' : ''}`}>{title}</span>
         )}
-        <p className="text-zinc-500 text-xs font-mono mt-1">{eventText(event.venue, lang)}</p>
+        {!isHomeVenue(event.venue) && <p className="text-zinc-500 text-xs font-mono mt-1">{eventText(event.venue, lang)}</p>}
       </div>
 
       <div className="min-w-[160px] text-left md:text-right">

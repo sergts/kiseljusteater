@@ -1,6 +1,7 @@
 ---
 import { contacts, field } from '../utils/content';
 import SocialIcon from './SocialIcon.astro';
+import { SHOW_ABOUT } from '../utils/site';
 import { tr, useTranslations, type Locale } from '../utils/i18n';
 
 interface Props {
@@ -53,11 +54,13 @@ const t = useTranslations(lang);
               → {t.nav.actors}
             </a>
           </li>
-          <li>
-            <a href={`/${lang}/about/`} class="inline-block py-1 text-zinc-400 hover:text-white transition-colors">
-              → {t.nav.about}
-            </a>
-          </li>
+          {SHOW_ABOUT && (
+            <li>
+              <a href={`/${lang}/about/`} class="inline-block py-1 text-zinc-400 hover:text-white transition-colors">
+                → {t.nav.about}
+              </a>
+            </li>
+          )}
         </ul>
       </div>
 

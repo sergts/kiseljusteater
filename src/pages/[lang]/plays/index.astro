@@ -38,7 +38,8 @@ const t = useTranslations(lang);
         return (
           <div class="reveal group bg-white border border-zinc-200 flex flex-col justify-between hover:border-black transition-all">
             <div>
-              <div class="relative h-72 sm:h-80 overflow-hidden bg-zinc-950">
+              <!-- The picture links to the play too; the title link below is the one for keyboards and screen readers. -->
+              <a href={`/${lang}/plays/${play.slug}/`} tabindex="-1" aria-hidden="true" class="relative block h-72 sm:h-80 overflow-hidden bg-zinc-950">
                 <img
                   {...imageAttrs(play.poster, 'plays', '(min-width: 768px) 50vw, 100vw')}
                   transition:name={`poster-${play.slug}`}
@@ -58,7 +59,7 @@ const t = useTranslations(lang);
                     </span>
                   )}
                 </div>
-              </div>
+              </a>
 
               <div class="p-6 sm:p-8">
                 <p class="text-xs font-mono text-red-600 uppercase tracking-widest mb-2 font-semibold">

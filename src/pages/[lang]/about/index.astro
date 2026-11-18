@@ -2,10 +2,12 @@
 import Layout from '../../../layouts/Layout.astro';
 import { contacts, field } from '../../../utils/content';
 import SocialIcon from '../../../components/SocialIcon.astro';
+import { SHOW_ABOUT } from '../../../utils/site';
 import { LOCALES, tr, useTranslations, type Locale } from '../../../utils/i18n';
 
 export function getStaticPaths() {
-  return LOCALES.map((lang) => ({ params: { lang } }));
+  // Switched off for now, see src/utils/site.ts.
+  return SHOW_ABOUT ? LOCALES.map((lang) => ({ params: { lang } })) : [];
 }
 
 const { lang } = Astro.params as { lang: Locale };
@@ -89,7 +91,7 @@ const t = useTranslations(lang);
           </h3>
           <p class="font-bold text-zinc-900 text-base mb-1">{field(contacts, 'address', lang)}</p>
           <p class="text-xs text-zinc-600 leading-relaxed font-mono mt-3">
-            {tr(lang, 'Trammid nr 1 ja nr 2 (peatus "Tallinna Sadam"). Sadamakvartal Lootsi, D-terminali lähedal.', 'Трамваи №1 и №2 (остановка «Tallinna Sadam»). Портовый квартал Lootsi, рядом с D-терминалом.', 'Trams no. 1 and no. 2 (stop “Tallinna Sadam”). The Lootsi port quarter, near the D-Terminal.')}
+            {tr(lang, 'Trammid nr 1 ja nr 2 (peatus "Tallinna Sadam"). Lootsi tänav, D-terminali lähedal.', 'Трамваи №1 и №2 (остановка «Tallinna Sadam»). Улица Lootsi, рядом с D-терминалом.', 'Trams no. 1 and no. 2 (stop “Tallinna Sadam”). Lootsi Street, near the D-Terminal.')}
           </p>
         </div>
 
